@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
+</head>
+
+<body>
+    <!-- 로그인 페이지 헤더 -->
+    <header class="login-header">
+        <h1><a href="/"><img src="../assets/images/logo.svg" alt="로고"></a></h1>
+    </header>
+    <!-- 로그인 페이지 -->
+    <article class="login-page unlock">
+        <section class="round-box login-box pos-relative">
+            <h2>
+                잠금 해제
+                <span>계정의 안전한 보호를 위해 추가 인증 절차를 진행합니다.</span>
+            </h2>
+
+            <div class="desc-box">
+                <p><strong>사용자 정보를 정확히 입력해주세요.</strong></p>
+                <p><strong>입력하신 정보로 인증번호가 발송됩니다.</strong></p>
+            </div>
+            <!--@@@  dev: 에러메세지는  .input-wrap에 .error 붙혀주시면 됩니다. @@@-->
+            <div class="input-wrap">
+                <!-- 이메일 입력 -->
+                <div class="input-item">
+                    <span class="input-title">이메일</span>
+                    <div class="input">
+                        <input type="email" id="emailInput" class="custom-input" placeholder="이메일을 입력해주세요.">
+                        <button class="clear-btn"><img src="../assets/images/ic_close_fill_20.svg" alt=""></button>
+                    </div>
+                    <span class="input-error-message"><i><img src="../assets/images/icn_error.svg" alt=""></i>이메일을
+                        입력해주세요.</span>
+                </div>
+                <!-- 인증번호 입력 -->
+                <div class="input-item input-item-btn">
+                    <span class="input-title">휴대폰 인증</span>
+                    <div class="input">
+                        <input type="tel" id="phoneInput" class="custom-input" maxlength="11"
+                            Placeholder="‘-’를 제외하고 숫자 입력"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        <button type="button" id="phoneAuthBtn" class="button">인증 받기</button>
+                    </div>
+                    <span class="input-error-message"><i><img src="../assets/images/icn_error.svg" alt=""></i>휴대폰 번호를
+                        입력해 주세요</span>
+                </div>
+                <!-- 인증번호 입력 -->
+                <div class="input-item">
+                    <div class="input">
+                        <input type="tel" id="codeInput" class="custom-input" maxlength="6" Placeholder="인증번호 6자리 숫자 입력"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                            disabled>
+                        <!-- <button type="button" id="confirmBtn" class="button" disabled>확인</button> -->
+                    </div>
+                    <!-- <span class="input-error-message"><i><img src="../assets/images/icn_error.svg" alt=""></i>인증번호를 입력해주세요.</span> -->
+                    <span class="input-error-message"><i><img src="../assets/images/icn_error.svg" alt=""></i>인증시간이
+                        만료되었습니다.인증번호를 재요청해주세요.</span>
+                </div>
+                <p class="otp-timer">남은 인증시간은 <strong id="timer">3:00</strong> 입니다.</p>
+            </div>
+            <div class="bottom-section">
+                <!-- MO 하단 영역 -->
+                <div class="login-footer mo">
+                    Cloud PC 이용 중 불편사항은 로그인 후 Q&A에 남겨주세요.<br>신속하게 조치 하겠습니다.
+                </div>
+                <div class="button-wrap bottom-button-wrap">
+                    <button type="submit" class="button button-cancel">이전</button>
+                    <!-- submit 버튼 -->
+                    <button type="submit" class="button button-default" id="unlockBtn" disabled>잠금 해제</button>
+                </div>
+            </div>
+        </section>
+        <!-- PC 하단 영역 -->
+        <section class="login-footer pc">
+            Cloud PC 이용 중 불편사항은 로그인 후 Q&A에 남겨주세요.<br>신속하게 조치 하겠습니다.
+        </section>
+        <!-- 알럿 / alert.js 에서 내용 불러옵니다. -->
+        <div id="alertOverlay" class="alert-overlay">
+            <div class="alert-content">
+                <div id="alertBody" class="alert-body">
+                    <p id="alertBodyText"></p>
+                </div>
+                <div id="alertFooter" class="alert-footer"></div>
+            </div>
+        </div>
+    </article>
+    <script src="../assets/js/alert.js"></script>
+    <script src="../assets/js/input.js"></script>
+    <script src="../assets/js/toast.js"></script>
+
+    <script>
+        //알럿 : 회원정보 불일치
+        //openAlert('alertInstall');
+
+        // DOM 요소 선택
+        //const phoneInput = document.getElementById('phoneInput');
+        const phoneAuthBtn = document.getElementById('phoneAuthBtn');
+        const codeInput = document.getElementById('codeInput');
+        const timerDisplay = document.getElementById('timer');
+        const unlockBtn = document.getElementById('unlockBtn');
+
+        let timer;
+        let timeLeft = 180; // 3분 = 180초
+
+        // 타이머 포맷팅 함수
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+
+        // 타이머 시작 함수
+        function startTimer() {
+            // 기존 타이머 정지
+            clearInterval(timer);
+
+            // 타이머 초기화
+            timeLeft = 180;
+            timerDisplay.textContent = '3:00';
+            codeInput.value = '';
+
+            // 새 타이머 시작
+            timer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = formatTime(timeLeft);
+
+                // 타이머 종료 시
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerDisplay.textContent = '0:00';
+                }
+            }, 1000);
+        }
+
+        phoneAuthBtn.addEventListener('click', function () {
+            phoneAuthBtn.textContent = "재요청";
+            codeInput.disabled = false;
+        });
+
+        // 입력 이벤트 리스너
+        codeInput.addEventListener('input', function () {
+            // 인증번호가 정확하고 타이머가 진행 중일 때만 인증 버튼 활성화
+            if (this.value.length === 6 && timeLeft > 0) {
+                unlockBtn.disabled = false;
+            } else {
+                unlockBtn.disabled = true;
+            }
+        });
+        // 인증하기 버튼 이벤트
+        phoneAuthBtn.addEventListener('click', startTimer);
+
+        //잠금해제 버튼 클릭 시
+        unlockBtn.addEventListener('click', function () {
+            ToastManager.showToast('toastUnlockSuccess');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,955 @@
+@charset "utf-8";
+
+:root {
+    --Primary-Fill-default: #2dbdb6;
+
+    --Primary-Fill-neutral-bg: #F4F6F8;
+    --Primary-Fill-neutral-dark: #EAECEF;
+    --Primary-Fill-neutral: rgba(244, 246, 248, 1);
+
+    --Neutral-Fill-alternative: rgba(112,115,124, .12);
+
+    --Neutral-Text-default: #171719;
+    --Neutral-Text-neutral: rgba(46, 47, 51, 0.88);
+
+    --Status-Negative-Text-default: #E52222;
+    --Neutral-Text-alternative: rgba(55, 56, 60, 0.61);
+
+    --Neutral-Border-alternative: rgba(112, 115, 124, 0.16);
+    --Neutral-Border-Neutral: #EDEFF3;
+    --Neutral-Border-focus: #1A75FF;
+}
+
+
+/*************************    
+    common 
+*************************/
+body {
+    background-color: var(--Primary-Fill-neutral-bg);
+}
+
+/* 반응형에 따른 display */
+.pc {display: block !important;}
+.mo {display: none !important;}
+
+/* 라운드 박스 */
+.round-box {
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 10px 20ox 30px rgba(0,0,0,0.02);
+}
+
+.flex-item-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pos-relative {
+    position: relative;
+}
+
+
+/*************************    
+    footer 
+*************************/
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    font-size: 14px;
+    color: var(--Neutral-Text-alternative);
+}
+footer  .footer-copy {
+    margin-right: 24px;
+}
+footer .footer-menu {
+   display: flex;
+}
+footer .footer-menu li {
+    margin-right: 24px;
+}
+footer .footer-menu li a {
+    color: var(--Neutral-Text-alternative);
+}
+
+/*************************    
+    Loading overlay styles 
+*************************/
+
+ .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+/* Spinner animation */
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(112, 115, 124, 0.28);
+    border-radius: 50%;
+    border-top: 3px solid #2DBDB6;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*************************    
+    button 
+*************************/
+.button-wrap {
+    display: flex;
+    width: 100%;
+}
+.button-wrap button, .button-wrap .button  {
+    width: 49%;
+    line-height: 40px;
+}
+.button-wrap button:first-child, .button-wrap .button:first-child {
+    margin-right: 2%;
+}
+
+
+/* Base Button Styles */
+.button {
+    display: inline-block;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #fff;
+    text-align: center;
+}
+
+/* Default State */
+.button-default {
+    background-color: var(--Primary-Fill-default);
+}
+/* Hover State */
+.button-default:hover {
+    color: #eee;
+    background-color: #2bb1aa;
+}
+/* Focused State */
+.button-default:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #2e2f33;
+    color: #e3e3e3;
+    background-color: #2aa9a3;
+}
+/* Pressed State */
+.button-default:active {
+    color: #d5d5d6;
+    background-color: #299f9a;
+}
+/* cancel State */
+.button-cancel {
+    color: var(--Neutral-Text-default);
+    background-color: var(--Primary-Fill-neutral);
+}
+
+/* Disabled State */
+button:disabled, button:disabled:hover {
+    background-color: #eeeeef;
+    color: #aeaeb0;
+    cursor: not-allowed;
+    opacity: 0.65;
+    transform: none;
+}
+
+
+/*************************    
+    alert 
+*************************/
+
+/* 알럿 컨테이너 기본 스타일 */
+.alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    visibility:hidden;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.alert-overlay.show {
+    visibility: visible;
+    display: flex;
+    opacity: 1;
+}
+
+.alert-content {
+    width: 400px;
+    max-width: 90%;
+    padding: 24px;
+    border: 1px solid #EAF1F5;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.02);
+    transform: scale(0.5); /* 초기 상태를 더 작게 */
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.alert-content p {
+    white-space: pre-wrap;
+}
+
+.alert-overlay.show .alert-content {
+    transform: scale(1); /* 살짝 더 커지는 효과 */
+    opacity: 1;
+}
+
+.alert-overlay.closing .alert-content {
+    transform: scale(0.7); /* 닫힐 때 작아지는 효과 */
+    opacity: 0;
+}
+
+.alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.alert-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.alert-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.alert-close:hover {
+    color: #333;
+}
+
+.alert-body {
+    padding: 12px 0;
+    color: var(--Neutral-Text-default);
+    font-size: 16px;
+    line-height: 150%;
+}
+
+.alert-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 0 0;
+}
+
+.alert-btn {
+    width: 84px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.alert-btn-cancel {
+    background-color: var(--Neutral-Fill-alternative);
+    color: var(--Neutral-Text-default);
+}
+
+.alert-btn-confirm {
+    background-color: var(--Primary-Fill-default);
+    color: #fff;
+}
+/*************************    
+    modal 
+*************************/
+
+#toast-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 999;
+    cursor: not-allowed;
+}
+#toast-container {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+.toast {
+    background-color: #fff;
+    border: 1px solid rgba(237, 239, 243, 1);
+    padding: 12px 16px;
+    border-radius: 1000px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 
+        opacity 0.5s ease-in-out,
+        transform 0.5s ease-out;
+    box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.02);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: rgba(46, 47, 51, 0.88);
+}
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.toast-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/*************************    
+    modal 
+*************************/
+
+/* 모달 컨테이너 기본 스타일 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    visibility:hidden;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.show {
+    visibility: visible;
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    width: 400px;
+    max-width: 90%;
+    padding: 24px;
+    border: 1px solid #EAF1F5;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.02);
+    transform: scale(0.5); /* 초기 상태를 더 작게 */
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-content p {
+    white-space: pre-wrap;
+}
+
+.modal-overlay.show .modal-content {
+    transform: scale(1); /* 살짝 더 커지는 효과 */
+    opacity: 1;
+}
+
+.modal-overlay.closing .modal-content {
+    transform: scale(0.7); /* 닫힐 때 작아지는 효과 */
+    opacity: 0;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.modal-close {
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/close.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 12px 0;
+    color: var(--Neutral-Text-default);
+    font-size: 16px;
+    line-height: 1.3em;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 0 0;
+}
+
+.modal-btn {
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-btn-cancel {
+    background-color: var(--Neutral-Fill-alternative);
+    color: var(--Neutral-Text-default);
+}
+
+.modal-btn-confirm {
+    background-color: var(--Primary-Fill-default);
+    color: #fff;
+}
+
+/* 초기프로그램 설치 */
+/* 초기 설치 파일 다운로드 모달 */
+.modal-content.login-modal {
+    width: 420px;
+}
+.modal-content.login-modal .modal-body {
+    height: 384px;
+    padding: 12px;
+    background-color: var(--Primary-Fill-neutral-bg);
+    border-radius: 12px;
+}
+.modal-content.login-modal .modal-body .action_button {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.modal-content.login-modal .modal-body .action_button .logo-icon {
+    margin-right: 20px;
+}
+.modal-content.login-modal .modal-body .action_button .btn-control-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+/* show */
+.modal-content.login-modal .modal-body .action_button .btn-control-icon.active {
+    transform: rotate(-180deg);
+}
+.modal-content.login-modal .modal-body .show_content {
+
+    /* padding: 4px 0; */
+    background-color: var(--Primary-Fill-neutral-dark);
+    border-radius: 12px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.05s ease-out;
+    opacity: 0;
+
+}
+.modal-content.login-modal .modal-body .show_content.show {
+    overflow-y: scroll;
+    max-height: 179px; /* Adjust based on your content's maximum height */
+    opacity: 1;
+    transition: max-height 0.25s ease-in, opacity 0.4s ease-in;
+}
+.modal-content.login-modal .modal-body .show_content ul li {
+    position: relative;
+    display: flex;
+    padding: 8px 16px 8px 80px;
+    font-size: 14px;
+    color: var(--Neutral-Text-neutral);
+}
+.modal-content.login-modal .modal-body .show_content ul li::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 68px;
+    width: 3px;
+    height: 3px;
+    background-image: url(../images/dot.svg);
+}
+.modal-content.login-modal .modal-body .show_content ul li .btn-down {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 4px;
+    background-color: var(--Neutral-Fill-alternative);
+}
+.modal-content.login-modal .modal-body .show_content ul li .btn-down img {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+}
+
+
+/*************************    
+    input 
+*************************/
+
+.input-wrap {
+    width: 320px;
+    margin: 0 auto;
+}
+.input-item {
+    margin-bottom: 15px;
+}
+.input-item .input-title {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--Neutral-Text-neutral);
+}
+.input-item .input {
+    position: relative;
+    width: 320px;
+    height: 40px;
+}
+.input-item .input .clear-btn, .input-item .input .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.input-item .input .clear-btn {
+    display: none;
+}
+.toggle-password .eyes-on {display: none;}
+.toggle-password .eyes-off {display: block;}
+
+.input-item input {
+    width: 100%;
+    height: 100%;
+    padding: 10px 42px 10px 16px;
+    color: var(--Neutral-Text-default);
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid var(--Neutral-Border-alternative);
+    border-radius: 4px;
+    transition: all .3s;  
+}
+.input-item input:focus {
+    outline: none;
+    border-color: var(--Neutral-Border-focus);
+}
+.input-item input::placeholder {
+    color: rgba(152, 155, 162, 1);
+}
+.input-item input:disabled {
+    background-color: var(--Neutral-Fill-alternative);
+}
+.input-error-message, .error-message {
+    display: none;
+    align-items: center;
+    margin-top: 4px;
+    margin-right: 4px;
+    color: var(--Status-Negative-Text-default);
+    font-size: 12px;
+ }
+ .input-item.error input {
+    border-color: var(--Status-Negative-Text-default);
+ }
+.input-item.error .input-error-message {
+    display: flex;
+}
+.error-message.active {display: flex;}
+.error-message img, .input-error-message img {
+    width: 16px;
+    height: 16px;
+}
+/* input + button */
+.input-item.otp .input {
+    position: initial;
+    width: 100%;
+    display: flex;
+}
+.input-item.input-item-btn .input .custom-input {
+    width: 232px;
+    margin-right: auto;
+}
+.input-item.input-item-btn .input button {
+    width: 80px;
+    height: 40px;
+    margin-left: auto;
+    text-align: center;
+    color: var(--Neutral-Text-default);
+    font-size: 16px;
+    background-color: var(--Neutral-Fill-alternative);
+    border-radius: 4px;
+}
+
+/* input check*/
+.flex-item-between {
+    margin-top: 24px;
+}
+.check-item input[type="checkbox"] {
+    display: none;
+}
+.check-item input[type="checkbox"] + label {
+    display: flex;
+    align-content: center;
+    cursor: pointer;
+}
+.check-item input[type="checkbox"] + label strong {
+    line-height: 2.3em;
+    font-size: 14px;
+}
+.check-item input[type="checkbox"] + label span {
+    width: 32px;
+    height: 32px;
+    background-image: url(../images/checkbox.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.check-item input[type="checkbox"]:checked + label span {
+    width: 32px;
+    height: 32px;
+    background-image: url(../images/checkbox_checked.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+@media screen and (max-width: 767px) {
+
+        /*************************    
+            common 
+        *************************/
+
+        /* 반응형에 따른 display */
+        .pc {display: none !important;}
+        .mo {display: block !important;}
+
+       /*************************    
+            footer 
+        *************************/
+        footer {
+            font-size: 3.33vw;
+        }
+        footer  .footer-copy {
+            margin-right: 4.44vw;
+        }
+        footer .footer-menu li {
+            margin-right: 4.44vw;
+        }
+
+        /*************************    
+            modal 
+        *************************/
+        /* 모달 컨테이너 기본 스타일 */
+        .modal-overlay {
+            background-color: rgba(2, 2, 2, 0.25);
+        }
+        .modal-content.login-modal .modal-body {
+            height: 400px;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        
+
+    /*************************    
+        button 
+    *************************/
+    /* Base Button Styles */
+    .button {
+        height: 11.11vw;
+        border-radius: 1.11vw;
+        font-size: 4.44vw;
+    }
+
+    /*************************    
+        modal 
+    *************************/
+    .modal-content {
+        width: 91.11vw;
+        padding: 6.67vw;
+        border-radius: 5.56vw;
+    }
+    .modal-header {
+        padding-bottom: 5.56vw;
+    }
+    .modal-header h3 {
+        font-size: 5.56vw;
+    }
+    .modal-close {
+        width: 6.67vw;
+        height: 6.67vw;
+    }
+    .modal-body {
+        padding: 3.33vw 0;
+        font-size: 4.44vw;
+    }
+    .modal-footer {
+        padding: 5.56vw 0 0;
+    }
+    .modal-btn {
+        width: 27.78vw;
+        height: 11.11vw;
+        line-height: 11.11vw;
+        margin-left: 2.78vw;
+        font-size: 4.44vw;
+        border: none;
+    }
+
+    /* 초기 프로그램 설치 */
+    /* 초기 설치 파일 다운로드 모달 */
+    .modal-content.login-modal {
+        width: 91.11vw;
+    }
+    .modal-content.login-modal .modal-body {
+        height: 106.67vw;
+        padding: 3.33vw 0;
+        border-radius: 3.33vw;
+    }
+    .modal-content.login-modal .modal-body .action_button {
+        padding: 2.22vw 8.89vw;
+        font-size: 4.44vw;
+    }
+    .modal-content.login-modal .modal-body .action_button .logo-icon {
+        margin-right: 5.56vw;
+    }
+    /* show */
+    .modal-content.login-modal .modal-body .show_content {
+        border-radius: 3.33vw;
+    }
+
+    .modal-content.login-modal .modal-body .show_content ul li {
+        padding: 2.64vw 6.67vw 2.64vw 20.00vw;
+        font-size: 3.89vw;
+    }
+    .modal-content.login-modal .modal-body .show_content ul li::before {
+        top: 5.00vw;
+        left: 16.94vw;
+        width: 0.83vw;
+        height: 0.83vw;
+    }
+    .modal-content.login-modal .modal-body .show_content ul li .btn-down {
+        padding: 1.11vw 2.22vw;
+        font-size: 3.33vw;
+        border-radius: 1.11vw;
+    }
+    .modal-content.login-modal .modal-body .show_content ul li .btn-down img {
+        width: 4.44vw;
+        height: 4.44vw;
+        margin-left: 2.22vw;
+    }
+
+        /* 초기프로그램 설치 */
+    /* 초기 설치 파일 다운로드 모달 */
+    .modal-content.login-modal {
+        width: 116.67vw;
+    }
+    .modal-content.login-modal .modal-body {
+        height: 119.67vw;
+        padding: 3.33vw;
+        border-radius: 3.33vw;
+    }
+    .modal-content.login-modal .modal-body .action_button {
+        padding: 4.44vw;
+        font-size: 4.44vw;
+    }
+    .modal-content.login-modal .modal-body .action_button .logo-icon {
+        margin-right: 5.56vw;
+    }
+    /* show */
+    .modal-content.login-modal .modal-body .show_content {
+        border-radius: 3.33vw;
+    }
+    .modal-content.login-modal .modal-body .show_content.show {
+        max-height: 49.72vw; /* Adjust based on your content's maximum height */
+    }
+    .modal-content.login-modal .modal-body .show_content ul li {
+        padding: 2.22vw 4.44vw 2.22vw 17.22vw;
+        font-size: 3.89vw;
+    }
+    .modal-content.login-modal .modal-body .show_content ul li::before {
+
+        top: 4.44vw;
+        left: 12.89vw;
+        width: 0.83vw;
+        height: 0.83vw;
+        background-image: url(../images/dot.svg);
+    }
+    .modal-content.login-modal .modal-body .show_content ul li .btn-down {
+        padding: 1.11vw 2.22vw;
+        font-size: 3.33vw;
+        border-radius: 1.11vw;
+    }
+    .modal-content.login-modal .modal-body .show_content ul li .btn-down img {
+        width: 4.44vw;
+        height: 4.44vw;
+        margin-left: 2.22vw;
+    }
+
+
+    /*************************    
+        alert 
+    *************************/
+
+    /* 알럿 컨테이너 기본 스타일 */
+
+    .alert-content {
+        width: 111.11vw;
+        padding: 6.67vw;
+        border-radius: 5.56vw;
+        background-color: #fff;
+        box-shadow: 2.78vw 5.56vw 8.33vw rgba(0, 0, 0, 0.02);
+    }
+    .alert-header {
+        padding: 4.17vw;
+    }
+    .alert-header h2 {
+        font-size: 5.00vw;
+    }
+    .alert-close {
+        font-size: 5.56vw;
+    }
+    .alert-body {
+        padding: 3.33vw 0;
+        font-size: 4.44vw;
+    }
+    .alert-footer {
+        padding: 4.17vw 0 0;
+    }
+    .alert-btn {
+        width: 23.33vw;
+        height: 11.11vw;
+        line-height: 11.11vw;
+        margin-left: 2.78vw;
+        font-size: 4.44vw;
+    }
+
+    /*************************    
+        input 
+    *************************/
+
+    .input-wrap {
+        width: 88.89vw;
+    }
+    .input-item {
+        margin-bottom: 3.33vw;
+    }
+    .input-item .input-title {
+        margin-bottom: 2.22vw;
+        font-size: 3.89vw;
+    }
+    .input-item .input {
+        width: 88.89vw;
+        height: 11.11vw;
+    }
+    .input-item .input button {
+        right: 2.78vw;
+    }
+    .input-item input {
+        padding: 2.78vw 11.67vw 2.78vw 4.44vw;
+        font-size: 3.89vw;
+        border-radius: 1.11vw;
+    
+    }
+
+    .input-error-message {
+        margin-top: 1.11vw;
+        font-size: 3.33vw;
+    }
+    .input-error-message i {margin-right: 1.11vw;}
+
+    /* otp input */
+    .input-item.otp .input .custom-input {
+        width: 64.44vw;
+    }
+    .input-item.otp .input button {
+        width: 22.22vw;
+        height: 11.11vw;
+        font-size: 4.44vw;
+        border-radius: 1.11vw;
+    }
+
+    .input-item.input-item-btn .input .custom-input {
+        width: 64.44vw;
+        margin-right: auto;
+    }
+    .input-item.input-item-btn .input button {
+        width: 22.22vw;
+        height: 11.11vw;
+        margin-left: auto;
+        text-align: center;
+        color: var(--Neutral-Text-default);
+        font-size: 4.44vw;
+        background-color: var(--Neutral-Fill-alternative);
+        border-radius: 1.11vw;
+    }
+
+
+    /* input check*/
+    .flex-item-between {
+        margin-top: 6.67vw;
+    }
+    .check-item input[type="checkbox"] + label strong {
+        line-height: 2.3em;
+        font-size: 3.89vw;
+    }
+    .check-item input[type="checkbox"] + label span {
+        width: 8.89vw;
+        height: 8.89vw;
+    }
+    .check-item input[type="checkbox"]:checked + label span {
+        width: 8.89vw;
+        height: 8.89vw;
+    }
+
+
+
+}
+
+
+
+
+
+
+

@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/table.css">
+    <link rel="stylesheet" href="../assets/css/cp_request_modal.css">
+    <link rel="stylesheet" href="../assets/css/datepicker.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo"><a href="./home.html"><img src="../assets/images/logo.svg" alt="로고"></a></h1>
+            <!-- 모바일 햄버거 버튼 -->
+            <button class="menu-toggle"><img src="../assets/images/ic_menu.svg" alt="햄버거 메뉴"></button>
+
+            <nav>
+                <div class="mobile-menu-header">
+                    <!-- 닫기 -->
+                    <button class="close-btn"><img src="../assets/images/close.svg" alt=""></button>
+                </div>
+
+                <ul class="main-menu">
+                    <!-- 해당 페이지 일때 li.active -->
+                    <li class="display-pc"><a href="./home.html"><span>홈</span></a></li>
+                    <li>
+                        <a href="./notice_list.html"><span>공지 및 자료실</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./notice_list.html">공지사항</a></li>
+                            <li><a href="./guide_list.html">가이드 게시판</a></li>
+                            <li><a href="./data_list.html">자료실</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="./faq_list.html"><span>사용 문의</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./faq_list.html">자주 묻는 질문</a></li>
+                            <li><a href="./qna_list.html">Q&A</a></li>
+                        </ul>
+                    </li>
+                    <li class="display-pc">
+                        <a href="./cp_request_list.html"><span>Cloud PC 관리</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./cp_request_list.html">Cloud PC 작업 신청</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="./export_fail_down_list.html"><span>망연계 관리</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./export_fail_down_list.html">반출 신청 파일 다운로드</a></li>
+                            <li><a href="./url_redirection_list.html">URL Redirection</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- 모바일 로그아웃 버튼 -->
+                <button type="button" class="mo-btn-logout button">로그아웃</button>
+            </nav>
+            <div class="header-profile">
+                <button type="button" class="btn-profile"><img src="../assets/images/ic_profile_52.svg"
+                        alt="프로필"></button>
+                <div class="hover-content">
+                    <!-- PC 로그아웃 버튼 -->
+                    <button type="button" class="btn-logout"><span>로그아웃</span><img
+                            src="../assets/images/ic_logout_20.svg" alt="로그아웃"></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- 모바일 헤더 오버레이 -->
+    <div class="overlay"></div>
+
+    <article class="cp-list-page display-pc">
+        <section class="page-title">
+            <h2><img src="../assets/images/ic_cp.svg" alt="qna 아이콘"><strong>Cloud PC 작업 신청</strong></h2>
+            <button type="button" class="button button-default" data-modal-target="modalCpRequest">결재 신청</button>
+        </section>
+
+        <section class="table-container">
+
+            <div class="table-header-top">
+                <!-- 탭 : 상태 -->
+                <div class="tab-container">
+                    <ul class="tabs">
+                        <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <!-- 테이블 -->
+                <div id="dataTable">
+                    <!-- pc:테이블 -->
+                    <table class="pc-table">
+                        <colgroup>
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 35%;">
+                            <col style="width: 10%;">
+                            <col style="width: 15%;">
+                            <col style="width: 10%;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th data-sort="number">번호</th>
+                                <th data-sort="sosCategory">긴급 구분</th>
+                                <th data-sort="requestCategory">신청 구분</th>
+                                <th data-sort="title">제목</th>
+                                <th data-sort="startDate">신청일</th>
+                                <th data-sort="status">진행현황</th>
+                                <th data-sort="endDate">결재일</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination" id="pagination">
+                    <button id="firstPage"><img src="../assets/images/ic_table_prev_2.svg" alt="맨앞"></button>
+                    <button id="prevPage"><img src="../assets/images/ic_table_prev_1.svg" alt="이전"></button>
+                    <div id="pageNumbers" class="page-numbers">
+                        <!-- 페이지 번호가 여기에 동적으로 삽입됩니다 -->
+                    </div>
+                    <button id="nextPage"><img src="../assets/images/ic_table_next1.svg" alt="다음"></button>
+                    <button id="lastPage"><img src="../assets/images/ic_table_next2.svg" alt="맨끝"></button>
+                </div>
+
+            </div>
+        </section>
+    </article>
+    <!-- 모달 : 클라우드 피시 작업 결제 신청-->
+    <div class="modal-overlay modalCpRequest">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>결재 신청</h3>
+                <button type="button" class="modal-close">닫기</button>
+            </div>
+            <div class="modal-body">
+                <!-- 결제 -->
+                <div class="approval-info">
+                    <table class="approval-table">
+                        <colgroup>
+                            <col style="width: 20%;">
+                            <col style="width: 40%;">
+                            <col style="width: 40%;">
+                        </colgroup>
+                        <tr class="all">
+                            <td rowspan="4" class="approval-label-cell">결제</td>
+                            <td class="approval-header">신청</td>
+                            <td class="approval-header">처리</td>
+                        </tr>
+                        <tr class="all">
+                            <td class="approval-value-cell">홍길동</td>
+                            <td class="approval-value-cell">팀장</td>
+                        </tr>
+                        <tr class="all">
+                            <td class="approval-date">2025-03-05</td>
+                            <td class="approval-date">2025-03-05</td>
+                        </tr>
+                        <tr class="all">
+                            <td class="approval-date"></td>
+                            <td class="approval-date"></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- 작성자 정보 -->
+                <div class="section">
+                    <h2 class="section-title">작성자 정보</h2>
+                    <table>
+                        <colgroup>
+                            <col style="width: 15%;">
+                            <col style="width: 18%;">
+                            <col style="width: 15%;">
+                            <col style="width: 18%;">
+                            <col style="width: 15%;">
+                            <col style="width: 18%;">
+                        </colgroup>
+                        <tr class="all">
+                            <th>작성자</th>
+                            <td>홍길동</td>
+                            <th>작성부서</th>
+                            <td>UI/UX팀</td>
+                            <th>직책/호칭</th>
+                            <td>직원/매니저</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 15%;">
+                            <col style="width: 85%;">
+                        </colgroup>
+                        <tr class="all">
+                            <th>제목</th>
+                            <td>[신규] Cloud PC 신청_홍길동</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- 신청 정보 -->
+                <div class="section">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">신청 정보</h2>
+                        <div class="btn-wrap">
+                            <button type="button" class="btn-add"><img src="../assets/images/ic_add_16.svg"
+                                    alt="아이콘">추가</button>
+                        </div>
+                    </div>
+                    <table>
+                        <colgroup>
+                            <col style="width: 15%;">
+                            <col style="width: 85%;">
+                        </colgroup>
+                        <tr class="all">
+                            <th>신청 구분</th>
+                            <td>
+                                <!-- 신청 구분 선택 -->
+                                <div class="custom-select request-category">
+                                    <div class="select-selected">신규</div>
+                                    <div class="select-items select-hide">
+                                        <div data-value="new">신규</div>
+                                        <div data-value="change">변경</div>
+                                        <div data-value="return">반납</div>
+                                        <div data-value="usb">USB</div>
+                                    </div>
+                                    <input type="hidden" value="all">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="change return">
+                            <th>Cloud PC 명</th>
+                            <td>
+                                <!-- Cloud PC 명선택 -->
+                                <div class="custom-select cp-name">
+                                    <div class="select-selected">선택</div>
+                                    <div class="select-items select-hide">
+                                        <div data-value="CloudPC1">Cloud PC 1</div>
+                                        <div data-value="CloudPC2">Cloud PC 2</div>
+                                        <div data-value="CloudPC3">Cloud PC 3</div>
+                                    </div>
+                                    <input type="hidden" value="all">
+                                </div>
+                                <span class="error-message"><i><img src="../assets/images/icn_error.svg"
+                                            alt=""></i>Cloud PC를 선택해주세요.</span>
+                            </td>
+                        </tr>
+                        <tr class="usb">
+                            <th>기간</th>
+                            <td>
+                                <div class="radio-container data-radio">
+                                    <label class="custom-radio">
+                                        <input type="radio" name="date1" value="date7" checked>
+                                        <div class="radio-checkmark"></div>
+                                        <span>단기(최대 7일)</span>
+                                    </label>
+
+                                    <label class="custom-radio">
+                                        <input type="radio" name="date1" value="date90">
+                                        <div class="radio-checkmark"></div>
+                                        <span>단기(최대 90일)</span>
+                                    </label>
+                                </div>
+                                <div class="date-range">
+                                    <div class="date-input">
+                                        <input type="text" class="simple-datepicker start-date"
+                                            placeholder="YYYY / MM / DD" readonly>
+                                        <div class="calendar-icon"><img src="../assets/images/icn_date.svg" alt="icon">
+                                        </div>
+                                    </div>
+                                    <div class="date-separator">-</div>
+                                    <div class="date-input">
+                                        <input type="text" class="simple-datepicker end-date"
+                                            placeholder="YYYY / MM / DD" readonly>
+                                        <div class="calendar-icon"><img src="../assets/images/icn_date.svg" alt="icon">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="desc">• 단기 신청은 신청일로부터 최대 3일까지 설정 가능합니다.</div> -->
+                                <span class="error-message"><i><img src="../assets/images/icn_error.svg" alt=""></i>기간을
+                                    선택해주세요.</span>
+                            </td>
+                        </tr>
+                        <tr class="all">
+                            <th>신청 목적</th>
+                            <td>
+                                <div class="input-item">
+                                    <div class="input">
+                                        <input type="text" class="custom-input" name="reason" Placeholder="내용을 입력해주세요">
+                                        <!-- <button class="clear-btn"><img src="../assets/images/ic_close_fill_20.svg"
+                                                alt=""></button> -->
+                                    </div>
+                                    <span class="error-message"><i><img src="../assets/images/icn_error.svg"
+                                                alt=""></i>신청 목적을 입력해주세요.</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="new">
+                            <th>승인 담당</th>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- (필수)개인정보 수집·이용 동의 -->
+                <div class="section section-category new change return">
+                    <h2 class="section-title">(필수)개인정보 수집·이용 동의</h2>
+                    <table>
+                        <colgroup>
+                            <col style="width: 25%;">
+                            <col style="width: 50%;">
+                            <col style="width: 25%;">
+                        </colgroup>
+                        <tr class="all">
+                            <th>목적</th>
+                            <th>항목</th>
+                            <th>보유 기간</th>
+                        </tr>
+                        <tr class="text-center all">
+                            <td>Cloud SaaS 시스템 사용</td>
+                            <td>이름(성명), 계정(ID), 핸드폰 번호, 이메일, 소속 부서정보</td>
+                            <td>계정 만료 시 즉시 파기</td>
+                        </tr>
+                    </table>
+                    <span class="info-message">
+                        <i><img src="../assets/images/icn_error.svg" alt="아이콘"></i>
+                        <span>Cloud PC 사용을 위해 아래와 같이 개인정보를 수집 이용 하고자 합니다. 내용을 자세히 읽으신 후 동의여부를 결정하여 주십시오.<br>동의를 하지 않을 경우
+                            서비스 이용이 불가능합니다.</span>
+                    </span>
+                    <div class="radio-container">
+                        <label class="custom-radio">
+                            <input type="radio" name="option" value="option1" checked>
+                            <div class="radio-checkmark"></div>
+                            <span>동의</span>
+                        </label>
+
+                        <label class="custom-radio">
+                            <input type="radio" name="option" value="option2">
+                            <div class="radio-checkmark"></div>
+                            <span>동의 안함</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- 파일 첨부 -->
+                <div class="section section-category new change return">
+                    <h2 class="section-title">(필수)개인정보 수집·이용 동의</h2>
+                    <div class="input-item">
+                        <span class="input-title">파일 첨부</span>
+                        <div class="file-upload-container">
+                            <div class="file-upload-area">
+                                <img class="upload-icon " src="../assets//images/File_Upload_Icon.svg" alt="아이콘">
+                                <p class="upload-text pc">파일을 첨부하거나 마우스로 파일을 끌어 넣으세요.</p>
+                                <p class="upload-text mo">파일을 첨부해주세요.</p>
+                                <button type="button" class="upload-btn">첨부하기</button>
+                                <input type="file" id="fileInput" class="file-input" multiple>
+                            </div>
+                            <ul class="file-upload-desc">
+                                <li>• 지원 파일 확장자: xlsx,xls,docx,doc,pptx,ppt,txt,pdf,zip,jpg,jpeg,png,gif</li>
+                                <li>• 파일 업로드 가능 용량: 총 15MB</li>
+                            </ul>
+                            <div class="file-list-container">
+                                <ul class="file-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 미암호화 파일 쓰기 신청 -->
+                <div class="section section-category usb">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">미암호화 파일 쓰기 신청</h2>
+                        <div class="radio-container">
+                            <label class="custom-radio">
+                                <input type="radio" name="option_1" value="option1">
+                                <div class="radio-checkmark"></div>
+                                <span>신청</span>
+                            </label>
+                            <label class="custom-radio">
+                                <input type="radio" name="option_1" value="option2" checked>
+                                <div class="radio-checkmark"></div>
+                                <span>미신청</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <h5><img src="../assets/images/icn_info_m.svg" alt="아이콘">안내</h5>
+                        <ul>
+                            <li>• VPN을 통해 기본적으로 접속 가능한 커뮤니케이션 시스템 (KATE, e-HRM)이외 시스템은 별도 접속 신청이 반드시 필요합니다.</li>
+                            <li>• 사내전산시스템 시 필요한 시스템의 세부 접속 정보(IP, Port)는 기타정보 란에 입력 바랍니다.(시스템 IP 및 Port 정보는 각 시스템 담당자에게
+                                문의바랍니다.)</li>
+                            <li>• [NetIS 공지] PC반출후에 VPN망을 포함한 외부상에서의 NetIS(netis.kt.co.kr)접속이 보안관계상 현재 불가하오니 사용신청시 유념하시기
+                                바랍니다.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="check-item">
+                    <input id="checkSos" type="checkbox" name="checkSos" />
+                    <label for="checkSos"><span></span><strong>긴급</strong></label>
+                </div>
+                <div class="btn-wrap">
+                    <button type="button" class="modal-btn button button-cancel">임시 저장</button>
+                    <button type="button" class="modal-btn button button-cancel">미리보기</button>
+                    <button type="button" id="btnSubmit" class="modal-btn button button-default">결제 신청</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 모달 : 클라우드 피시 작업 상세-->
+    <div class="modal-overlay modalCpRequestDetail">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>결재 상세</h3>
+                <button type="button" class="modal-close">닫기</button>
+            </div>
+            <div class="modal-body">
+                <!-- 결제 -->
+                <div class="approval-info">
+                    <table class="approval-table">
+                        <colgroup>
+                            <col style="width: 20%;">
+                            <col style="width: 40%;">
+                            <col style="width: 40%;">
+                        </colgroup>
+                        <tr>
+                            <td rowspan="4" class="approval-label-cell">결제</td>
+                            <td class="approval-header">신청</td>
+                            <td class="approval-header">처리</td>
+                        </tr>
+                        <tr>
+                            <td class="approval-value-cell">홍길동</td>
+                            <td class="approval-value-cell">팀장</td>
+                        </tr>
+                        <tr>
+                            <td class="approval-date">2025-03-05</td>
+                            <td class="approval-date">2025-03-05</td>
+                        </tr>
+                        <tr>
+                            <td class="approval-date"></td>
+                            <td class="approval-date"></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- 작성자 정보 -->
+                <div class="section">
+                    <h2 class="section-title">작성자 정보</h2>
+                    <table>
+                        <colgroup>
+                            <col style="width: 15%;">
+                            <col style="width: 18%;">
+                            <col style="width: 15%;">
+                            <col style="width: 18%;">
+                            <col style="width: 15%;">
+                            <col style="width: 18%;">
+                        </colgroup>
+                        <tr>
+                            <th>작성자</th>
+                            <td>홍길동</td>
+                            <th>작성부서</th>
+                            <td>UI/UX팀</td>
+                            <th>직책/호칭</th>
+                            <td>직원/매니저</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 15%;">
+                            <col style="width: 85%;">
+                        </colgroup>
+                        <tr>
+                            <th>내용</th>
+                            <td>가나다라마바사 블라블라블라</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- 신청 정보 -->
+                <div class="section">
+                    <h2 class="section-title">신청 정보</h2>
+                    <table>
+                        <colgroup>
+                            <col style="width: 15%;">
+                            <col style="width: 85%;">
+                        </colgroup>
+                        <tr>
+                            <th>신청 구분</th>
+                            <td>신규</td>
+                        </tr>
+                        <tr>
+                            <th>신청 목적</th>
+                            <td>파견 업무로 인한 추가 PC</td>
+                        </tr>
+                        <tr>
+                            <th>승인 담당</th>
+                            <td>홍길동(Cloud 담당)</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 15%;">
+                            <col style="width: 85%;">
+                        </colgroup>
+                        <tr>
+                            <th>파일 첨부</th>
+                            <td>
+                                <ul class="download-wrap">
+                                    <li> <a href="#">Testfile_02.PDF</a></li>
+                                    <li> <a href="#">Testfile_02.PDF</a></li>
+                                    <li> <a href="#">Testfile_02.PDF</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-btn button button-cancel">결제 취소</button>
+            </div>
+        </div>
+    </div>
+    <!-- 알럿 / alert.js 에서 내용 불러옵니다. -->
+    <div id="alertOverlay" class="alert-overlay">
+        <div class="alert-content">
+            <div id="alertBody" class="alert-body">
+                <p id="alertBodyText"></p>
+            </div>
+            <div id="alertFooter" class="alert-footer"></div>
+        </div>
+    </div>
+    <script src="../assets/js/table.js"></script>
+    <script src="../assets/js/alert.js"></script>
+    <script src="../assets/js/datepicker.js"></script>
+    <script>
+        /**
+             * CP Name 셀렉트박스 전용 이벤트 핸들러 설정
+             * 모든 cp-name 셀렉트박스(기존 및 동적 생성)에 대한 이벤트 처리
+             */
+        function setupCpNameEventHandlers() {
+            // 모든 cp-name 셀렉트박스의 옵션 요소에 직접 이벤트 등록
+            function attachCpNameEvents() {
+                document.querySelectorAll('.cp-name .select-items div').forEach(option => {
+                    // 이미 이벤트가 연결된 요소는 건너뛰기 (중복 방지)
+                    if (option.hasAttribute('data-cpname-event')) return;
+
+                    // 이벤트 등록 완료 표시
+                    option.setAttribute('data-cpname-event', 'true');
+
+                    // 클릭 이벤트 등록
+                    option.addEventListener('click', function () {
+                        console.log('CP Name 옵션 직접 클릭 이벤트:', this.textContent);
+
+                        // 에러 메시지 제거 로직
+                        const customSelect = this.closest('.custom-select');
+                        if (customSelect) {
+                            const parentRow = customSelect.closest('tr');
+                            if (parentRow) {
+                                const errorMessages = parentRow.querySelectorAll('.error-message');
+                                errorMessages.forEach(errorMsg => {
+                                    errorMsg.classList.remove('active');
+                                    console.log('에러 메시지 제거됨 (직접 이벤트)');
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+
+            // 초기 이벤트 등록
+            attachCpNameEvents();
+
+            // DOM 변경 감지 및 새 요소에 이벤트 등록
+            const observer = new MutationObserver(function (mutations) {
+                let shouldAttachEvents = false;
+
+                mutations.forEach(function (mutation) {
+                    // 동적 요소 추가 감지
+                    if (mutation.addedNodes.length) {
+                        for (let i = 0; i < mutation.addedNodes.length; i++) {
+                            const node = mutation.addedNodes[i];
+                            // DOM 노드이고 select-items 또는 cp-name 관련 요소가 포함되어 있을 가능성이 있는 경우
+                            if (node.nodeType === 1 && (
+                                node.classList && (
+                                    node.classList.contains('cp-name') ||
+                                    node.classList.contains('select-items')
+                                ) ||
+                                node.querySelector && (
+                                    node.querySelector('.cp-name') ||
+                                    node.querySelector('.select-items')
+                                )
+                            )) {
+                                shouldAttachEvents = true;
+                                break;
+                            }
+                        }
+                    }
+                });
+
+                if (shouldAttachEvents) {
+                    // 이벤트 등록 함수 호출
+                    setTimeout(attachCpNameEvents, 50); // 약간의 지연을 두어 DOM이 완전히 업데이트되도록 함
+                }
+            });
+
+            // 전체 문서에 대해 관찰 설정
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                attributes: false,
+                characterData: false
+            });
+
+            console.log('CP Name 셀렉트박스 이벤트 핸들러 설정 완료 (직접 이벤트 등록 방식)');
+        } document.addEventListener('DOMContentLoaded', function () {
+            // =================== 데이터 및 테이블 초기화 ===================
+
+            // Cloud PC 작업 신청 데이터 샘플
+            const requestData = [
+                { id: 1, sosCategory: '긴급 결재', requestCategory: '신규', title: '[신규] Cloud PC_홍길동', startDate: '2025.01.14', status: '진행 중', endDate: '-' },
+                { id: 2, sosCategory: '긴급 결재', requestCategory: '변경', title: '[변경] Cloud PC_홍길동', startDate: '2025.02.14', status: '반려', endDate: '-' },
+                { id: 3, sosCategory: '-', requestCategory: 'USB', title: '[USB] Cloud PC_홍길동', startDate: '2025.02.14', status: '신청 전', endDate: '2025.02.14' },
+                { id: 4, sosCategory: '-', requestCategory: '반납', title: '[반납] Cloud PC_홍길동', startDate: '2024.12.14', status: '처리 완료', endDate: '-' },
+                { id: 5, sosCategory: '-', requestCategory: '반납', title: '[반납] Cloud PC_홍길동', startDate: '2025.02.14', status: '결재 완료', endDate: '-' },
+                { id: 6, sosCategory: '긴급 결재', requestCategory: '신규', title: '[신규] Cloud PC_홍길동', startDate: '2025.02.14', status: '진행 중', endDate: '-' },
+                { id: 7, sosCategory: '긴급 결재', requestCategory: '변경', title: '[변경] Cloud PC_홍길동', startDate: '2025.02.14', status: '반려', endDate: '-' },
+                { id: 8, sosCategory: '-', requestCategory: 'USB', title: '[USB] Cloud PC_홍길동', startDate: '2025.02.14', status: '신청 전', endDate: '2025.02.14' },
+                { id: 9, sosCategory: '-', requestCategory: '반납', title: '[반납] Cloud PC_홍길동', startDate: '2025.02.12', status: '처리 완료', endDate: '-' },
+                { id: 10, sosCategory: '-', requestCategory: '반납', title: '[반납] Cloud PC_홍길동', startDate: '2025.02.14', status: '결재 완료', endDate: '-' }
+            ];
+
+            // Cloud PC 페이지 전용 메시지 설정
+            const requestMessages = {
+                emptyData: {
+                    pc: `
+                <div class="search-no-result">
+                    <p>신청 내역이 없습니다.</p>
+                    <button type="button" class="button button-default" data-modal-target="modalCpRequest">결재 신청</button>
+                </div>
+            `
+                },
+                emptySearch: {
+                    pc: `
+                <div class="search-no-result">
+                    <p>검색 결과가 존재하지 않습니다.<br>다른 검색어로 검색해보세요.</p>
+                </div>
+            `
+                },
+                emptyFilter: {
+                    pc: `
+                <div class="search-no-result">
+                    <p>해당 상태의 신청 내역이 없습니다.</p>
+                </div>
+            `
+                }
+            };
+
+            /**
+             * Cloud PC 작업 신청 데이터 렌더링 함수 (PC 테이블용)
+             * @param {Array} data - 렌더링할 데이터 배열
+             * @param {HTMLElement} tableBody - 테이블 바디 요소
+             */
+            function renderRequestData(data, tableBody) {
+                tableBody.innerHTML = '';
+
+                // 검색 결과가 없는 경우
+                if (data.length === 0) {
+                    const emptyRow = document.createElement('tr');
+                    const emptyCell = document.createElement('td');
+
+                    emptyCell.colSpan = 7; // 모든 컬럼을 병합
+                    emptyCell.className = 'empty-message';
+                    emptyCell.innerHTML = `
+                <div class="search-no-result">
+                    <p>신청 내역이 없습니다.</p>
+                    <button type="button" class="button button-default" data-modal-target="modalCpRequest">결재 신청</button>
+                </div>
+            `;
+
+                    emptyRow.appendChild(emptyCell);
+                    tableBody.appendChild(emptyRow);
+                    return;
+                }
+
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+
+                    // 번호
+                    const numberCell = document.createElement('td');
+                    numberCell.textContent = item.id;
+                    row.appendChild(numberCell);
+
+                    // 긴급 구분
+                    const sosCategoryCell = document.createElement('td');
+                    sosCategoryCell.textContent = item.sosCategory;
+
+                    // 긴급일 경우 빨간 글씨로 표시
+                    if (item.sosCategory === '긴급 결재') {
+                        sosCategoryCell.style.color = '#FF3932';
+                    }
+
+                    row.appendChild(sosCategoryCell);
+
+                    // 신청 구분
+                    const requestCategoryCell = document.createElement('td');
+                    requestCategoryCell.textContent = item.requestCategory;
+                    row.appendChild(requestCategoryCell);
+
+                    // 제목
+                    const titleCell = document.createElement('td');
+                    titleCell.textContent = item.title;
+                    titleCell.style.textAlign = 'left';
+                    titleCell.style.cursor = 'pointer';
+                    titleCell.setAttribute('data-modal-target', 'modalCpRequestDetail');
+
+                    // 제목 클릭 이벤트: 상세 모달 열기
+                    titleCell.addEventListener('click', function () {
+                        openModal('modalCpRequestDetail');
+                    });
+
+                    row.appendChild(titleCell);
+
+                    // 신청일
+                    const startDateCell = document.createElement('td');
+                    startDateCell.textContent = item.startDate;
+                    row.appendChild(startDateCell);
+
+                    // 진행현황
+                    const statusCell = document.createElement('td');
+
+                    // 상태에 따른 클래스 설정
+                    let statusClass = '';
+                    switch (item.status) {
+                        case '진행 중':
+                            statusClass = 'status-in-progress';
+                            break;
+                        case '반려':
+                            statusClass = 'status-reject';
+                            break;
+                        case '신청 전':
+                            statusClass = 'status-before';
+                            break;
+                        case '처리 완료':
+                            statusClass = 'status-process-complete';
+                            break;
+                        case '결재 완료':
+                            statusClass = 'status-approve';
+                            break;
+                    }
+
+                    // 상태 스팬 생성
+                    const statusSpan = document.createElement('span');
+                    statusSpan.textContent = item.status;
+
+                    // 클래스 적용
+                    statusCell.className = statusClass;
+                    statusCell.appendChild(statusSpan);
+                    row.appendChild(statusCell);
+
+                    // 결재일
+                    const endDateCell = document.createElement('td');
+                    endDateCell.textContent = item.endDate;
+                    row.appendChild(endDateCell);
+
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // 테이블 초기화
+            const requestTable = initializeTable({
+                data: requestData,
+                renderCallback: renderRequestData,
+                tableBodyId: 'tableBody',
+                totalCountId: 'totalCount',
+                pageNumbersId: 'pageNumbers',
+                itemsPerPage: 10,
+                pageRange: 5,
+                sortConfig: {
+                    defaultColumn: 'number',
+                    defaultDirection: 'asc'
+                },
+                filterProperty: 'status',
+                messages: requestMessages
+            });
+
+            // 테이블 초기화 실행
+            requestTable.init();
+
+            // =================== 커스텀 탭 및 리사이즈 처리 ===================
+
+            /**
+             * Cloud PC 페이지를 위한 커스텀 탭 생성 함수
+             * @param {Array} data - 데이터 배열
+             * @param {string} property - 필터링 속성
+             * @param {HTMLElement} container - 탭 컨테이너
+             */
+            function createCustomStatusTabs(data, property = 'status', container = null) {
+                // 컨테이너 기본값 설정
+                container = container || document.querySelector('.tabs');
+                if (!container) return;
+
+                // 정의된 상태 순서 (원하는 순서대로 배치)
+                const statusOrder = ['신청 전', '진행 중', '반려', '결재 완료', '처리 완료'];
+
+                // 전체 데이터 수와 각 상태별 카운트 계산
+                const totalCount = data.length;
+                const countByStatus = {};
+
+                data.forEach(item => {
+                    if (item[property]) {
+                        const value = item[property];
+                        countByStatus[value] = (countByStatus[value] || 0) + 1;
+                    }
+                });
+
+                // 기존 탭 초기화
+                container.innerHTML = '';
+
+                // 전체 탭 추가 (항상 첫 번째)
+                const allTab = document.createElement('li');
+                const allButton = document.createElement('button');
+                allButton.setAttribute('data-value', 'all');
+                allButton.textContent = '전체';
+                allButton.classList.add('active');
+
+                const allSpan = document.createElement('span');
+                allSpan.className = 'tab-count';
+                allSpan.textContent = totalCount;
+                allButton.appendChild(allSpan);
+
+                allTab.appendChild(allButton);
+                container.appendChild(allTab);
+
+                // 정의된 순서대로 탭 생성
+                statusOrder.forEach(status => {
+                    const tab = document.createElement('li');
+                    const button = document.createElement('button');
+
+                    button.setAttribute('data-value', status);
+                    button.textContent = status;
+
+                    // 해당 상태의 카운트 (존재하는 경우에만)
+                    const count = countByStatus[status] || 0;
+                    const countSpan = document.createElement('span');
+                    countSpan.className = 'tab-count';
+                    countSpan.textContent = count;
+
+                    button.appendChild(countSpan);
+                    tab.appendChild(button);
+                    container.appendChild(tab);
+                });
+
+                // 탭 클릭 이벤트 추가
+                container.addEventListener('click', function (e) {
+                    const clickedButton = e.target.closest('button');
+                    if (!clickedButton) return;
+
+                    // 모든 버튼에서 active 클래스 제거
+                    this.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+
+                    // 클릭한 버튼에 active 클래스 추가
+                    clickedButton.classList.add('active');
+
+                    // 필터링 처리
+                    const filterValue = clickedButton.getAttribute('data-value');
+                    requestTable.setFilter(filterValue);
+                });
+            }
+
+            // 커스텀 탭 생성 함수 사용
+            createCustomStatusTabs(requestData, 'status', document.querySelector('.tabs'));
+
+            /**
+             * 리사이즈 처리 함수
+             * 화면 크기에 따라 클래스 추가/제거
+             */
+            function handleResize() {
+                const articleElement = document.querySelector('article');
+                if (!articleElement) return;
+
+                if (window.innerWidth > 1479) {
+                    articleElement.classList.add('cp-list-page');
+                } else {
+                    articleElement.classList.remove('cp-list-page');
+                }
+            }
+
+            // 초기 로딩 시 한 번 실행
+            handleResize();
+
+            // 윈도우 리사이즈 이벤트에 함수 등록
+            window.addEventListener('resize', handleResize);
+
+            // =================== 모달 관련 기능 ===================
+
+            /**
+             * 모달 관련 이벤트 초기화
+             */
+            function initializeModalEvents() {
+                // 팝업 열기 함수
+                window.openModal = function (modalClass) {
+                    const modal = document.querySelector(`.${modalClass}`);
+
+                    if (modal) {
+                        modal.classList.add('show');
+                        modal.classList.remove('closing');
+
+                        // 바디 스크롤 막기
+                        document.body.style.overflow = 'hidden';
+                    }
+                };
+
+                // 팝업 닫기 함수
+                window.closeModal = function (modal) {
+                    // 닫힘 애니메이션 추가
+                    modal.classList.add('closing');
+
+                    // 애니메이션 완료 후 클래스 제거 및 스크롤 다시 활성화
+                    setTimeout(() => {
+                        modal.classList.remove('show', 'closing');
+
+                        // 바디 스크롤 다시 활성화
+                        document.body.style.overflow = '';
+                    }, 300); // CSS 트랜지션 시간과 동일하게
+                };
+
+                // 모달 열기 버튼 클릭 이벤트 (이벤트 위임 방식)
+                document.addEventListener('click', function (event) {
+                    const target = event.target.closest('[data-modal-target]');
+                    if (target) {
+                        const modalClass = target.getAttribute('data-modal-target');
+                        openModal(modalClass);
+                    }
+                });
+
+                // 모달 닫기 버튼 클릭 이벤트
+                const closeButtons = document.querySelectorAll('.modal-close');
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const modal = this.closest('.modal-overlay');
+                        closeModal(modal);
+                    });
+                });
+
+                // 모달 확인 버튼 클릭 이벤트
+                const confirmButtons = document.querySelectorAll('.modal-btn-confirm');
+                confirmButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const modal = this.closest('.modal-overlay');
+                        closeModal(modal);
+                    });
+                });
+
+                // 외부 클릭 시 팝업 닫기
+                const modals = document.querySelectorAll('.modal-overlay');
+                modals.forEach(modal => {
+                    modal.addEventListener('click', function (event) {
+                        if (event.target === this) {
+                            closeModal(this);
+                        }
+                    });
+                });
+
+                // ESC 키 누를 때 모달 닫기
+                document.addEventListener('keydown', function (event) {
+                    if (event.key === 'Escape') {
+                        const visibleModal = document.querySelector('.modal-overlay.show');
+                        if (visibleModal) {
+                            closeModal(visibleModal);
+                        }
+                    }
+                });
+            }
+
+            // =================== 파일 업로드 기능 ===================
+
+            /**
+             * 파일 업로드 기능 초기화
+             */
+            // 파일 업로드 함수 수정
+            function initializeFileUpload() {
+                // 모든 파일 업로드 영역 찾기 (모달 내부 포함)
+                const fileUploadAreas = document.querySelectorAll('.file-upload-area');
+
+                fileUploadAreas.forEach(fileUploadArea => {
+                    // 각 파일 영역별 요소 참조
+                    const fileInput = fileUploadArea.querySelector('.file-input');
+                    const fileList = fileUploadArea.closest('.file-upload-container').querySelector('.file-list');
+                    const uploadBtn = fileUploadArea.querySelector('.upload-btn');
+
+                    // 요소가 모두 있는지 확인
+                    if (!fileInput || !fileList || !uploadBtn) return;
+
+                    // 최대 파일 크기 (15MB를 바이트로 변환)
+                    const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB
+                    let totalFileSize = 0;
+
+                    // 파일 업로드 버튼 클릭
+                    uploadBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        fileInput.click();
+                    });
+
+                    // 파일 선택 시 처리
+                    fileInput.addEventListener('change', function () {
+                        handleFiles(this.files, fileList);
+                    });
+
+                    // 드래그 앤 드롭 이벤트 처리
+                    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                        fileUploadArea.addEventListener(eventName, preventDefaults, false);
+                    });
+
+                    function preventDefaults(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+
+                    // 드래그 효과 처리
+                    ['dragenter', 'dragover'].forEach(eventName => {
+                        fileUploadArea.addEventListener(eventName, function () {
+                            fileUploadArea.classList.add('drag-over');
+                        }, false);
+                    });
+
+                    ['dragleave', 'drop'].forEach(eventName => {
+                        fileUploadArea.addEventListener(eventName, function () {
+                            fileUploadArea.classList.remove('drag-over');
+                        }, false);
+                    });
+
+                    // 파일 드롭 처리
+                    fileUploadArea.addEventListener('drop', function (e) {
+                        const files = e.dataTransfer.files;
+                        handleFiles(files, fileList);
+                    }, false);
+
+                    // 파일 처리 함수
+                    function handleFiles(files, fileListElement) {
+                        if (files.length > 0) {
+                            // 현재 파일 리스트에 있는 파일들의 총 크기 계산
+                            totalFileSize = calculateCurrentFileSize(fileListElement);
+
+                            // 추가될 파일들의 크기 계산
+                            let newFilesSize = 0;
+                            for (let i = 0; i < files.length; i++) {
+                                newFilesSize += files[i].size;
+                            }
+
+                            // 총 파일 크기 확인
+                            if (totalFileSize + newFilesSize > MAX_FILE_SIZE) {
+                                // 15MB 초과 시 알림 표시
+                                openAlert('alertFileUploadFail')
+                                return;
+                            }
+
+                            // 파일 크기 제한을 넘지 않으면 파일 추가
+                            totalFileSize += newFilesSize;
+
+                            // 파일마다 처리
+                            for (let i = 0; i < files.length; i++) {
+                                addFileToList(files[i], fileListElement);
+                            }
+                        }
+                    }
+
+                    // 현재 파일 리스트에 있는 파일들의 총 크기 계산 함수
+                    function calculateCurrentFileSize(fileListElement) {
+                        // 실제 환경에서는 파일 리스트의 파일 크기 정보를 가져와야 함
+                        // 이 예시에서는 파일 크기 정보를 data-size 속성에 저장했다고 가정
+                        let currentSize = 0;
+                        const fileItems = fileListElement.querySelectorAll('li');
+
+                        fileItems.forEach(item => {
+                            const size = parseInt(item.getAttribute('data-size') || '0', 10);
+                            currentSize += size;
+                        });
+
+                        return currentSize;
+                    }
+
+                    // 파일 목록에 파일 추가
+                    function addFileToList(file, fileListElement) {
+                        const fileItem = document.createElement('li');
+
+                        // 파일 크기 정보 저장 (DOM에서 추적하기 위해)
+                        fileItem.setAttribute('data-size', file.size);
+
+                        // 파일 이름 요소
+                        const fileName = document.createElement('div');
+                        fileName.className = 'file-name';
+                        fileName.textContent = file.name;
+
+                        // 삭제 버튼
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'delete-btn';
+                        deleteBtn.innerHTML = '×';
+                        deleteBtn.addEventListener('click', function () {
+                            // 파일 삭제 시 전체 용량에서 제외
+                            totalFileSize -= file.size;
+                            fileItem.remove();
+                        });
+
+                        // 요소 조합
+                        fileItem.appendChild(fileName);
+                        fileItem.appendChild(deleteBtn);
+                        fileListElement.appendChild(fileItem);
+                    }
+                });
+            }
+
+            // 문서 로드 완료 시 초기화
+            document.addEventListener('DOMContentLoaded', function () {
+                initializeFileUpload();
+
+                // MutationObserver를 사용하여 동적으로 추가되는 모달 내부의 파일 업로드 영역도 초기화
+                const observer = new MutationObserver(function (mutations) {
+                    mutations.forEach(function (mutation) {
+                        if (mutation.addedNodes.length) {
+                            // 새로 추가된 노드 중에 file-upload-area가 있는지 확인
+                            mutation.addedNodes.forEach(node => {
+                                if (node.nodeType === 1 && node.classList &&
+                                    (node.classList.contains('file-upload-area') ||
+                                        node.querySelector && node.querySelector('.file-upload-area'))) {
+                                    // 파일 업로드 영역 초기화 함수 다시 호출
+                                    initializeFileUpload();
+                                }
+                            });
+                        }
+                    });
+                });
+
+                // 문서 전체 변경 감지
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            });
+
+            // =================== 동적 섹션 관리 ===================
+
+            /**
+             * 동적 섹션 추가/삭제 기능 초기화
+             */
+            function initializeSectionManagement() {
+                let sectionIndex = 1;
+                let isFirstDynamicSection = true;
+
+                // 초기 상태에서 첫 번째 섹션의 날짜 입력 필드에 name 속성 추가
+                const initialDatepickers = document.querySelectorAll('.simple-datepicker');
+                initialDatepickers.forEach(datepicker => {
+                    if (datepicker.classList.contains('start-date')) {
+                        datepicker.name = 'startDate1';
+                    } else if (datepicker.classList.contains('end-date')) {
+                        datepicker.name = 'endDate1';
+                    }
+                });
+
+                document.addEventListener('click', function (event) {
+                    // 추가 버튼 클릭 시
+                    if (event.target.closest('.btn-add')) {
+                        const currentSection = event.target.closest('.section');
+                        if (!currentSection) return;
+
+                        // 현재 섹션 복제
+                        const clonedSection = currentSection.cloneNode(true);
+
+                        // 섹션 인덱스 증가
+                        sectionIndex++;
+
+                        // 복제된 섹션의 라디오 버튼 name 업데이트
+                        const radioGroups = clonedSection.querySelectorAll('.data-radio input[type="radio"]');
+                        radioGroups.forEach(radio => {
+                            radio.name = `date${sectionIndex}`;
+                        });
+
+                        // 복제된 섹션의 날짜 선택기 업데이트
+                        const datepickers = clonedSection.querySelectorAll('.simple-datepicker');
+                        datepickers.forEach(datepicker => {
+                            // 중요: 초기화 표시 속성 제거
+                            datepicker.removeAttribute('data-datepicker-initialized');
+
+                            // name 속성 추가/업데이트
+                            if (datepicker.classList.contains('start-date')) {
+                                datepicker.name = `startDate${sectionIndex}`;
+                            } else if (datepicker.classList.contains('end-date')) {
+                                datepicker.name = `endDate${sectionIndex}`;
+                            }
+
+                            // 값 초기화
+                            datepicker.value = '';
+                        });
+
+                        // 중요: 복제된 섹션의 에러 메시지에서 active 클래스 제거
+                        const errorMessages = clonedSection.querySelectorAll('.error-message');
+                        errorMessages.forEach(errorMsg => {
+                            errorMsg.classList.remove('active');
+                        });
+
+                        // cp-name 커스텀 셀렉트박스 초기화
+                        const cpNameSelects = clonedSection.querySelectorAll('.cp-name');
+                        cpNameSelects.forEach(selectBox => {
+                            // 셀렉트박스 텍스트 초기화
+                            const selectSelected = selectBox.querySelector('.select-selected');
+                            if (selectSelected) {
+                                selectSelected.textContent = '선택';
+                            }
+
+                            // hidden input 초기화
+                            const hiddenInput = selectBox.querySelector('input[type="hidden"]');
+                            if (hiddenInput) {
+                                hiddenInput.value = '';
+                            }
+
+                            // 활성화 상태 제거 (필요한 경우)
+                            const selectItems = selectBox.querySelector('.select-items');
+                            if (selectItems) {
+                                selectItems.classList.add('select-hide');
+
+                                // 선택된 항목 초기화
+                                const items = selectItems.querySelectorAll('div');
+                                items.forEach(item => {
+                                    item.classList.remove('same-as-selected');
+                                });
+                            }
+                        });
+
+                        // 첫 번째 동적 생성 섹션인 경우
+                        if (isFirstDynamicSection) {
+                            const sectionTitleWrap = clonedSection.querySelector('.section-title-wrap');
+                            if (sectionTitleWrap) {
+                                const btnWrap = sectionTitleWrap.querySelector('.btn-wrap');
+                                if (btnWrap) {
+                                    // 삭제 버튼 생성
+                                    const deleteButton = document.createElement('button');
+                                    deleteButton.type = 'button';
+                                    deleteButton.className = 'btn-delete';
+                                    deleteButton.innerHTML = '<img src="../assets/images/ic_delete_16.svg" alt="삭제"> 삭제';
+
+                                    // 버튼 랩에 삭제 버튼 추가
+                                    btnWrap.appendChild(deleteButton);
+                                }
+                            }
+                            isFirstDynamicSection = false;
+                        } else {
+                            // 이후 동적 생성 섹션들에도 삭제 버튼 추가
+                            const sectionTitleWrap = clonedSection.querySelector('.section-title-wrap');
+                            if (sectionTitleWrap) {
+                                const btnWrap = sectionTitleWrap.querySelector('.btn-wrap');
+                                if (btnWrap && !btnWrap.querySelector('.btn-delete')) {
+                                    // 삭제 버튼 생성
+                                    const deleteButton = document.createElement('button');
+                                    deleteButton.type = 'button';
+                                    deleteButton.className = 'btn-delete';
+                                    deleteButton.innerHTML = '<img src="../assets/images/ic_delete_16.svg" alt="삭제"> 삭제';
+
+                                    // 버튼 랩에 삭제 버튼 추가
+                                    btnWrap.appendChild(deleteButton);
+                                }
+                            }
+                        }
+
+                        // 텍스트 입력 필드 초기화
+                        const textInputs = clonedSection.querySelectorAll('input[type="text"]:not(.simple-datepicker)');
+                        textInputs.forEach(input => {
+                            input.value = '';
+                        });
+
+                        // 라디오 버튼 초기화
+                        const radios = clonedSection.querySelectorAll('input[type="radio"]');
+                        radios.forEach((input, index) => {
+                            const radioGroup = input.closest('.radio-container');
+                            if (radioGroup) {
+                                // 각 그룹의 첫 번째 라디오 버튼만 선택
+                                const firstRadioInGroup = radioGroup.querySelector('input[type="radio"]');
+                                input.checked = (input === firstRadioInGroup);
+                            }
+                        });
+
+                        // 파일 리스트 초기화
+                        const fileList = clonedSection.querySelector('.file-list');
+                        if (fileList) {
+                            fileList.innerHTML = '';
+                        }
+
+                        // request-category에 disabled 클래스 추가
+                        const requestCategory = clonedSection.querySelector('.request-category');
+                        if (requestCategory) {
+                            requestCategory.classList.add('disabled');
+                        }
+
+                        // 섹션 추가
+                        currentSection.parentNode.insertBefore(clonedSection, currentSection.nextSibling);
+
+                        // 새로 추가된 섹션의 datepicker 초기화
+                        // MutationObserver가 감지하도록 약간의 지연 추가
+                        setTimeout(() => {
+                            if (typeof window.initDatepicker === 'function') {
+                                window.initDatepicker();
+                                console.log('새 섹션의 datepicker 초기화 시도');
+                            }
+                        }, 100);
+                    }
+
+                    // 삭제 버튼 클릭 시
+                    if (event.target.closest('.btn-delete')) {
+                        const sectionToDelete = event.target.closest('.section');
+                        if (sectionToDelete) {
+                            sectionToDelete.remove();
+                        }
+                    }
+                });
+            }
+
+            // =================== 커스텀 셀렉트 박스 ===================
+
+            /**
+             * 커스텀 셀렉트 박스 초기화
+             */
+            function initializeCustomSelectBoxes() {
+                // 모든 request-category 드롭다운에 대해 처리
+                const requestCategories = document.querySelectorAll('.request-category');
+
+                requestCategories.forEach(requestCategory => {
+                    const selectSelected = requestCategory.querySelector('.select-selected');
+                    const hiddenInput = requestCategory.querySelector('input[type="hidden"]');
+                    const selectItems = requestCategory.querySelectorAll('.select-items div');
+
+                    // 초기 설정
+                    if (selectSelected && hiddenInput) {
+                        selectSelected.textContent = '신규';
+                        hiddenInput.value = 'new';
+                        filterContent(requestCategory, 'new');
+                    }
+
+                    // 각 드롭다운 옵션에 이벤트 리스너 추가
+                    selectItems.forEach(option => {
+                        option.addEventListener('click', function () {
+                            const value = this.getAttribute('data-value');
+
+                            // 드롭다운 텍스트 및 hidden input 업데이트
+                            if (selectSelected) {
+                                selectSelected.textContent = this.textContent;
+                            }
+                            if (hiddenInput) {
+                                hiddenInput.value = value;
+                            }
+
+                            // 관련 에러 메시지의 active 클래스 제거 - 모든 관련 에러 메시지 처리
+                            clearRelatedErrorMessages(requestCategory);
+
+                            // 필터링 수행
+                            filterContent(requestCategory, value);
+                        });
+                    });
+                });
+
+                // 커스텀 셀렉트 박스 이벤트 처리
+                document.addEventListener('click', function (event) {
+                    // 동적으로 추가된 disabled된 .request-category 내의 커스텀 셀렉트 클릭 시 이벤트 차단
+                    const disabledRequestCategory = event.target.closest('.request-category.disabled');
+                    if (disabledRequestCategory) {
+                        const customSelect = event.target.closest('.custom-select');
+
+                        // 커스텀 셀렉트만 차단
+                        if (customSelect) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            return;
+                        }
+                    }
+
+                    // .custom-select 내의 .select-selected 클릭 시
+                    const selectSelected = event.target.closest('.select-selected');
+                    if (selectSelected) {
+                        const customSelect = selectSelected.closest('.custom-select');
+                        const selectItems = customSelect.querySelector('.select-items');
+
+                        // 드롭다운 토글
+                        selectItems.classList.toggle('select-hide');
+                    }
+
+                    // .select-items div 클릭 시
+                    const selectItem = event.target.closest('.select-items div');
+                    if (selectItem) {
+                        const customSelect = selectItem.closest('.custom-select');
+
+                        // 동적으로 추가된 disabled된 custom-select 클릭 시 이벤트 차단
+                        if (customSelect && customSelect.classList.contains('disabled')) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            return;
+                        }
+
+                        const selectSelected = customSelect.querySelector('.select-selected');
+                        const hiddenInput = customSelect.querySelector('input[type="hidden"]');
+                        const selectItems = customSelect.querySelector('.select-items');
+
+                        // 선택된 값 설정
+                        const value = selectItem.getAttribute('data-value');
+
+                        if (selectSelected) {
+                            selectSelected.textContent = selectItem.textContent;
+                        }
+
+                        if (hiddenInput) {
+                            hiddenInput.value = value;
+                        }
+
+                        // 드롭다운 닫기
+                        selectItems.classList.add('select-hide');
+
+                        // 필요한 경우 필터링 로직 추가
+                        if (customSelect.classList.contains('request-category')) {
+                            // 에러 메시지 초기화
+                            clearRelatedErrorMessages(customSelect);
+                            // 필터링
+                            filterContent(customSelect, value);
+                        }
+
+                        // CP 이름 선택 처리 - cp-name 클래스가 있는 모든 셀렉트박스에 대해 에러 메시지 제거
+                        if (customSelect.classList.contains('cp-name')) {
+                            const parentRow = customSelect.closest('tr');
+                            if (parentRow) {
+                                const errorMessages = parentRow.querySelectorAll('.error-message');
+                                errorMessages.forEach(errorMsg => {
+                                    errorMsg.classList.remove('active');
+                                });
+                            }
+                        }
+                    }
+
+                    // 외부 클릭 시 드롭다운 닫기
+                    if (!event.target.closest('.custom-select')) {
+                        document.querySelectorAll('.custom-select .select-items').forEach(selectItems => {
+                            selectItems.classList.add('select-hide');
+                        });
+                    }
+                });
+            }
+
+            /**
+             * 관련 에러 메시지 초기화 함수
+             * @param {HTMLElement} element - 기준 요소
+             */
+            function clearRelatedErrorMessages(element) {
+                // 1. 직접적인 부모 행(TR)에서 에러 메시지 찾기
+                const parentRow = element.closest('tr');
+                if (parentRow) {
+                    const errorMessages = parentRow.querySelectorAll('.error-message');
+                    errorMessages.forEach(errorMsg => {
+                        errorMsg.classList.remove('active');
+                    });
+                }
+
+                // 2. 섹션 내의 모든 에러 메시지 초기화 (request-category 변경 시)
+                if (element.classList.contains('request-category')) {
+                    // 해당 섹션의
+                    const section = element.closest('.section');
+                    if (section) {
+                        const allErrorMessages = section.querySelectorAll('.error-message');
+                        allErrorMessages.forEach(errorMsg => {
+                            errorMsg.classList.remove('active');
+                        });
+                    }
+
+                    // 3. 모달 내 모든 섹션의 에러 메시지 제거 (동적 섹션 포함)
+                    const modalContent = element.closest('.modal-content');
+                    if (modalContent) {
+                        const allModalErrorMessages = modalContent.querySelectorAll('.error-message');
+                        allModalErrorMessages.forEach(errorMsg => {
+                            errorMsg.classList.remove('active');
+                        });
+
+                        const value = element.querySelector('.select-selected')?.textContent || '';
+                        console.log('신청 구분 변경됨:', value);
+                    }
+                }
+            }
+
+            /**
+             * 신청 구분에 따른 UI 필터링
+             * @param {HTMLElement} requestCategory - 신청 구분 셀렉트 요소
+             * @param {string} value - 선택된 값
+             */
+            function filterContent(requestCategory, value) {
+                // 현재 모달 내부에서만 필터링하도록 수정
+                const parentContainer = requestCategory.closest('.modal-content') ||
+                    requestCategory.closest('.section');
+
+                // 섹션 카테고리 필터링
+                const sectionCategories = parentContainer.querySelectorAll('.section-category');
+                sectionCategories.forEach(section => {
+                    section.style.display = (section.classList.contains(value) || section.classList.contains('all'))
+                        ? ''
+                        : 'none';
+                });
+
+                // 테이블 행 필터링 (필요한 경우)
+                const tables = parentContainer.querySelectorAll('table');
+                tables.forEach(table => {
+                    const rows = table.querySelectorAll('tr:not(:first-child)');
+                    rows.forEach(row => {
+                        row.style.display = (row.classList.contains(value) || row.classList.contains('all'))
+                            ? ''
+                            : 'none';
+                    });
+                });
+            }
+
+            // =================== 자동 종료일 계산 ===================
+
+            /**
+             * 시작일 선택 시 종료일 자동 계산 설정
+             */
+            function setupAutoEndDate() {
+                // 날짜 계산 함수
+                function calculateEndDate(startDateStr, days) {
+                    // 시작일 파싱 (YYYY / MM / DD 형식)
+                    const [year, month, day] = startDateStr.split(' / ').map(part => parseInt(part, 10));
+
+                    // 새 Date 객체 생성
+                    const startDate = new Date(year, month - 1, day); // 월은 0부터 시작하므로 1을 빼줌
+
+                    // 지정된 일수를 더한 종료일 계산
+                    const endDate = new Date(startDate);
+                    endDate.setDate(startDate.getDate() + (days - 1)); // 시작일 포함하여 계산
+
+                    // 종료일을 YYYY / MM / DD 형식으로 포맷팅
+                    const endYear = endDate.getFullYear();
+                    const endMonth = String(endDate.getMonth() + 1).padStart(2, '0');
+                    const endDay = String(endDate.getDate()).padStart(2, '0');
+
+                    return `${endYear} / ${endMonth} / ${endDay}`;
+                }
+
+                // input change 이벤트 리스너 (이벤트 위임 사용)
+                document.addEventListener('change', function (event) {
+                    // start-date 클래스를 가진 datepicker가 변경되었는지 확인
+                    if (event.target.classList &&
+                        event.target.classList.contains('start-date') &&
+                        event.target.classList.contains('simple-datepicker')) {
+
+                        const startDateInput = event.target;
+                        const startDateValue = startDateInput.value;
+
+                        // 시작일이 선택되지 않았으면 처리하지 않음
+                        if (!startDateValue) return;
+
+                        // 해당 날짜 섹션 찾기
+                        const dateRange = startDateInput.closest('.date-range');
+                        if (!dateRange) return;
+
+                        // 같은 섹션의 end-date 입력 필드 찾기
+                        const endDateInput = dateRange.querySelector('.end-date');
+                        if (!endDateInput) return;
+
+                        // 상위 트리에서 radio-container 찾기
+                        let currentElement = dateRange;
+                        let radioContainer = null;
+
+                        while (currentElement && !radioContainer) {
+                            // 현재 요소의 부모로 이동
+                            currentElement = currentElement.parentElement;
+
+                            // 부모가 없으면 중단
+                            if (!currentElement) break;
+
+                            // 부모 내에서 radio-container 찾기
+                            radioContainer = currentElement.querySelector('.data-radio');
+                        }
+
+                        if (!radioContainer) return;
+
+                        // 선택된 라디오 버튼 찾기
+                        const selectedRadio = radioContainer.querySelector('input[type="radio"]:checked');
+                        if (!selectedRadio) return;
+
+                        // 라디오 버튼 값에 따라 날짜 계산
+                        const days = selectedRadio.value === 'date7' ? 7 : 90;
+
+                        // 종료일 계산 및 설정
+                        const endDateValue = calculateEndDate(startDateValue, days);
+                        endDateInput.value = endDateValue;
+
+                        // 에러 메시지 제거 (시작일과 종료일 모두 선택된 경우)
+                        const parentRow = dateRange.closest('tr');
+                        if (parentRow) {
+                            const errorMessage = parentRow.querySelector('.error-message');
+                            if (errorMessage) {
+                                errorMessage.classList.remove('active');
+                            }
+                        }
+
+                        // change 이벤트 발생 (datepicker UI 업데이트를 위해)
+                        const changeEvent = new Event('change', { bubbles: true });
+                        endDateInput.dispatchEvent(changeEvent);
+                    }
+                });
+
+                // 라디오 버튼 변경 이벤트 리스너
+                document.addEventListener('change', function (event) {
+                    // 라디오 버튼 변경 확인
+                    if (event.target.type === 'radio' && event.target.name &&
+                        event.target.name.startsWith('date')) {
+
+                        const radioButton = event.target;
+                        const days = radioButton.value === 'date7' ? 7 : 90;
+
+                        // 관련 date-range 찾기
+                        let currentElement = radioButton.closest('.radio-container');
+                        let dateRange = null;
+
+                        while (currentElement && !dateRange) {
+                            // 현재 요소의 부모로 이동
+                            currentElement = currentElement.parentElement;
+
+                            // 부모가 없으면 중단
+                            if (!currentElement) break;
+
+                            // 부모 내에서 date-range 찾기
+                            dateRange = currentElement.querySelector('.date-range');
+                        }
+
+                        if (!dateRange) return;
+
+                        // 시작일과 종료일 입력 필드 찾기
+                        const startDateInput = dateRange.querySelector('.start-date');
+                        const endDateInput = dateRange.querySelector('.end-date');
+
+                        if (!startDateInput || !endDateInput) return;
+
+                        // 시작일이 이미 선택된 경우에만 종료일 업데이트
+                        if (startDateInput.value) {
+                            // 종료일 계산 및 설정
+                            const endDateValue = calculateEndDate(startDateInput.value, days);
+                            endDateInput.value = endDateValue;
+
+                            // change 이벤트 발생 (datepicker UI 업데이트를 위해)
+                            const changeEvent = new Event('change', { bubbles: true });
+                            endDateInput.dispatchEvent(changeEvent);
+                        }
+                    }
+                });
+            }
+
+            // =================== 입력 필드 에러 처리 ===================
+
+            /**
+             * 입력 필드 이벤트 처리 (에러 메시지 관리)
+             */
+            function setupInputErrorHandling() {
+                // 입력 필드 변경시 에러 메시지 숨김
+                document.addEventListener('input', function (event) {
+                    const input = event.target;
+
+                    // 입력 필드인 경우에만 처리
+                    if (input.tagName === 'INPUT' && input.type === 'text') {
+                        // 부모 요소에서 에러 메시지 찾기
+                        const parentItem = input.closest('.input-item');
+                        if (parentItem) {
+                            const errorMessage = parentItem.querySelector('.error-message');
+                            if (errorMessage && input.value.trim() !== '') {
+                                errorMessage.classList.remove('active');
+                            }
+                        }
+                    }
+                });
+
+                // 날짜 입력 필드 변경시 에러 메시지 숨김
+                document.addEventListener('change', function (event) {
+                    const input = event.target;
+
+                    // datepicker 클래스를 가진 경우
+                    if (input.classList.contains('simple-datepicker')) {
+                        const dateRange = input.closest('.date-range');
+                        if (dateRange) {
+                            const parentTr = dateRange.closest('tr');
+                            if (parentTr) {
+                                const errorMessage = parentTr.querySelector('.error-message');
+                                if (errorMessage) {
+                                    // 시작일과 종료일이 모두 선택된 경우에만 에러 메시지 숨김
+                                    const startDate = dateRange.querySelector('.start-date');
+                                    const endDate = dateRange.querySelector('.end-date');
+
+                                    if (startDate && endDate &&
+                                        startDate.value.trim() !== '' &&
+                                        endDate.value.trim() !== '') {
+                                        errorMessage.classList.remove('active');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // =================== 폼 제출 처리 ===================
+
+            /**
+             * 폼 제출 처리 및 유효성 검사
+             */
+            function setupFormSubmission() {
+                const submitButton = document.getElementById('btnSubmit');
+                if (!submitButton) return;
+
+                submitButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let hasError = false;
+
+                    // 1. 신청 목적 검사 (모든 섹션 공통)
+                    const reasonInputs = document.querySelectorAll('input[name="reason"]');
+                    reasonInputs.forEach(reasonInput => {
+                        const isReasonEmpty = !reasonInput.value.trim();
+                        if (isReasonEmpty) {
+                            const reasonErrorMsg = reasonInput.closest('.input-item').querySelector('.error-message');
+                            if (reasonErrorMsg) {
+                                reasonErrorMsg.classList.add('active');
+                                hasError = true;
+                            }
+                        }
+                    });
+
+                    // 2. 현재 표시된 요소에 따라 검사
+                    const currentRequestCategory = document.querySelector('.request-category .select-selected');
+                    const currentValue = currentRequestCategory ? currentRequestCategory.textContent : '';
+
+                    // 2-1. "변경" 또는 "반납"인 경우 Cloud PC 명 검사
+                    if (currentValue === '변경' || currentValue === '반납') {
+                        const cpNameInputs = document.querySelectorAll('.cp-name input[type="hidden"]');
+                        cpNameInputs.forEach(cpNameInput => {
+                            const isCpNameInvalid = cpNameInput.value === 'all' || cpNameInput.value === '';
+                            if (isCpNameInvalid) {
+                                const cpNameErrorMsg = cpNameInput.closest('tr').querySelector('.error-message');
+                                if (cpNameErrorMsg) {
+                                    cpNameErrorMsg.classList.add('active');
+                                    hasError = true;
+                                }
+                            }
+                        });
+                    }
+
+                    // 2-2. "USB"인 경우 날짜 범위 검사
+                    if (currentValue === 'USB') {
+                        // 모든 날짜 섹션 검사
+                        const dateRanges = document.querySelectorAll('.date-range');
+                        dateRanges.forEach(dateRange => {
+                            const startDateInput = dateRange.querySelector('.start-date');
+                            const endDateInput = dateRange.querySelector('.end-date');
+
+                            const areDatesEmpty = !startDateInput.value.trim() || !endDateInput.value.trim();
+                            if (areDatesEmpty) {
+                                const dateErrorMsg = dateRange.closest('tr').querySelector('.error-message');
+                                if (dateErrorMsg) {
+                                    dateErrorMsg.classList.add('active');
+                                    hasError = true;
+                                }
+                            }
+                        });
+                    }
+
+                    // 폼 제출 결정
+                    if (hasError) {
+                        console.log('유효성 검사 실패: 오류가 있습니다.');
+                        return false; // 폼 제출 방지
+                    } else {
+                        // 유효성 검사 통과 시 모든 오류 메시지 숨기기
+                        document.querySelectorAll('.error-message').forEach(errorMsg => {
+                            errorMsg.classList.remove('active');
+                        });
+
+                        // 여기에 폼 제출 로직 추가
+                        console.log('폼 제출 성공!');
+                        // form.submit();
+                    }
+                });
+            }
+
+            // =================== request-category 셀렉트박스 동기화 ===================
+
+            /**
+             * request-category 셀렉트박스 동기화 설정
+             */
+            function setupRequestCategorySync() {
+                // MutationObserver를 사용하여 DOM 변경 감지
+                const observer = new MutationObserver(function (mutations) {
+                    mutations.forEach(function (mutation) {
+                        if (mutation.addedNodes.length) {
+                            // 새로 추가된 셀렉트박스에도 이벤트 연결
+                            attachSyncEvents();
+                        }
+                    });
+                });
+
+                // 문서 전체 변경 감지
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+
+                // 초기 이벤트 연결
+                attachSyncEvents();
+
+                /**
+                 * 모든 request-category 셀렉트박스에 동기화 이벤트 연결
+                 */
+                function attachSyncEvents() {
+                    // 모든 셀렉트박스 옵션에 이벤트 리스너 추가
+                    document.querySelectorAll('.request-category .select-items div').forEach(option => {
+                        // 이미 이벤트가 연결된 요소는 건너뛰기
+                        if (option.hasAttribute('data-sync-attached')) return;
+
+                        option.setAttribute('data-sync-attached', 'true');
+                        option.addEventListener('click', function () {
+                            // 선택된 값과 텍스트
+                            const value = this.getAttribute('data-value');
+                            const text = this.textContent;
+
+                            // 약간의 지연 후 동기화 실행 (기존 이벤트 처리 후)
+                            setTimeout(() => {
+                                syncAllRequestCategories(value, text);
+                            }, 50);
+                        });
+                    });
+                }
+
+                /**
+                 * 모든 request-category 셀렉트박스 동기화
+                 */
+                function syncAllRequestCategories(value, text) {
+                    const allRequestCategories = document.querySelectorAll('.request-category');
+
+                    allRequestCategories.forEach(select => {
+                        // 이미 같은 값이면 건너뛰기
+                        const currentText = select.querySelector('.select-selected')?.textContent;
+                        if (currentText === text) return;
+
+                        // 텍스트 업데이트
+                        const selectSelected = select.querySelector('.select-selected');
+                        if (selectSelected) {
+                            selectSelected.textContent = text;
+                        }
+
+                        // hidden input 업데이트
+                        const hiddenInput = select.querySelector('input[type="hidden"]');
+                        if (hiddenInput) {
+                            hiddenInput.value = value;
+                        }
+
+                        // UI 필터링 호출
+                        filterContent(select, value);
+
+                        // 해당 섹션의 모든 에러 메시지 제거 - 동적 섹션 포함
+                        clearSectionErrorMessages(select);
+                    });
+
+                    // 모달 내 모든 에러 메시지 제거 (동적 섹션 포함)
+                    clearAllModalErrorMessages();
+
+                    console.log(`모든 request-category 셀렉트박스가 '${text}'(${value})로 동기화됨`);
+                }
+
+                /**
+                 * 셀렉트박스가 속한 섹션의 모든 에러 메시지 제거
+                 */
+                function clearSectionErrorMessages(selectElement) {
+                    const section = selectElement.closest('.section');
+                    if (section) {
+                        const errorMessages = section.querySelectorAll('.error-message');
+                        errorMessages.forEach(msg => {
+                            msg.classList.remove('active');
+                        });
+                    }
+                }
+
+                /**
+                 * 모달 내 모든 에러 메시지 제거 (동적 섹션 포함)
+                 */
+                function clearAllModalErrorMessages() {
+                    const modal = document.querySelector('.modal-overlay.show');
+                    if (modal) {
+                        const allErrorMessages = modal.querySelectorAll('.error-message');
+                        allErrorMessages.forEach(msg => {
+                            msg.classList.remove('active');
+                        });
+                    }
+                }
+            }
+
+            // =================== 모든 기능 초기화 ===================
+
+            // 각 기능 초기화 실행
+            initializeFileUpload();
+            initializeModalEvents();
+            initializeSectionManagement();
+            initializeCustomSelectBoxes();
+            setupAutoEndDate();
+            setupInputErrorHandling();
+            setupFormSubmission();
+            setupRequestCategorySync();
+            setupCpNameEventHandlers(); // cp-name 이벤트 핸들러 추가
+        });
+
+        /**
+         * 모달 닫기 시 입력 요소 초기화 기능 구현
+         */
+        function setupModalReset() {
+            // 모달 닫기 버튼에 이벤트 핸들러 추가
+            const cpRequestModal = document.querySelector('.modalCpRequest');
+            if (!cpRequestModal) return;
+
+            const closeButtons = cpRequestModal.querySelectorAll('.modal-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // 모달이 닫히기 전에 초기화 수행
+                    resetModalInputs(cpRequestModal);
+                });
+            });
+
+            // 외부 클릭 이벤트 처리를 위한 이벤트 핸들러 추가
+            cpRequestModal.addEventListener('click', function (e) {
+                if (e.target === cpRequestModal) {
+                    // 모달 외부 클릭 시 초기화 수행
+                    resetModalInputs(cpRequestModal);
+                }
+            });
+
+            // ESC 키 이벤트 처리
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && cpRequestModal.classList.contains('show')) {
+                    // ESC 키로 모달 닫힐 때 초기화 수행
+                    resetModalInputs(cpRequestModal);
+                }
+            });
+        }
+
+        /**
+         * 모달 내의 모든 입력 요소를 초기 상태로 초기화
+         * @param {HTMLElement} modal - 초기화할 모달 요소
+         */
+        function resetModalInputs(modal) {
+            if (!modal) return;
+
+            // 1. 텍스트 입력 필드 초기화
+            const textInputs = modal.querySelectorAll('input[type="text"]');
+            textInputs.forEach(input => {
+                input.value = '';
+            });
+
+            // 2. 셀렉트 박스 초기화
+            const customSelects = modal.querySelectorAll('.custom-select');
+            customSelects.forEach(select => {
+                // 기본 신청 구분은 '신규'로 설정
+                if (select.classList.contains('request-category')) {
+                    const selectSelected = select.querySelector('.select-selected');
+                    if (selectSelected) {
+                        selectSelected.textContent = '신규';
+                    }
+
+                    const hiddenInput = select.querySelector('input[type="hidden"]');
+                    if (hiddenInput) {
+                        hiddenInput.value = 'new';
+                    }
+
+                    // same-as-selected 클래스 제거
+                    const selectItems = select.querySelectorAll('.select-items div');
+                    selectItems.forEach(item => {
+                        item.classList.remove('same-as-selected');
+                    });
+
+                    // '신규' 옵션에 same-as-selected 클래스 추가
+                    const newOption = select.querySelector('.select-items div[data-value="new"]');
+                    if (newOption) {
+                        newOption.classList.add('same-as-selected');
+                    }
+                }
+                // Cloud PC 명 셀렉트 박스 초기화
+                else if (select.classList.contains('cp-name')) {
+                    const selectSelected = select.querySelector('.select-selected');
+                    if (selectSelected) {
+                        selectSelected.textContent = '선택';
+                    }
+
+                    const hiddenInput = select.querySelector('input[type="hidden"]');
+                    if (hiddenInput) {
+                        hiddenInput.value = 'all';
+                    }
+
+                    // same-as-selected 클래스 제거
+                    const selectItems = select.querySelectorAll('.select-items div');
+                    selectItems.forEach(item => {
+                        item.classList.remove('same-as-selected');
+                    });
+                }
+            });
+
+            // 3. 라디오 버튼 초기화 (각 그룹의 첫 번째 또는 기본 값으로)
+            const radioGroups = modal.querySelectorAll('.radio-container');
+            radioGroups.forEach(group => {
+                const radios = group.querySelectorAll('input[type="radio"]');
+
+                if (radios.length > 0) {
+                    // 개인정보 동의 라디오 그룹인 경우 "동의" 선택
+                    const parentSection = group.closest('.section');
+                    if (parentSection && parentSection.querySelector('.section-title')?.textContent.includes('개인정보')) {
+                        const agreeRadio = Array.from(radios).find(radio => radio.value === 'option1');
+                        if (agreeRadio) {
+                            agreeRadio.checked = true;
+                        } else {
+                            radios[0].checked = true;
+                        }
+                    }
+                    // USB 관련 라디오 그룹(미암호화 파일)인 경우 "미신청" 선택
+                    else if (parentSection && parentSection.classList.contains('usb')) {
+                        const notApplyRadio = Array.from(radios).find(radio => radio.value === 'option2');
+                        if (notApplyRadio) {
+                            notApplyRadio.checked = true;
+                        } else {
+                            radios[0].checked = true;
+                        }
+                    }
+                    // 기간 선택(단기 7일/90일) 라디오 그룹인 경우 첫 번째 옵션 선택
+                    else if (group.classList.contains('data-radio')) {
+                        radios[0].checked = true;
+                    }
+                    // 그 외 일반 라디오 그룹
+                    else {
+                        radios[0].checked = true;
+                    }
+                }
+            });
+
+            // 4. 체크박스 초기화
+            const checkboxes = modal.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // 5. 파일 첨부 목록 초기화
+            const fileLists = modal.querySelectorAll('.file-list');
+            fileLists.forEach(list => {
+                list.innerHTML = '';
+            });
+
+            // 6. 날짜 선택기 초기화
+            const datepickers = modal.querySelectorAll('.simple-datepicker');
+            datepickers.forEach(datepicker => {
+                datepicker.value = '';
+            });
+
+            // 7. 동적으로 추가된 섹션 완전히 제거
+            removeAllDynamicSections(modal);
+
+            // 8. 에러 메시지 숨기기
+            const errorMessages = modal.querySelectorAll('.error-message');
+            errorMessages.forEach(msg => {
+                msg.classList.remove('active');
+            });
+
+            // 9. 하단 섹션들 초기화 및 적절한 표시 상태로 설정
+            resetBottomSections(modal);
+
+            // 10. 모달 스크롤 위치 초기화
+            resetModalScroll(modal);
+
+            // 신청 구분 기본값 'new'에 맞게 UI 필터링
+            if (typeof filterContent === 'function') {
+                const requestCategory = modal.querySelector('.request-category');
+                if (requestCategory) {
+                    filterContent(requestCategory, 'new');
+                }
+            }
+        }
+
+        /**
+         * 하단 섹션들 초기화 (개인정보 동의, 파일 첨부, USB 관련 섹션 등)
+         * @param {HTMLElement} modal - 모달 요소
+         */
+        function resetBottomSections(modal) {
+            // 모달 내 섹션들 가져오기
+            const sections = modal.querySelectorAll('.section-category');
+
+            sections.forEach(section => {
+                // 1. 신청 구분에 따른 section-category 초기화
+                // 신규/변경/반납용 섹션은 표시, USB용 섹션은 숨김 (기본 구분이 '신규'이므로)
+                if (section.classList.contains('new') ||
+                    section.classList.contains('change') ||
+                    section.classList.contains('return')) {
+                    section.style.display = '';
+                } else if (section.classList.contains('usb')) {
+                    section.style.display = 'none';
+                }
+
+                // 2. 섹션 내부 요소 초기화
+
+                // 2.1 개인정보 수집 이용 동의 섹션 초기화
+                if (section.querySelector('.section-title')?.textContent.includes('개인정보')) {
+                    const agreeRadio = section.querySelector('input[type="radio"][value="option1"]');
+                    if (agreeRadio) {
+                        agreeRadio.checked = true;
+                    }
+                }
+
+                // 2.2 파일 첨부 섹션 초기화
+                const fileList = section.querySelector('.file-list');
+                if (fileList) {
+                    fileList.innerHTML = '';
+                }
+
+                // 2.3 USB 관련 섹션 초기화 (미암호화 파일 쓰기 신청)
+                if (section.classList.contains('usb')) {
+                    const notApplyRadio = section.querySelector('input[type="radio"][value="option2"]');
+                    if (notApplyRadio) {
+                        notApplyRadio.checked = true;
+                    }
+                }
+            });
+        }
+
+        /**
+         * 동적으로 추가된 모든 섹션을 제거
+         * @param {HTMLElement} modal - 모달 요소
+         */
+        function removeAllDynamicSections(modal) {
+            // 첫 번째 기본 신청 정보 섹션 찾기
+            const modalBody = modal.querySelector('.modal-body');
+            if (!modalBody) return;
+
+            // 섹션 타이틀에 '신청 정보'가 있는 섹션 찾기
+            const sections = modalBody.querySelectorAll('.section');
+
+            // 섹션들을 순회하면서 검사
+            let mainSectionFound = false;
+            let sectionsToRemove = [];
+
+            sections.forEach(section => {
+                const titleElement = section.querySelector('.section-title');
+                if (titleElement && titleElement.textContent.includes('신청 정보')) {
+                    // 첫 번째 신청 정보 섹션인 경우
+                    if (!mainSectionFound) {
+                        mainSectionFound = true;
+                    }
+                    // 추가로 생성된 섹션인 경우
+                    else {
+                        sectionsToRemove.push(section);
+                    }
+                }
+            });
+
+            // 삭제 버튼 포함된 섹션 전부 찾아서 제거 (더 확실한 방법)
+            const deleteButtons = modalBody.querySelectorAll('.btn-delete');
+            deleteButtons.forEach(button => {
+                const sectionToRemove = button.closest('.section');
+                if (sectionToRemove && !sectionsToRemove.includes(sectionToRemove)) {
+                    sectionsToRemove.push(sectionToRemove);
+                }
+            });
+
+            // 식별된 모든 추가 섹션 제거
+            sectionsToRemove.forEach(section => {
+                section.remove();
+            });
+
+            console.log(`${sectionsToRemove.length}개의 동적 섹션이 제거되었습니다.`);
+        }
+
+        /**
+         * 모달 스크롤 위치 초기화
+         * @param {HTMLElement} modal - 스크롤을 초기화할 모달 요소
+         */
+        function resetModalScroll(modal) {
+            // 모달 내 스크롤 가능한 요소 찾기
+            const scrollables = [
+                modal.querySelector('.modal-body'),
+                modal.querySelector('.modal-content')
+            ].filter(el => el != null);
+
+            // 모든 스크롤 가능한 요소의 스크롤 위치 초기화
+            scrollables.forEach(element => {
+                element.scrollTop = 0;
+            });
+
+            console.log('모달 스크롤 위치가 초기화되었습니다.');
+        }
+
+        // 문서 로드 완료 시 초기화
+        document.addEventListener('DOMContentLoaded', function () {
+            setupModalReset();
+        });
+
+
+        // 미리보기 버튼 이벤트 핸들러
+        function setupModalPreview() {
+            // 미리보기 버튼 찾기
+            const previewButton = document.querySelector('.modal-overlay.modalCpRequest .modal-footer .button-cancel:nth-child(2)');
+
+            if (previewButton) {
+                previewButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // 현재 모달 캡처 후 미리보기 표시
+                    captureModalAndShowPreview();
+                });
+            }
+        }
+
+        // 현재 모달을 캡처하여 미리보기로 표시
+        function captureModalAndShowPreview() {
+            // 현재 열려있는 모달 찾기
+            const currentModal = document.querySelector('.modal-overlay.modalCpRequest');
+            if (!currentModal) return;
+
+            // 현재 모달 내용 복제 (깊은 복사)
+            const modalBodyContent = currentModal.querySelector('.modal-body').cloneNode(true);
+
+            // 복제된 모든 요소를 읽기 전용으로 설정 (입력 요소는 그대로 표시)
+            disableInteractivity(modalBodyContent);
+
+            // 미리보기 모달 생성
+            createPreviewModal(modalBodyContent);
+        }
+
+        // 모든 상호작용 요소를 비활성화
+        function disableInteractivity(contentElement) {
+            // 입력 필드 읽기 전용으로 설정
+            const inputFields = contentElement.querySelectorAll('input[type="text"]');
+            inputFields.forEach(input => {
+                input.setAttribute('readonly', 'readonly');
+                input.style.backgroundColor = '#f9f9f9';
+                input.style.cursor = 'default';
+                input.style.borderColor = '#ddd';
+            });
+
+            // 셀렉트 박스 비활성화
+            const customSelects = contentElement.querySelectorAll('.custom-select');
+            customSelects.forEach(select => {
+                // 셀렉트 헤더 비활성화
+                const selectSelected = select.querySelector('.select-selected');
+                if (selectSelected) {
+                    selectSelected.style.pointerEvents = 'none';
+                    selectSelected.style.backgroundColor = '#f9f9f9';
+                    selectSelected.style.cursor = 'default';
+                    selectSelected.style.borderColor = '#ddd';
+                }
+
+                // 드롭다운 항목 숨기기
+                const selectItems = select.querySelector('.select-items');
+                if (selectItems) {
+                    selectItems.style.display = 'none';
+                }
+            });
+
+            // 라디오 버튼 처리 - name 속성 변경하여 원본과 분리
+            const radioButtons = contentElement.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radio => {
+                // 원래 name 값에 '-preview' 접미사를 추가하여 구분
+                const originalName = radio.getAttribute('name');
+                if (originalName) {
+                    radio.setAttribute('name', originalName + '-preview');
+                }
+
+                // 비활성화 및 스타일 조정
+                radio.disabled = true;
+                const radioLabel = radio.closest('label');
+                if (radioLabel) {
+                    radioLabel.style.opacity = '0.9';
+                    radioLabel.style.cursor = 'default';
+                }
+            });
+
+            // 체크박스 비활성화
+            const checkboxes = contentElement.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.disabled = true;
+            });
+
+            // 버튼 비활성화
+            const buttons = contentElement.querySelectorAll('button:not(.modal-close)');
+            buttons.forEach(button => {
+                button.disabled = true;
+                button.style.pointerEvents = 'none';
+                button.style.opacity = '0.7';
+            });
+
+            // 클릭 가능 요소 비활성화 (링크, 아이콘 등)
+            const clickableElements = contentElement.querySelectorAll('a, .clear-btn, .calendar-icon');
+            clickableElements.forEach(element => {
+                element.style.pointerEvents = 'none';
+                element.style.cursor = 'default';
+            });
+
+            // 파일 업로드 영역 비활성화
+            const fileUploadAreas = contentElement.querySelectorAll('.file-upload-area');
+            fileUploadAreas.forEach(area => {
+                area.style.pointerEvents = 'none';
+                area.style.opacity = '0.9';
+
+                // 파일 입력 필드와 버튼 비활성화
+                const fileInputs = area.querySelectorAll('input[type="file"], .upload-btn');
+                fileInputs.forEach(input => {
+                    input.disabled = true;
+                    input.style.pointerEvents = 'none';
+                });
+            });
+        }
+
+        // 미리보기 모달 생성 및 표시
+        function createPreviewModal(contentElement) {
+            // 기존 미리보기 모달 제거
+            const existingPreview = document.querySelector('.modal-overlay.modalCpPreview');
+            if (existingPreview) {
+                existingPreview.remove();
+            }
+
+            // 미리보기 모달 생성
+            const previewModal = document.createElement('div');
+            previewModal.className = 'modal-overlay modalCpPreview';
+            previewModal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>결재 신청 미리보기</h3>
+                <button type="button" class="modal-close">닫기</button>
+            </div>
+            <div class="modal-body">
+                <!-- 콘텐츠가 여기에 삽입됩니다 -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-btn button button-cancel">닫기</button>
+            </div>
+        </div>
+    `;
+            // 모달 내용 삽입
+            const modalBody = previewModal.querySelector('.modal-body');
+            modalBody.appendChild(contentElement);
+
+            // body에 모달 추가
+            document.body.appendChild(previewModal);
+
+            // 모달 표시
+            setTimeout(() => {
+                previewModal.classList.add('show');
+            }, 10);
+
+            // 닫기 버튼 이벤트 설정'button-cancel'
+            const closeButtons = previewModal.querySelectorAll('.modal-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    previewModal.classList.add('closing');
+                    setTimeout(() => {
+                        previewModal.remove();
+                    }, 300);
+                });
+            });
+            const cancelButtons = previewModal.querySelectorAll('.button-cancel');
+            cancelButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    previewModal.classList.add('closing');
+                    setTimeout(() => {
+                        previewModal.remove();
+                    }, 300);
+                });
+            });
+
+            // 외부 클릭 시 닫기
+            previewModal.addEventListener('click', function (e) {
+                if (e.target === previewModal) {
+                    previewModal.classList.add('closing');
+                    setTimeout(() => {
+                        previewModal.remove();
+                    }, 300);
+                }
+            });
+        }
+        // 문서 로드 완료 시 초기화
+        document.addEventListener('DOMContentLoaded', function () {
+            setupModalPreview();
+        });
+
+    </script>
+</body>
+</html>

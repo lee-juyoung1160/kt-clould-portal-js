@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/table.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo"><a href="./home.html"><img src="../assets/images/logo.svg" alt="로고"></a></h1>
+            <!-- 모바일 햄버거 버튼 -->
+            <button class="menu-toggle"><img src="../assets/images/ic_menu.svg" alt="햄버거 메뉴"></button>
+
+            <nav>
+                <div class="mobile-menu-header">
+                    <!-- 닫기 -->
+                    <button class="close-btn"><img src="../assets/images/close.svg" alt=""></button>
+                </div>
+
+                <ul class="main-menu">
+                    <!-- 해당 페이지 일때 li.active -->
+                    <li class="display-pc"><a href="./home.html"><span>홈</span></a></li>
+                    <li>
+                        <a href="./notice_list.html"><span>공지 및 자료실</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./notice_list.html">공지사항</a></li>
+                            <li><a href="./guide_list.html">가이드 게시판</a></li>
+                            <li><a href="./data_list.html">자료실</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="./faq_list.html"><span>사용 문의</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./faq_list.html">자주 묻는 질문</a></li>
+                            <li><a href="./qna_list.html">Q&A</a></li>
+                        </ul>
+                    </li>
+                    <li class="display-pc">
+                        <a href="./cp_request_list.html"><span>Cloud PC 관리</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./cp_request_list.html">Cloud PC 작업 신청</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="./export_fail_down_list.html"><span>망연계 관리</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./export_fail_down_list.html">반출 신청 파일 다운로드</a></li>
+                            <li><a href="./url_redirection_list.html">URL Redirection</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- 모바일 로그아웃 버튼 -->
+                <button type="button" class="mo-btn-logout button">로그아웃</button>
+            </nav>
+            <div class="header-profile">
+                <button type="button" class="btn-profile"><img src="../assets/images/ic_profile_52.svg"
+                        alt="프로필"></button>
+                <div class="hover-content">
+                    <!-- PC 로그아웃 버튼 -->
+                    <button type="button" class="btn-logout"><span>로그아웃</span><img
+                            src="../assets/images/ic_logout_20.svg" alt="로그아웃"></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- 모바일 헤더 오버레이 -->
+    <div class="overlay"></div>
+
+    <article class="qna-list-page">
+        <section class="page-title">
+            <h2><img src="../assets/images/ic_notice.svg" alt="qna 아이콘"><strong>공지사항</strong></h2>
+        </section>
+
+        <section class="table-container">
+
+            <div class="table-header-top">
+                <!-- 탭 : 분류 -->
+                <div class="tab-container">
+                    <ul class="tabs">
+                        <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
+                    </ul>
+                </div>
+                <!-- 검색 -->
+                <div class="search-container">
+                    <!-- 검색 타입 커스텀 셀렉트 -->
+                    <div class="custom-select" id="searchTypeSelect">
+                        <div class="select-selected">전체</div>
+                        <div class="select-items select-hide">
+                            <div data-value="all">전체</div>
+                            <div data-value="title">제목</div>
+                            <div data-value="content">내용</div>
+                        </div>
+                        <input type="hidden" id="searchType" value="all">
+                    </div>
+                    <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
+                    <button id="searchButton"><img src="../assets/images/ic_search_16.svg" alt="검색"></button>
+                </div>
+                <!-- 모바일 검색 버튼 -->
+                <button class="search-button-toggle mo"><img src="../assets/images/ic_search_16.svg" alt="검색"></button>
+
+            </div>
+
+
+            <div class="table-header">
+                <div class="total-count">총 <span id="totalCount">0</span>개</div>
+
+                <!-- 정렬 타입 커스텀 셀렉트 -->
+                <div class="custom-select sort-select" id="sortOrderSelect">
+                    <div class="select-selected">최신순</div>
+                    <div class="select-items select-hide">
+                        <div data-value="newest">최신순</div>
+                        <div data-value="oldest">오래된순</div>
+                        <div data-value="views">조회순</div>
+                    </div>
+                    <input type="hidden" id="sortOrder" value="newest">
+                </div>
+
+            </div>
+
+            <div id="dataTable">
+                <!-- pc:테이블 -->
+                <table class="pc-table">
+                    <colgroup>
+                        <col style="width: 7%;">
+                        <col style="width: 10%;">
+                        <col style="width: 54%;">
+                        <col style="width: 10%;">
+                        <col style="width: 9%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th data-sort="number">번호</th>
+                            <th data-sort="category">분류유형</th>
+                            <th data-sort="title">제목</th>
+                            <th data-sort="date">작성일</th>
+                            <th data-sort="views">조회수</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
+                    </tbody>
+                </table>
+
+                <!-- mo: 카드 테이블 -->
+                <div class="mo-card-table">
+                    <div class="mo-table-body" id="moTableBody">
+                        <!-- 동적 생성 -->
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="pagination" id="pagination">
+                <button id="firstPage"><img src="../assets/images/ic_table_prev_2.svg" alt="맨앞"></button>
+                <button id="prevPage"><img src="../assets/images/ic_table_prev_1.svg" alt="이전"></button>
+                <div id="pageNumbers" class="page-numbers">
+                    <!-- 페이지 번호가 여기에 동적으로 삽입됩니다 -->
+                </div>
+                <button id="nextPage"><img src="../assets/images/ic_table_next1.svg" alt="다음"></button>
+                <button id="lastPage"><img src="../assets/images/ic_table_next2.svg" alt="맨끝"></button>
+            </div>
+            </div>
+
+        </section>
+    </article>
+
+
+    <footer>
+        <p class="footer-copy">ⓒkt corp. All rights reserved</p>
+        <ul class="footer-menu">
+            <li><a href="#">개인 정보 보호</a></li>
+            <li><a href="#">서비스 약관</a></li>
+        </ul>
+
+    </footer>
+
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/table.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // 공지사항 데이터 예시
+    const noticeData = [
+        { id: 1, category: '안내', title: '[공지] 시스템 점검 안내', date: '2025.03.02', views: 523, isFixed: true, isNew: true },
+        { id: 2, category: '공지', title: '[공지] Cloud PC 업그레이드 안내', date: '2025.03.01', views: 456, isFixed: true, isNew: false  },
+        { id: 3, category: '안내', title: 'Cloud PC 서비스 이용 안내', date: '2025.02.28', views: 387, isFixed: false, isNew: false },
+        { id: 4, category: '공지', title: '계정 사용자 권한 변경 안내', date: '2025.02.27', views: 302 },
+        { id: 5, category: '안내', title: '[공지] 시스템 점검 안내', date: '2025.03.02', views: 523, isFixed: false, isNew: true },
+        { id: 6, category: '공지', title: '[공지] Cloud PC 업그레이드 안내', date: '2025.03.01', views: 456, isFixed: true, isNew: false },
+        { id: 7, category: '안내', title: 'Cloud PC 서비스 이용 안내', date: '2025.02.28', views: 387, isFixed: false, isNew: false  },
+        { id: 8, category: '공지', title: '계정 사용자 권한 변경 안내', date: '2025.02.27', views: 302, isFixed: false, isNew: false  },
+        { id: 9, category: '안내', title: '[공지] 시스템 점검 안내', date: '2025.03.02', views: 523, isFixed: false, isNew: true },
+        { id: 10, category: '공지', title: '[공지] Cloud PC 업그레이드 안내', date: '2025.03.01', views: 456, isFixed: true, isNew: false },
+        { id: 11, category: '안내', title: 'Cloud PC 서비스 이용 안내', date: '2025.02.28', views: 387, isFixed: true, isNew: false },
+        { id: 12, category: '공지', title: '계정 사용자 권한 변경 안내', date: '2025.02.27', views: 302, isFixed: false, isNew: false  },
+        { id: 13, category: '안내', title: '[공지] 시스템 점검 안내', date: '2025.03.02', views: 523, isFixed: true, isNew: false },
+        { id: 14, category: '공지', title: '[공지] Cloud PC 업그레이드 안내', date: '2025.03.01', views: 456, isFixed: false },
+        { id: 15, category: '안내', title: 'Cloud PC 서비스 이용 안내', date: '2025.02.28', views: 387, isNew: false },
+        { id: 16, category: '공지', title: '계정 사용자 권한 변경 안내', date: '2025.02.27', views: 302,isFixed: false, isNew: true  },
+    ];
+
+    /**
+     * 공지사항 PC 테이블 렌더링 함수
+     * @param {Array} data - 렌더링할 데이터 배열
+     * @param {HTMLElement} tableBody - 테이블 바디 요소
+     */
+    function renderNoticeData(data, tableBody) {
+        tableBody.innerHTML = '';
+
+        // 검색 결과가 없는 경우
+        if (data.length === 0) {
+            const emptyRow = document.createElement('tr');
+            const emptyCell = document.createElement('td');
+            
+            emptyCell.colSpan = 5; // 모든 컬럼을 병합
+            emptyCell.className = 'empty-message';
+            emptyCell.innerHTML = `
+                <div class="search-no-result">
+                    <p>검색 결과가 존재하지 않습니다.<br>다른 검색어로 검색해보세요.</p>
+                </div>
+            `;
+            
+            emptyRow.appendChild(emptyCell);
+            tableBody.appendChild(emptyRow);
+            return;
+        }
+
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            
+            // 공지 고정글인 경우 클래스 추가
+            if (item.isFixed) {
+                row.classList.add('fixed-row');
+            }
+
+            // 번호
+            const numberCell = document.createElement('td');
+            numberCell.textContent = item.id;
+            row.appendChild(numberCell);
+
+            // 분류
+            const categoryCell = document.createElement('td');
+            categoryCell.textContent = item.category;
+            row.appendChild(categoryCell);
+
+            // 제목
+            const titleCell = document.createElement('td');
+            titleCell.classList.add('td-title');
+            titleCell.style.textAlign = 'left';
+            titleCell.style.cursor = 'pointer';
+            
+            // 고정 글 아이콘
+            if (item.isFixed) {
+                const fixedIcon = document.createElement('span');
+                fixedIcon.innerHTML = '<img src="../assets/images/Icon_fixed.svg" alt="고정">'; 
+                fixedIcon.style.marginRight = '7px';
+                titleCell.appendChild(fixedIcon);
+            }
+
+            // 제목 텍스트
+            const titleText = document.createElement('span');
+            titleText.textContent = item.title;
+            titleCell.appendChild(titleText);
+            
+            // 새 글 표시
+            if (item.isNew) {
+                const newBadge = document.createElement('span');
+                newBadge.innerHTML = '<img src="../assets/images/ic_new.svg" alt="새 글">'; 
+                newBadge.style.marginLeft = '7px';
+                titleCell.appendChild(newBadge);
+            }
+
+            // 제목 클릭 이벤트 추가
+            titleCell.addEventListener('click', function () {
+                console.log(`게시글 ID ${item.id} 상세 페이지로 이동`);
+                // window.location.href = `notice-detail.html?id=${item.id}`;
+            });
+
+            row.appendChild(titleCell);
+
+            // 등록일
+            const dateCell = document.createElement('td');
+            dateCell.textContent = item.date;
+            row.appendChild(dateCell);
+
+            // 조회수
+            const viewsCell = document.createElement('td');
+            viewsCell.textContent = item.views;
+            row.appendChild(viewsCell);
+
+            tableBody.appendChild(row);
+        });
+    }
+    
+    /**
+     * 공지사항 모바일 카드 렌더링 함수
+     * @param {Array} data - 렌더링할 데이터 배열
+     * @param {HTMLElement} cardContainer - 카드 컨테이너 요소
+     */
+    function renderNoticeMobileCards(data, cardContainer) {
+        cardContainer.innerHTML = '';
+        
+        // 검색 결과가 없는 경우
+        if (data.length === 0) {
+            cardContainer.innerHTML = `
+                <div class="mo-no-result">
+                    <div class="search-no-result">
+                        <p>검색 결과가 존재하지 않습니다.<br>다른 검색어로 검색해보세요.</p>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+        
+        // 각 데이터 아이템에 대해 카드 생성
+        data.forEach(item => {
+            const card = document.createElement('div');
+            card.className = `card-item ${item.isFixed ? 'fixed-card' : ''}`;
+            
+            // 카드 헤더 (분류)
+            const cardHeader = document.createElement('div');
+            cardHeader.className = 'card-header';
+            
+            // 분류
+            const category = document.createElement('div');
+            category.className = 'card-category';
+            category.textContent = item.category;
+            
+            // 헤더에 분류 추가
+            cardHeader.appendChild(category);
+            
+            // 카드 본문 (제목)
+            const cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+            
+            // 제목
+            const title = document.createElement('div');
+            title.className = 'card-title';
+            
+            // 아이콘 및 제목 구성
+            let titleContent = '';
+            
+            // 고정 글 아이콘
+            if (item.isFixed) {
+                titleContent += '<img src="../assets/images/Icon_fixed.svg" class="fixed-icon" alt="고정"> ';
+            }
+            
+            // 제목 텍스트 추가
+            titleContent += item.title;
+            
+            // 새 글 뱃지
+            if (item.isNew) {
+                titleContent += ' <img src="../assets/images/ic_new.svg" class="new-badge" alt="새 글">';
+            }
+            
+            title.innerHTML = titleContent;
+            
+            // 본문에 제목 추가
+            cardBody.appendChild(title);
+            
+            // 카드 푸터 (날짜, 조회수)
+            const cardFooter = document.createElement('div');
+            cardFooter.className = 'card-footer';
+
+            // 정보 영역 (날짜, 조회수)
+            const infoArea = document.createElement('div');
+            infoArea.className = 'card-info';
+            
+            // 날짜
+            const date = document.createElement('div');
+            date.className = 'card-date';
+            date.textContent = item.date;
+            
+            // 조회수
+            const views = document.createElement('div');
+            views.className = 'card-views';
+            views.innerHTML = `<img src="../assets/images/ic_view.svg" alt="조회수"> ${item.views}`;
+            
+            // 정보 영역에 날짜와 조회수 추가
+            infoArea.appendChild(date);
+            infoArea.appendChild(views);
+
+            // 푸터에 정보 영역 추가
+            cardFooter.appendChild(infoArea);
+            
+            // 클릭 이벤트 설정
+            cardBody.addEventListener('click', function() {
+                console.log(`게시글 ID ${item.id} 상세 페이지로 이동`);
+                // window.location.href = `/notice-detail.html?id=${item.id}`;
+            });
+            
+            // 카드에 헤더와 본문, 푸터 추가
+            card.appendChild(cardHeader);
+            card.appendChild(cardBody);
+            card.appendChild(cardFooter);
+            
+            // 컨테이너에 카드 추가
+            cardContainer.appendChild(card);
+        });
+    }
+
+    // 공지사항 페이지 전용 메시지 설정
+    const noticeMessages = {
+        emptyData: {
+            pc: `
+                <div class="search-no-result">
+                    <p>등록된 공지사항이 없습니다.</p>
+                </div>
+            `,
+            mobile: `
+                <div class="search-no-result">
+                    <p>등록된 공지사항이 없습니다.</p>
+                </div>
+            `
+        },
+        emptySearch: {
+            pc: `
+                <div class="search-no-result">
+                    <p>검색 결과가 존재하지 않습니다.<br>다른 검색어로 검색해보세요.</p>
+                </div>
+            `,
+            mobile: `
+                <div class="search-no-result">
+                    <p>검색 결과가 존재하지 않습니다.<br>다른 검색어로 검색해보세요.</p>
+                </div>
+            `
+        }
+    };
+
+    // 1. 동적으로 카테고리 탭 생성
+    createDynamicTabs(noticeData, 'category', document.querySelector('.tabs'));
+
+    // 2. 테이블 초기화
+    const noticeTable = initializeTable({
+        // 기본 데이터 설정
+        data: noticeData,
+        
+        // 렌더링 콜백 함수
+        renderCallback: renderNoticeData,           // PC 테이블용 렌더링 함수
+        renderMobileCallback: renderNoticeMobileCards, // 모바일 카드 렌더링 함수
+        
+        // DOM 요소 ID
+        tableBodyId: 'tableBody',                   // PC 테이블 바디 ID
+        moTableBodyId: 'moTableBody',               // 모바일 테이블 바디 ID
+        totalCountId: 'totalCount',                 // 총 항목 수 표시 요소 ID
+        pageNumbersId: 'pageNumbers',               // 페이지 번호 컨테이너 ID
+        
+        // 페이지네이션 설정
+        itemsPerPage: 10,                           // 페이지당 표시할 항목 수
+        pageRange: 5,                               // 페이지 네비게이션에 표시할 페이지 번호 수
+        
+        // 정렬 설정
+        sortConfig: {
+            defaultColumn: 'number',                  // 기본 정렬 컬럼
+            defaultDirection: 'asc'                // 기본 정렬 방향 (최신순)
+        },
+        
+        // 고정 공지 우선 표시 설정
+        fixedItemsFirst: true,                      // 고정 항목을 항상 먼저 표시
+        
+        // 필터링 설정
+        filterProperty: 'category',                 // 필터링 속성 (카테고리)
+        
+        // 메시지 설정
+        messages: noticeMessages                    // 페이지별 커스텀 메시지
+    });
+
+    // 3. 테이블 초기화 실행
+    noticeTable.init();
+});
+  </script>
+
+</body>
+
+
+</html>

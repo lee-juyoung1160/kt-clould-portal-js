@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/info_message.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo"><a href="#"><img src="../assets/images/logo.svg" alt="로고"></a></h1>
+            <!-- 모바일 햄버거 버튼 -->
+            <button class="menu-toggle"><img src="../assets/images/ic_menu.svg" alt="햄버거 메뉴"></button>
+
+            <nav>
+                <div class="mobile-menu-header">
+                    <!-- 닫기 -->
+                    <button class="close-btn"><img src="../assets/images/close.svg" alt=""></button>
+                </div>
+
+                <ul class="main-menu">
+                    <!-- 해당 페이지 일때 li.active -->
+                    <li class="display-pc"><a href="#"><span>홈</span></a></li>
+                    <li>
+                        <a href="#"><span>공지 및 자료실</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">공지사항</a></li>
+                            <li><a href="#">가이드 게시판</a></li>
+                            <li><a href="#">자료실</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><span>사용 문의</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">자주 묻는 질문</a></li>
+                            <li><a href="#">Q&A</a></li>
+                        </ul>
+                    </li>
+                    <li class="display-pc">
+                        <a href="#"><span>Cloud PC 관리</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Cloud PC 작업 신청</a></li>
+                        </ul>
+                    </li>
+                    <!-- 주석처리 예정 / next step -->
+                    <!-- <li>
+                        <a href="#"><span>망연계 관리</span><img class="toggle-open-icon" src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">반출 신청 파일 다운로드</a></li>
+                            <li><a href="#">URL Redirection</a></li>
+                        </ul>
+                    </li> -->
+                </ul>
+
+                <!-- 모바일 로그아웃 버튼 -->
+                <button type="button" class="mo-btn-logout button">로그아웃</button>
+            </nav>
+            <div class="header-profile">
+                <button type="button" class="btn-profile"><img src="../assets/images/ic_profile_52.svg"
+                        alt="프로필"></button>
+                <div class="hover-content">
+                    <!-- PC 로그아웃 버튼 -->
+                    <button type="button" class="btn-logout"><span>로그아웃</span><img
+                            src="../assets/images/ic_logout_20.svg" alt="로그아웃"></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- 모바일 헤더 오버레이 -->
+    <div class="overlay"></div>
+
+    <article class="info-message-page">
+       <section class="container">
+          <img class="icon" src="../assets//images/ic_error.svg" alt="아이콘">
+          <h3>페이지를 찾을 수 없습니다.</h3>
+          <span class="desc">페이지가 존재하지 않거나,<br class="mo"> 사용할 수 없는 페이지 입니다.<br>입력하신 주소가 정확한지 다시 한번 확인해주세요.</span>
+          <div class="btn-wrap">
+              <a href="./index" class="button button-cancel">메인으로 이동</a>
+          </div>
+       </section>
+    </article>
+    <script src="../assets/js/header.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
+</head>
+
+<body>
+    <!-- 로그인 페이지 헤더 -->
+    <header class="login-header">
+        <h1><a href="/"><img src="../assets/images/logo.svg" alt="로고"></a></h1>
+    </header>
+
+    <!-- 로그인 페이지 -->
+    <article class="login-page otp">
+        <section class="round-box login-box pos-relative">
+            <h2>
+                OTP 확인
+                <span>
+                    계정의 안전한 보호를 위해 추가 인증 절차를 진행합니다.<br>
+                    저장된 번호로 OTP 인증번호가 발송되었습니다.
+                </span>
+            </h2>
+
+            <div class="input-wrap">
+                <!-- 이메일 입력 -->
+                <div class="input-item">
+                    <span class="input-title">이메일</span>
+                    <div class="input">
+                        <input type="email" class="custom-input" value="kt@kt.com" disabled>
+                        <button class="clear-btn"><img src="../assets/images/ic_close_fill_20.svg" alt=""></button>
+                    </div>
+                </div>
+
+                <!--@@@  dev: 에러메세지는  .input-wrap에 .error 붙혀주시면 됩니다. @@@-->
+                <!-- 인증번호 입력 -->
+                <div class="input-item input-item-btn">
+                    <span class="input-title">OPT 인증</span>
+                    <div class="input">
+                        <input type="tel" id="codeInput" class="custom-input" maxlength="6" Placeholder="인증번호 6자리 숫자 입력"
+                            tabindex="1"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                        <button type="button" id="resendBtn" class="button" tabindex="2">재요청</button>
+                    </div>
+                    <span class="input-error-message"><i><img src="../assets/images/icn_error.svg" alt=""></i>인증번호를
+                        입력해주세요.</span>
+                </div>
+                <p class="otp-timer">남은 인증시간은 <strong id="timer">3:00</strong> 입니다.</p>
+            </div>
+            <div class="bottom-section">
+                <!-- MO 하단 영역 -->
+                <div class="login-footer mo">
+                    Cloud PC 이용 중 불편사항은 로그인 후 Q&A에 남겨주세요.<br>신속하게 조치 하겠습니다.
+                </div>
+                <div class="button-wrap bottom-button-wrap">
+                    <a href="../index.html" class="button button-cancel" tabindex="3">이전</a>
+                    <!-- submit 버튼 -->
+                    <button type="submit" class="button button-default" id="verifyBtn" disabled tabindex="4">인증</button>
+                </div>
+            </div>
+        </section>
+        <!-- PC 하단 영역 -->
+        <section class="login-footer pc">
+            Cloud PC 이용 중 불편사항은 로그인 후 Q&A에 남겨주세요.<br>신속하게 조치 하겠습니다.
+        </section>
+    </article>
+    <script>
+
+        // DOM 요소 선택
+        const codeInput = document.getElementById('codeInput');
+        const timerDisplay = document.getElementById('timer');
+        const resendBtn = document.getElementById('resendBtn');
+        const verifyBtn = document.getElementById('verifyBtn');
+
+        let timer;
+        let timeLeft = 180; // 3분 = 180초
+
+        // 타이머 포맷팅 함수
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+
+        // 타이머 시작 함수
+        function startTimer() {
+            // 기존 타이머 정지
+            clearInterval(timer);
+
+            // 타이머 초기화
+            timeLeft = 180;
+            timerDisplay.textContent = '3:00';
+            verifyBtn.disabled = true;
+            verifyBtn.classList.remove('active');
+            codeInput.value = '';
+
+            // 새 타이머 시작
+            timer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = formatTime(timeLeft);
+
+                // 타이머 종료 시
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerDisplay.textContent = '0:00';
+                    verifyBtn.disabled = true;
+                    verifyBtn.classList.remove('active');
+                }
+            }, 1000);
+        }
+
+        // 입력 이벤트 리스너
+        codeInput.addEventListener('input', function () {
+            // 인증번호가 정확하고 타이머가 진행 중일 때만 인증 버튼 활성화
+            if (this.value.length === 6 && timeLeft > 0) {
+                verifyBtn.disabled = false;
+                verifyBtn.classList.add('active');
+            } else {
+                verifyBtn.disabled = true;
+                verifyBtn.classList.remove('active');
+            }
+        });
+
+        // 재요청 버튼 이벤트
+        resendBtn.addEventListener('click', startTimer);
+
+        // 인증하기 버튼 이벤트
+        verifyBtn.addEventListener('click', function () {
+            if (!this.disabled) {
+                console.log('인증완료');
+                clearInterval(timer);
+            }
+            openAlert('alertAuthSuccess');
+            //openAlert('alertAuthFail');
+        });
+        // 페이지 로드 시 타이머 시작
+        startTimer();
+    </script>
+
+</body>
+
+</html>

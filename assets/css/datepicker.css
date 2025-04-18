@@ -1,0 +1,165 @@
+.date-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 입력 필드 스타일 */
+.date-input {
+    position: relative;
+    width: 200px;
+}
+
+input.simple-datepicker {
+    padding: 6px 38px 6px 12px;
+    background-color: #fff;
+    border: 1px solid rgba(112, 115, 124, 0.16);
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+input.simple-datepicker::placeholder {
+    color: #989BA2;
+}
+
+input.simple-datepicker:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* 달력 아이콘 */
+.calendar-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.simple-calendar {
+    position: absolute;
+    z-index: 1000;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 300px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .calendar-nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+  
+  .calendar-nav-btn:hover {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  .month-year {
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  .weekday {
+    padding: 8px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+  }
+  
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  
+  .day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    font-size: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .day:hover:not(.disabled):not(.other-month) {
+    background-color: #f0f7ff;
+  }
+  
+  .day.selected {
+    background-color: #4285f4;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(66, 133, 244, 0.3);
+  }
+  
+  .day.today {
+    border: 1px solid #4285f4;
+    color: #4285f4;
+    font-weight: 600;
+  }
+  
+  .day.other-month {
+    color: #ccc;
+  }
+  
+  .day.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  
+  /* 첫 번째 요일(일요일)은 빨간색으로 표시 */
+  .weekday:first-child,
+  .days-grid .day:nth-child(7n+1) {
+    color: #ff5252;
+  }
+  
+  /* 마지막 요일(토요일)은 파란색으로 표시 */
+  .weekday:last-child,
+  .days-grid .day:nth-child(7n) {
+    color: #2196f3;
+  }
+  
+  /* 선택된 날짜는 다른 색상보다 우선 적용 */
+  .day.selected {
+    color: white !important;
+  }
+  
+  /* 비활성화된 날짜는 색상을 유지하되 투명도만 적용 */
+  .day.disabled.weekday:first-child,
+  .day.disabled.days-grid .day:nth-child(7n+1),
+  .day.disabled.weekday:last-child,
+  .day.disabled.days-grid .day:nth-child(7n) {
+    opacity: 0.3;
+  }

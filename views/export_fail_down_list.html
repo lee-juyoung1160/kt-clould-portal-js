@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/table.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo"><a href="./home.html"><img src="../assets/images/logo.svg" alt="로고"></a></h1>
+            <!-- 모바일 햄버거 버튼 -->
+            <button class="menu-toggle"><img src="../assets/images/ic_menu.svg" alt="햄버거 메뉴"></button>
+
+            <nav>
+                <div class="mobile-menu-header">
+                    <!-- 닫기 -->
+                    <button class="close-btn"><img src="../assets/images/close.svg" alt=""></button>
+                </div>
+
+                <ul class="main-menu">
+                    <!-- 해당 페이지 일때 li.active -->
+                    <li class="display-pc"><a href="./home.html"><span>홈</span></a></li>
+                    <li>
+                        <a href="./notice_list.html"><span>공지 및 자료실</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./notice_list.html">공지사항</a></li>
+                            <li><a href="./guide_list.html">가이드 게시판</a></li>
+                            <li><a href="./data_list.html">자료실</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="./faq_list.html"><span>사용 문의</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./faq_list.html">자주 묻는 질문</a></li>
+                            <li><a href="./qna_list.html">Q&A</a></li>
+                        </ul>
+                    </li>
+                    <li class="display-pc">
+                        <a href="./cp_request_list.html"><span>Cloud PC 관리</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./cp_request_list.html">Cloud PC 작업 신청</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="./export_fail_down_list.html"><span>망연계 관리</span><img class="toggle-open-icon"
+                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                        <ul class="sub-menu">
+                            <li><a href="./export_fail_down_list.html">반출 신청 파일 다운로드</a></li>
+                            <li><a href="./url_redirection_list.html">URL Redirection</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- 모바일 로그아웃 버튼 -->
+                <button type="button" class="mo-btn-logout button">로그아웃</button>
+            </nav>
+            <div class="header-profile">
+                <button type="button" class="btn-profile"><img src="../assets/images/ic_profile_52.svg"
+                        alt="프로필"></button>
+                <div class="hover-content">
+                    <!-- PC 로그아웃 버튼 -->
+                    <button type="button" class="btn-logout"><span>로그아웃</span><img
+                            src="../assets/images/ic_logout_20.svg" alt="로그아웃"></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- 모바일 헤더 오버레이 -->
+    <div class="overlay"></div>
+
+    <style>
+        .card-body {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+    <article>
+        <section class="page-title">
+            <h2><img src="../assets/images/ic_fail_down_title.svg" alt="아이콘"><strong>반출 신청 파일 다운로드</strong></h2>
+            <button type="button" class="btn_list_re">
+                <svg width="32" height="52" viewBox="0 0 32 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="10" width="32" height="32" rx="8" fill="#F6F7F9" />
+                    <mask id="mask0_32479_7865" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="6" y="16"
+                        width="20" height="20">
+                        <rect x="6" y="16" width="20" height="20" fill="#D9D9D9" />
+                    </mask>
+                    <g mask="url(#mask0_32479_7865)">
+                        <path
+                            d="M16.0007 32.6663C14.1395 32.6663 12.5632 32.0205 11.2715 30.7288C9.97982 29.4372 9.33398 27.8608 9.33398 25.9997C9.33398 24.1386 9.97982 22.5622 11.2715 21.2705C12.5632 19.9788 14.1395 19.333 16.0007 19.333C16.959 19.333 17.8757 19.5309 18.7507 19.9268C19.6257 20.3226 20.3757 20.8886 21.0007 21.6247V20.1663C21.0007 19.9302 21.0805 19.7323 21.2402 19.5726C21.4 19.4129 21.5979 19.333 21.834 19.333C22.0701 19.333 22.268 19.4129 22.4277 19.5726C22.5875 19.7323 22.6673 19.9302 22.6673 20.1663V24.333C22.6673 24.5691 22.5875 24.767 22.4277 24.9268C22.268 25.0865 22.0701 25.1663 21.834 25.1663H17.6673C17.4312 25.1663 17.2333 25.0865 17.0736 24.9268C16.9138 24.767 16.834 24.5691 16.834 24.333C16.834 24.0969 16.9138 23.899 17.0736 23.7393C17.2333 23.5795 17.4312 23.4997 17.6673 23.4997H20.334C19.8895 22.7219 19.2819 22.1108 18.5111 21.6663C17.7402 21.2219 16.9034 20.9997 16.0007 20.9997C14.6118 20.9997 13.4312 21.4858 12.459 22.458C11.4868 23.4302 11.0007 24.6108 11.0007 25.9997C11.0007 27.3886 11.4868 28.5691 12.459 29.5413C13.4312 30.5136 14.6118 30.9997 16.0007 30.9997C16.9451 30.9997 17.8097 30.7601 18.5944 30.2809C19.3791 29.8018 19.9868 29.1594 20.4173 28.3538C20.5284 28.1594 20.6847 28.024 20.8861 27.9476C21.0875 27.8712 21.2923 27.8677 21.5007 27.9372C21.7229 28.0066 21.8826 28.1525 21.9798 28.3747C22.077 28.5969 22.0701 28.8052 21.959 28.9997C21.3895 30.1108 20.577 30.9997 19.5215 31.6663C18.4659 32.333 17.2923 32.6663 16.0007 32.6663Z"
+                            fill="#171719" />
+                    </g>
+                </svg>
+            </button>
+        </section>
+        <section class="table-container">
+            <div class="table-header-top">
+                <!-- 탭 : 분류 -->
+                <div class="tab-container" style="visibility: hidden;">
+                    <ul class="tabs">
+                        <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
+                    </ul>
+                </div>
+                <!-- 검색 -->
+                <div class="search-container" style="display: flex;">
+                    <!-- 검색 타입 커스텀 셀렉트 -->
+                    <div class="custom-select" id="searchTypeSelect">
+                        <div class="select-selected">전체</div>
+                        <div class="select-items select-hide">
+                            <div data-value="all">전체</div>
+                            <div data-value="title">제목</div>
+                            <div data-value="content">내용</div>
+                        </div>
+                        <input type="hidden" id="searchType" value="all">
+                    </div>
+                    <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
+                    <button id="searchButton"><img src="../assets/images/ic_search_16.svg" alt="검색"></button>
+                </div>
+            </div>
+            <div class="table-header">
+                <div class="total-count">총 <span id="totalCount">0</span>개</div>
+                <!-- 정렬 타입 커스텀 셀렉트 -->
+                <div class="custom-select sort-select" id="sortOrderSelect">
+                    <div class="select-selected">최신순</div>
+                    <div class="select-items select-hide">
+                        <div data-value="newest">최신순</div>
+                        <div data-value="oldest">오래된순</div>
+                        <div data-value="views">조회순</div>
+                    </div>
+                    <input type="hidden" id="sortOrder" value="newest">
+                </div>
+
+            </div>
+            <div id="dataTable">
+                <!-- pc:테이블 -->
+                <table class="pc-table">
+                    <colgroup>
+                        <col style="width: 7%;">
+                        <col style="width: 51%;">
+                        <col style="width: 10%;">
+                        <col style="width: 15%;">
+                        <col style="width: 10%;">
+                        <col style="width: 7%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th data-sort="id">번호</th>
+                            <th data-sort="title">파일명</th>
+                            <th data-sort="size">파일 크기</th>
+                            <th data-sort="date">다운로드 기간</th>
+                            <th data-sort="remainingNum">잔여횟수</th>
+                            <th data-sort="down">다운로드</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
+                    </tbody>
+                </table>
+                <!-- mo: 카드 테이블 -->
+                <div class="mo-card-table">
+                    <div class="mo-table-body" id="moTableBody">
+                        <!-- 동적 생성 -->
+                    </div>
+                </div>
+            </div>
+            <div class="pagination" id="pagination">
+                <button id="firstPage"><img src="../assets/images/ic_table_prev_2.svg" alt="맨앞"></button>
+                <button id="prevPage"><img src="../assets/images/ic_table_prev_1.svg" alt="이전"></button>
+                <div id="pageNumbers" class="page-numbers">
+                    <!-- 페이지 번호가 여기에 동적으로 삽입됩니다 -->
+                </div>
+                <button id="nextPage"><img src="../assets/images/ic_table_next1.svg" alt="다음"></button>
+                <button id="lastPage"><img src="../assets/images/ic_table_next2.svg" alt="맨끝"></button>
+            </div>
+            </div>
+
+        </section>
+    </article>
+    <footer>
+        <p class="footer-copy">ⓒkt corp. All rights reserved</p>
+        <ul class="footer-menu">
+            <li><a href="#">개인 정보 보호</a></li>
+            <li><a href="#">서비스 약관</a></li>
+        </ul>
+    </footer>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/table.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 반출 신청 파일 데이터 샘플
+            const fileDownloadData = [
+                { id: 1, title: '2025년 1분기 사업계획서.docx', size: '2.3MB', date: '2025.04.01~2025.04.15', remainingNum: 3, downloadUrl: '/api/download/file1.docx' },
+                { id: 2, title: '신규 서비스 기획안.pdf', size: '4.5MB', date: '2025.03.25~2025.04.25', remainingNum: 5, downloadUrl: '/api/download/file2.pdf' },
+                { id: 3, title: '마케팅 전략 보고서.pptx', size: '8.1MB', date: '2025.03.20~2025.04.20', remainingNum: 2, downloadUrl: '' }
+            ];
+
+            /**
+             * 파일 다운로드 처리 함수
+             * @param {Object} fileItem - 다운로드할 파일 정보
+             * @returns {boolean} - 다운로드 성공 여부
+             */
+            function handleFileDownload(fileItem) {
+                if (!fileItem || !fileItem.downloadUrl) {
+                    console.log('다운로드 URL이 없습니다.');
+                    return false;
+                }
+
+                console.log(`파일 번호 ${fileItem.id} 다운로드 시작: ${fileItem.title}`);
+
+                // 실제 서비스에서는 여기서 API 호출 등을 통해 다운로드 처리
+                try {
+                    // 파일 다운로드 처리 (예시)
+                    window.location.href = fileItem.downloadUrl;
+
+                    // 잔여 횟수 감소 처리 (예시)
+                    if (fileItem.remainingNum > 0) {
+                        fileItem.remainingNum--;
+                        console.log(`${fileItem.title} 잔여 다운로드 횟수: ${fileItem.remainingNum}`);
+                    }
+
+                    return true;
+                } catch (error) {
+                    console.error('다운로드 처리 중 오류 발생:', error);
+                    return false;
+                }
+            }
+
+            /**
+             * 반출 신청 파일 PC 테이블 렌더링 함수
+             * @param {Array} data - 렌더링할 데이터 배열
+             * @param {HTMLElement} tableBody - 테이블 바디 요소
+             */
+            function renderFileDownloadData(data, tableBody) {
+                tableBody.innerHTML = '';
+
+                // 검색 결과가 없는 경우
+                if (data.length === 0) {
+                    const emptyRow = document.createElement('tr');
+                    const emptyCell = document.createElement('td');
+
+                    emptyCell.colSpan = 6; // 모든 컬럼을 병합
+                    emptyCell.className = 'empty-message';
+                    emptyCell.innerHTML = `
+                <div class="search-no-result">
+                    <p>등록된 파일이 없습니다.</p>
+                </div>
+            `;
+
+                    emptyRow.appendChild(emptyCell);
+                    tableBody.appendChild(emptyRow);
+                    return;
+                }
+
+                // 데이터가 있는 경우
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+
+                    // 번호
+                    const numberCell = document.createElement('td');
+                    numberCell.textContent = item.id;
+                    row.appendChild(numberCell);
+
+                    // 파일명
+                    const fileNameCell = document.createElement('td');
+                    fileNameCell.textContent = item.title;
+                    fileNameCell.style.textAlign = 'left';
+                    row.appendChild(fileNameCell);
+
+                    // 파일 크기
+                    const fileSizeCell = document.createElement('td');
+                    fileSizeCell.textContent = item.size;
+                    row.appendChild(fileSizeCell);
+
+                    // 다운로드 기간
+                    const downloadPeriodCell = document.createElement('td');
+                    downloadPeriodCell.textContent = item.date;
+                    row.appendChild(downloadPeriodCell);
+
+                    // 잔여횟수
+                    const remainingNumCell = document.createElement('td');
+                    remainingNumCell.textContent = item.remainingNum;
+                    row.appendChild(remainingNumCell);
+
+                    // 다운로드 버튼
+                    const downloadCell = document.createElement('td');
+                    const downloadBtn = document.createElement('button');
+                    downloadCell.className = 'text-center';
+                    downloadBtn.className = 'download-btn';
+                    downloadBtn.innerHTML = '<img src="../assets/images/ic_download.svg" alt="다운로드">';
+
+                    // 다운로드 불가능한 경우 버튼 비활성화
+                    if (!item.downloadUrl || item.remainingNum <= 0) {
+                        downloadBtn.style.opacity = '0.35';
+                        downloadBtn.style.background = 'none';
+                        downloadBtn.disabled = true;
+                    }
+
+                    // 다운로드 버튼 클릭 이벤트
+                    downloadBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // 다운로드 처리
+                        const success = handleFileDownload(item);
+
+                        if (success) {
+                            // 잔여횟수 업데이트
+                            remainingNumCell.textContent = item.remainingNum;
+
+                            // 잔여횟수가 0이면 버튼 비활성화
+                            if (item.remainingNum <= 0) {
+                                downloadBtn.disabled = true;
+                                downloadBtn.style.opacity = '0.35';
+                                downloadBtn.style.background = 'none';
+                            }
+                        }
+                    });
+
+                    downloadCell.appendChild(downloadBtn);
+                    row.appendChild(downloadCell);
+
+                    tableBody.appendChild(row);
+                });
+            }
+
+            /**
+             * 반출 신청 파일 모바일 카드 렌더링 함수
+             * @param {Array} data - 렌더링할 데이터 배열
+             * @param {HTMLElement} cardContainer - 카드 컨테이너 요소
+             */
+            function renderFileDownloadMobileCards(data, cardContainer) {
+                cardContainer.innerHTML = '';
+
+                // 검색 결과가 없는 경우
+                if (data.length === 0) {
+                    cardContainer.innerHTML = `
+                <div class="mo-no-result">
+                    <div class="search-no-result">
+                        <p>등록된 파일이 없습니다.</p>
+                    </div>
+                </div>
+            `;
+                    return;
+                }
+
+                // 각 데이터 아이템에 대해 카드 생성
+                data.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'card-item';
+
+                    // 카드 본문 (제목과 다운로드 버튼)
+                    const cardBody = document.createElement('div');
+                    cardBody.className = 'card-body';
+
+                    // 제목
+                    const title = document.createElement('div');
+                    title.className = 'card-title';
+                    title.textContent = item.title;
+
+                    // 다운로드 버튼 생성
+                    const downloadBtn = document.createElement('button');
+                    downloadBtn.className = 'download-btn';
+                    downloadBtn.innerHTML = '<img src="../assets/images/ic_download.svg" alt="다운로드">';
+
+                    // 다운로드 불가능한 경우 버튼 비활성화
+                    if (!item.downloadUrl || item.remainingNum <= 0) {
+                        downloadBtn.style.opacity = '0.35';
+                        downloadBtn.style.background = 'none';
+                        downloadBtn.disabled = true;
+                    }
+
+                    // 다운로드 버튼 클릭 이벤트
+                    downloadBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // 다운로드 처리
+                        const success = handleFileDownload(item);
+
+                        if (success) {
+                            // 모바일에서는 카드를 직접 업데이트하지 않고 전체 렌더링을 다시 수행
+                            // 필요한 경우 여기서 잔여횟수 요소를 찾아 업데이트할 수 있음
+                            const remainingInfo = card.querySelector('.remaining .info-value');
+                            if (remainingInfo) {
+                                remainingInfo.textContent = item.remainingNum;
+                            }
+
+                            // 잔여횟수가 0이면 버튼 비활성화
+                            if (item.remainingNum <= 0) {
+                                downloadBtn.disabled = true;
+                                downloadBtn.style.opacity = '0.35';
+                                downloadBtn.style.background = 'none';
+                            }
+                        }
+                    });
+
+                    // 본문에 제목과 다운로드 버튼 추가
+                    cardBody.appendChild(title);
+                    cardBody.appendChild(downloadBtn);
+
+                    // 카드 푸터 (정보 영역)
+                    const cardFooter = document.createElement('div');
+                    cardFooter.className = 'card-footer';
+
+                    // 정보 영역
+                    const infoArea = document.createElement('div');
+                    infoArea.className = 'card-info';
+
+                    // 다운로드 기간
+                    const periodInfo = document.createElement('div');
+                    periodInfo.className = 'info-item period';
+                    periodInfo.innerHTML = `<span class="info-label">다운로드 기간:</span> <span class="info-value">${item.date}</span>`;
+
+                    // 잔여횟수
+                    const remainingInfo = document.createElement('div');
+                    remainingInfo.className = 'info-item remaining';
+                    remainingInfo.innerHTML = `<span class="info-label">잔여횟수:</span> <span class="info-value">${item.remainingNum}</span>`;
+
+                    // 정보 영역에 다운로드 기간, 잔여횟수 추가
+                    infoArea.appendChild(periodInfo);
+                    infoArea.appendChild(remainingInfo);
+
+                    // 푸터에 정보 영역 추가
+                    cardFooter.appendChild(infoArea);
+
+                    // 카드에 본문과 푸터 추가
+                    card.appendChild(cardBody);
+                    card.appendChild(cardFooter);
+
+                    // 컨테이너에 카드 추가
+                    cardContainer.appendChild(card);
+                });
+            }
+
+            /**
+             * 새로고침 기능 초기화
+             * 새로고침 버튼 클릭 시 테이블 데이터 갱신
+             * @param {Object} tableInstance - 테이블 인스턴스
+             */
+            function initializeRefresh(tableInstance) {
+                const refreshButton = document.querySelector('.btn_list_re');
+                if (refreshButton) {
+                    refreshButton.addEventListener('click', function () {
+                        console.log('반출 신청 파일 목록 새로고침');
+
+                        // 실제 구현에서는 여기서 API 호출 등을 통해 새로운 데이터를 가져와야 함
+                        // 예시에서는 기존 데이터로 새로고침 시뮬레이션
+
+                        // 새로고침 애니메이션 효과 (옵션)
+                        refreshButton.classList.add('rotating');
+                        setTimeout(() => {
+                            refreshButton.classList.remove('rotating');
+                            tableInstance.init(); // 테이블 재초기화
+                        }, 500);
+                    });
+                }
+            }
+
+            // 파일 다운로드 페이지 전용 메시지 설정
+            const fileDownloadMessages = {
+                emptyData: {
+                    pc: `
+                <div class="search-no-result">
+                    <p>등록된 파일이 없습니다.</p>
+                </div>
+            `,
+                    mobile: `
+                <div class="search-no-result">
+                    <p>등록된 파일이 없습니다.</p>
+                </div>
+            `
+                },
+                emptySearch: {
+                    pc: `
+                <div class="search-no-result">
+                    <p>검색 결과가 존재하지 않습니다.<br>다른 검색어로 검색해보세요.</p>
+                </div>
+            `,
+                    mobile: `
+                <div class="search-no-result">
+                    <p>검색 결과가 존재하지 않습니다.<br>다른 검색어로 검색해보세요.</p>
+                </div>
+            `
+                }
+            };
+
+            // 테이블 초기화
+            const fileDownloadTable = initializeTable({
+                // 기본 데이터 설정
+                data: fileDownloadData,
+
+                // 렌더링 콜백 함수
+                renderCallback: renderFileDownloadData,          // PC 테이블용 렌더링 함수
+                renderMobileCallback: renderFileDownloadMobileCards, // 모바일 카드 렌더링 함수
+
+                // DOM 요소 ID
+                tableBodyId: 'tableBody',                        // PC 테이블 바디 ID
+                moTableBodyId: 'moTableBody',                    // 모바일 테이블 바디 ID
+                totalCountId: 'totalCount',                      // 총 항목 수 표시 요소 ID
+                pageNumbersId: 'pageNumbers',                    // 페이지 번호 컨테이너 ID
+
+                // 페이지네이션 설정
+                itemsPerPage: 10,                                // 페이지당 표시할 항목 수
+                pageRange: 5,                                    // 페이지 네비게이션에 표시할 페이지 번호 수
+
+                // 정렬 설정
+                sortConfig: {
+                    defaultColumn: 'id',                         // 기본 정렬 컬럼
+                    defaultDirection: 'asc'                      // 기본 정렬 방향 (오름차순)
+                },
+
+                // 메시지 설정
+                messages: fileDownloadMessages                   // 페이지별 커스텀 메시지
+            });
+
+            // 테이블 초기화 실행
+            fileDownloadTable.init();
+
+            // 새로고침 기능 초기화
+            initializeRefresh(fileDownloadTable);
+
+            // 새로고침 버튼에 회전 애니메이션 스타일 추가
+            addRefreshButtonStyle();
+
+            /**
+             * 새로고침 버튼 스타일 추가
+             * 새로고침 버튼 클릭 시 회전 애니메이션 적용을 위한 스타일
+             */
+            function addRefreshButtonStyle() {
+                // 스타일 요소가 이미 존재하는지 확인
+                if (!document.getElementById('refresh-button-style')) {
+                    const styleElement = document.createElement('style');
+                    styleElement.id = 'refresh-button-style';
+                    styleElement.textContent = `
+                @keyframes rotating {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                .btn_list_re.rotating svg {
+                    animation: rotating 0.8s linear;
+                }
+            `;
+                    document.head.appendChild(styleElement);
+                }
+            }
+
+            /**
+             * 모바일 검색 영역 표시 설정
+             * 탭이 숨겨진 상태에서도 검색 영역이 보이도록 함
+             */
+            function setupMobileSearch() {
+                const tableHeaderTop = document.querySelector('.table-header-top');
+                if (tableHeaderTop) {
+                    tableHeaderTop.style.visibility = 'visible';
+                }
+            }
+
+            // 모바일 검색 영역 표시 설정
+            setupMobileSearch();
+        });
+    </script>
+</body>
+</html>

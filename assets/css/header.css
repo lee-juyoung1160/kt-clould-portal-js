@@ -1,0 +1,350 @@
+/* 헤더 스타일 */
+header {
+    position: relative;
+}
+
+header .container {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 36px;
+    height: 36px;
+}
+
+/* 네비게이션 기본 스타일 */
+nav {
+    display: block;
+}
+nav .mo-btn-logout {
+    display: none;
+}
+.main-menu {
+    display: flex;
+}
+.main-menu > li {
+    position: relative;
+    margin-right: 20px;
+}
+.main-menu > li:last-child {
+    margin-right: 0;
+}
+.main-menu > li > a {
+    margin-bottom: 8px;
+    padding: 6px 20px;
+    color: var(--Neutral-Text-neutral);
+    font-weight: 400;
+    line-height: 150%;
+    transition: all 0.3s;
+}
+.main-menu > li.active > a {
+    color: var(--Neutral-Text-defalt);
+    font-weight: 500;
+}
+.main-menu > li:hover > a {
+    background-color: rgba(23, 23, 25, 0.05);
+    border-radius: 100px;
+}
+.main-menu > li .toggle-open-icon {
+    display: none;
+}
+
+/* 서브메뉴 스타일 */
+.sub-menu {
+    position: absolute;
+    left: -25%;
+    /* transform: translateX(50%); */
+    margin-top: 8px;
+    background-color: #fff;
+    width: 200px;
+    padding: 20px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    border: 1px solid #EDEFF3;
+    border-radius: 12px;
+    box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.03);
+    z-index: 100;
+}
+.main-menu > li:hover .sub-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sub-menu li a {
+    display: block;
+    padding: 9px 23px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+.sub-menu li.active a, .sub-menu li:hover a {
+    color: var(--Neutral-Text-defalt);
+    font-weight: 500;
+}
+/* 프로필 - 로그아웃 */
+.header-profile  {
+    position: relative;
+}
+.header-profile .btn-profile{
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+}
+.header-profile .hover-content {
+    position: absolute;
+    width: 200px;
+    right: 0;
+    background-color: #fff;
+    /* width: 200px; */
+    padding: 20px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    border: 1px solid #EDEFF3;
+    border-radius: 12px;
+    box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.03);
+    z-index: 100;
+}
+.header-profile .hover-content button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 6px 20px;
+    color: var(--Neutral-Text-neutral);
+    font-weight: 400;
+    line-height: 150%;
+    transition: all 0.3s;
+
+}
+.header-profile:hover .hover-content  {
+    visibility: visible;
+    opacity: 1;
+    font-size: 16px;
+}
+
+/* 햄버거 메뉴 버튼 */
+.menu-toggle {
+    display: none;
+    width: 24px;
+    height: 24px;
+}
+
+/* 모바일 메뉴 오버레이 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 98;
+    display: none;
+}
+.mobile-menu-header {
+    display: none;
+}
+.display-pc {display: block !important;}
+/* 탭 스타일 */
+@media (max-width: 1079px) {
+    .display-pc {display: none !important;}
+    .container {
+        padding: 15px 32px;
+    }
+    .logo {
+        width: 28px;
+        height: 28px;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    nav {
+        position: fixed;
+        top: 0;
+        right: -360px;
+        width: 360px;
+        height: 100%;
+        background-color: #fff;
+        z-index: 99;
+        overflow-y: auto;
+        transition: right 0.3s ease;
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
+    .overlay.active {
+        display: block;
+    }
+    
+    .main-menu {
+        flex-direction: column;
+        padding-top: 60px;
+    }
+    
+    .main-menu > li {
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+    
+    .main-menu > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 18px;
+        padding: 15px 20px;
+        margin-bottom: 0;
+    }
+    .main-menu > li .toggle-open-icon {
+        display: block;
+        width: 24px;
+        height: 24px;
+        transition: all .3s;
+    }
+    .main-menu > li .toggle-open-icon.active {
+        transform: rotate(-180deg);
+    }
+    .main-menu > li:hover > a  {
+        background-color: transparent;
+        border-radius: 0;
+    }
+    .sub-menu {
+        position: static;
+        left: initial;
+        width: 320px;
+        padding: 0;
+        margin: 0 auto;
+        box-shadow: none;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        background-color: var(--Primary-Fill-neutral);
+        border: none;
+    }
+    
+    .sub-menu.active {
+        max-height: 500px;
+        padding: 20px 0;
+        opacity: 1;
+        visibility: visible;
+        transition: max-height 0.25s, opacity 0.4s;
+    }
+    
+    .mobile-menu-header {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        height: 60px;
+        padding: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+    
+    .close-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+    }
+
+    .header-profile { 
+        display: none;
+    }
+    nav .mo-btn-logout  {
+        display: block;
+        position: absolute;
+        left: 50%;
+        bottom: 32px;
+        transform: translateX(-50%);
+        width: 115px;
+        height: 40px;
+        color: var(--Neutral-Text-default);
+        background-color: #fff;
+        border: 1px solid #D7D8DA;
+    }
+}
+
+
+    /* 모바일 스타일 */
+    @media (max-width: 767px) {
+        .container {
+            padding: 18px 20px
+        }
+        
+    }
+    /* 모바일 스타일 */
+    @media (max-width: 500px) {
+
+        .container {
+            padding: 5.00vw 5.56vw
+        }
+    
+        .logo {
+            width: 7.78vw;
+            height: 7.78vw;
+        }
+    
+        /* 햄버거 메뉴 버튼 */
+        .menu-toggle {
+            width: 6.67vw;
+            height: 6.67vw;
+        }
+        
+        nav {
+            right: -100.00vw;
+            width: 100.00vw;
+        }
+        .main-menu {
+            padding-top: 16.67vw;
+        }
+        
+        .main-menu > li {
+            margin-bottom: 2.22vw;
+        }
+        .main-menu > li > img {
+            width: 6.67vw;
+            height: 6.67vw;
+        }
+        .main-menu > li > a {
+            font-size: 5.00vw;
+            padding: 4.17vw 5.56vw;
+        }
+        .sub-menu {
+            width: 88.89vw;
+        }
+        .sub-menu li a {
+            font-size: 4.44vw;
+        }
+        .sub-menu.active {
+            max-height: 138.89vw;
+            padding: 5.56vw 0;
+        }
+        
+        .mobile-menu-header {
+            height: 16.67vw;
+            padding: 5.56vw;
+        }
+        
+        .close-btn {
+            width: 6.67vw;
+            height: 6.67vw;
+        }
+    
+        nav .mo-btn-logout  {
+            left: 50%;
+            bottom: 8.89vw;
+            width: 31.94vw;
+            height: 11.11vw;
+        }
+
+    }

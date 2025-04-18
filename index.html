@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <link rel="stylesheet" href="./assets/css/login.css">
+</head>
+
+<body>
+
+
+
+    <!-- 로그인 페이지 헤더 -->
+    <header class="login-header">
+        <h1><a href="/"><img src="./assets/images/logo.svg" alt="로고"></a></h1>
+    </header>
+
+    <!-- 로그인 페이지 -->
+    <article class="login-page">
+        <section class="round-box login-box">
+            <h2>로그인</h2>
+
+            <div class="input-wrap">
+                <!-- 이메일 입력 -->
+                <div class="input-item">
+                    <span class="input-title">이메일</span>
+                    <div class="input">
+                        <input type="email" id="email" class="custom-input" Placeholder="이메일을 입력해주세요." tabindex="1">
+                        <button class="clear-btn"><img src="./assets/images/ic_close_fill_20.svg" alt=""></button>
+                    </div>
+                    <span id="emailError" class="input-error-message"><i><img src="./assets/images/icn_error.svg" alt=""></i><span>이메일을 입력해주세요.</span></span>
+                </div>
+                <!-- 비밀번호 입력 -->
+                <div class="input-item">
+                    <span class="input-title">비밀번호</span>
+                    <div class="input">
+                        <input type="password" id="password" class="custom-input" Placeholder="비밀번호를 입력해주세요." tabindex="2">
+                        <button class="toggle-password">
+                            <img class="eyes-off" src="./assets/images/ic_visibility_off_20.svg" alt="안보이기">
+                            <img class="eyes-on" src="./assets/images/ic_visibility_on_20.svg" alt="안보이기">
+                        </button>
+                    </div>
+                    <span id="passwordError" class="input-error-message"><i><img src="./assets/images/icn_error.svg" alt=""></i><span>비밀번호를 입력해주세요.</span></span>
+                </div>
+                <!-- 아이디 저장 체크 -->
+                <div class="flex-item-between">
+                    <div class="check-item">
+                        <input id="saveLoginId" type="checkbox" name="saveLoginId" tabindex="3" />
+                        <label for="saveLoginId"><span></span><strong>아이디 저장</strong></label>
+                    </div>
+
+                    <a href="./login/login_unlock.html" class="move-unlock" tabindex="4"><strong>잠금 해제</strong> <img src="./assets/images/ico_line_16.svg" alt="이동"></a>
+                </div>
+                <!-- submit 버튼 -->
+                <button type="submit" id="loginButton" class="button button-default btn-login" tabindex="5">로그인</button>
+            </div>
+            <!-- 초기 섪치 파일 다운 -->
+            <div class="open-initial-file-download">
+                <span>처음 사용하시나요?</span>
+                <button type="button" data-modal-target="modalOpenInitialDown">초기설치파일 다운 <img
+                        src="./assets/images/ic_down_16.svg" alt="다운"></button>
+            </div>
+            <div class="bottom-section">
+                <!-- MO 하단 영역 -->
+                <div class="login-footer mo">
+                    Cloud PC 이용 중 불편사항은 로그인 후 Q&A에 남겨주세요.<br>신속하게 조치 하겠습니다.
+                </div>
+                <!-- cs center -->
+                <div class="desc-box">
+                    <p>
+                        <strong>KTalk</strong><span>검색: “Cloud PC”</span>
+                    </p>
+                    <p>
+                        <strong>ISC Center</strong><span>1588-3391(ARS#8)</span>
+                    </p>
+                    <p>
+                        <strong>상담 시간</strong><span>평일 09:00 ~ 18:00</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- PC 하단 영역 -->
+        <section class="login-footer pc">
+            Cloud PC 이용 중 불편사항은 로그인 후 Q&A에 남겨주세요.<br>신속하게 조치 하겠습니다.
+        </section>
+
+
+        <!-- 모달 : 접속 프로그램 다운로드 -->
+        <div id="modalOverlay" class="modal-overlay modalOpenInitialDown">
+            <div class="modal-content login-modal">
+                <div class="modal-header">
+                    <h3>Cloud PC 접속 프로그램</h3>
+                    <button type="button" id="modalClose" class="modal-close">닫기</button>
+                </div>
+                <div id="modalBody" class="modal-body">
+                    <ul>
+                        <li>
+                            <div class="action_button windows">
+                                <img class="logo-icon" src="./assets/images/windows_logo.svg" alt="윈도우 로고">
+                                <strong>Windows 사용자용 <span class="mo">x86 / x64</span></strong>
+                                <button type="button" class="btn-control-icon"><img
+                                        src="./assets/images/chevron_icon.svg" alt="아이콘"></button>
+                            </div>
+                            <div class="show_content">
+                                <ul>
+                                    <li>접속 Agent <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                    <li>포탈 Agent <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                    <li>망연계 Agent <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                    <li>설치 가이드 <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="action_button mac">
+                                <img class="logo-icon" src="./assets/images/mac_logo.svg" alt="맥 로고">
+                                <strong>Mac 사용자용 <span class="mo">x86 / x64</span></strong>
+                                <button type="button" class="btn-control-icon"><img
+                                        src="./assets/images/chevron_icon.svg" alt="아이콘"></button>
+                            </div>
+                            <div class="show_content">
+                                <ul>
+                                    <li>접속 Agent <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                    <li>포탈 Agent <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                    <li>망연계 Agent <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                    <li>설치 가이드 <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="action_button tablet">
+                                <img class="logo-icon" src="./assets/images/tablet_icon.svg" alt="테블릿 아이콘">
+                                <strong>Tablet 사용자용 <span class="mo">x86 / x64</span></strong>
+                                <button type="button" class="btn-control-icon"><img
+                                        src="./assets/images/chevron_icon.svg" alt="아이콘"></button>
+                            </div>
+                            <div class="show_content">
+                                <ul>
+                                    <li>접속 Agent <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                    <li>포탈 Agent <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                    <li>망연계 Agent <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                    <li>설치 가이드 <a href="#" class="btn-down">다운로드 <img
+                                                src="./assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modalConfirm" class="modal-btn modal-btn-confirm">확인</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 알럿 / alert.js 에서 내용 불러옵니다. -->
+        <div id="alertOverlay" class="alert-overlay">
+            <div class="alert-content">
+                <div id="alertBody" class="alert-body">
+                    <p id="alertBodyText"></p>
+                </div>
+                <div id="alertFooter" class="alert-footer"></div>
+            </div>
+        </div>
+
+
+    </article>
+    <script src="./assets/js/input.js"></script>
+    <script src="./assets/js/modal.js"></script>
+    <script src="./assets/js/alert.js"></script>
+    <script src="./assets/js/loading_spinner.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+           // LoadingSpinner.show()
+            //알럿 : 프로그램 설치 메세지 
+            openAlert('alertInstall');
+            //알럿 : 로그인 실패
+            // openAlert('alertLoginFail');
+            //알럿 : 로그인 실패 3회
+            // openAlert('alertLoginFail3');
+            //알럿 : 로그인 실패 5회
+            // openAlert('alertLoginFail5');
+
+
+            // 빈값 체크
+            const loginForm = document.getElementById("loginForm");
+            const emailInput = document.getElementById("email");
+            const passwordInput = document.getElementById("password");
+            const loginButton = document.getElementById("loginButton");
+            const emailError = document.getElementById("emailError");
+            const passwordError = document.getElementById("passwordError");
+
+            // 로그인 버튼 클릭 이벤트 처리
+            if (loginButton) {
+                loginButton.addEventListener("click", function (e) {
+                    e.preventDefault(); // 기본 제출 동작 방지
+
+                    // // 오류 메시지 초기화
+                    if (emailError) emailError.parentElement.classList.remove('error');
+                    if (passwordError) passwordError.parentElement.classList.remove('error')
+
+                    let isValid = true;
+
+                    // 이메일 입력값 검증
+                    if (emailInput && !emailInput.value.trim()) {
+                        if (emailError) {
+                            emailError.parentElement.classList.add('error')
+                        }
+                        if (emailInput) emailInput.focus();
+                        isValid = false;
+                    }
+
+                    // 비밀번호 입력값 검증
+                    if (passwordInput && !passwordInput.value.trim()) {
+                        if (passwordError) {
+                            passwordError.parentElement.classList.add('error')
+
+                        }
+                        if (passwordInput && isValid) passwordInput.focus();
+                        isValid = false;
+                    }
+
+                    // 모든 검증을 통과하면 폼 제출
+                    if (isValid && loginForm) {
+                        console.log("로그인 시도:", emailInput ? emailInput.value : "이메일 없음");
+                        loginForm.submit();
+                    }
+                });
+            } else {
+                console.error("로그인 버튼을 찾을 수 없습니다.");
+            }
+
+        });
+
+
+        // 초기 설치 프로그램 다운로드
+        const actionButtons = document.querySelectorAll('.action_button');
+        // 화면 너비 감지
+        const windowWidth = window.innerWidth;
+        //pc 진입 os 체크
+        function detectOS() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const platform = navigator.platform.toLowerCase();
+
+            if (userAgent.indexOf('win') !== -1 || platform.indexOf('win') !== -1) {
+                return 'Windows';
+            } else if (userAgent.indexOf('mac') !== -1 || platform.indexOf('mac') !== -1) {
+                return 'MacOS';
+            } else {
+                return 'Other OS';
+            }
+        }
+        // mo 진입 os 체크
+        function detectMobileOS() {
+            const userAgent = navigator.userAgent.toLowerCase();
+
+            if (userAgent.indexOf('android') !== -1) {
+                return 'Android';
+            } else if (
+                userAgent.indexOf('iphone') !== -1 ||
+                userAgent.indexOf('ipad') !== -1 ||
+                userAgent.indexOf('ipod') !== -1 ||
+                (userAgent.indexOf('mac') !== -1 && 'ontouchend' in document) // iPadOS 감지
+            ) {
+                return 'iOS';
+            } else {
+                return 'Other';
+            }
+        }
+
+        const currentOS = detectOS();
+        // 윈도우 
+        if (currentOS === 'Windows' && windowWidth > 1079) {
+            document.querySelector('.action_button.windows').nextElementSibling.classList.add('show');
+            document.querySelector('.action_button.windows .btn-control-icon').classList.add('active');
+
+            //console.log('윈도우용 값 설정');
+            // 맥
+        } else if (currentOS === 'MacOS' && windowWidth > 1079) {
+            document.querySelector('.action_button.mac').nextElementSibling.classList.add('show');
+            document.querySelector('.action_button.mac .btn-control-icon').classList.add('active');
+            console.log('맥OS용 값 설정');
+            // 태블릿
+        } else if (windowWidth <= 1079) {
+            document.querySelector('.action_button.tablet').nextElementSibling.classList.add('show');
+            document.querySelector('.action_button.tablet .btn-control-icon').classList.add('active');
+            //console.log('태블릿 값 설정');
+
+
+            // 테블릿 일 경우, 모바일 os 설정
+            // const mobileOS = detectMobileOS();
+            // if (mobileOS === 'Android') {
+            // console.log('안드로이드용 값 설정');
+            // // 안드로이드 전용 코드
+            // } else if (mobileOS === 'iOS') {
+            // console.log('iOS용 값 설정');
+            // // iOS 전용 코드
+            // } else {
+            // console.log('기타 OS용 값 설정');
+            // // 기타 OS 전용 코드
+            // }
+
+
+            //그 외 윈도우로 처리
+        } else {
+            document.querySelector('.action_button.windows').nextElementSibling.classList.add('show');
+            document.querySelector('.action_button.windows .btn-control-icon').classList.add('active');
+            //console.log('기타 OS용 값 설정');
+        }
+
+        // Add click event listener to each action button
+        actionButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Get the control icon inside this button
+                const controlIcon = this.querySelector('.btn-control-icon');
+
+                // Get the content div that follows this button
+                const content = this.nextElementSibling;
+
+                // Check if this content is already visible
+                const isVisible = content.classList.contains('show');
+
+                // Close all open contents and remove active class from all control icons
+                document.querySelectorAll('.show_content').forEach(item => {
+                    if (item !== content) {
+                        item.classList.remove('show');
+                    }
+                });
+
+                document.querySelectorAll('.btn-control-icon').forEach(icon => {
+                    if (icon !== controlIcon) {
+                        icon.classList.remove('active');
+                    }
+                });
+
+                // Toggle this content and control icon
+                if (isVisible) {
+                    // If it's already visible, hide it and remove active class
+                    content.classList.remove('show');
+                    controlIcon.classList.remove('active');
+                } else {
+                    // If it's hidden, show it and add active class
+                    content.classList.add('show');
+                    controlIcon.classList.add('active');
+
+                }
+            });
+        });
+
+
+
+        
+    </script>
+
+</body>
+
+</html>

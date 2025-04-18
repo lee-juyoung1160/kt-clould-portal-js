@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/reset.css">
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/header.css">
+  <link rel="stylesheet" href="../assets/css/write.css">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+        <h1 class="logo"><a href="./home.html"><img src="../assets/images/logo.svg" alt="로고"></a></h1>
+        <!-- 모바일 햄버거 버튼 -->
+        <button class="menu-toggle"><img src="../assets/images/ic_menu.svg" alt="햄버거 메뉴"></button>
+
+        <nav>
+            <div class="mobile-menu-header">
+                <!-- 닫기 -->
+                <button class="close-btn"><img src="../assets/images/close.svg" alt=""></button>
+            </div>
+
+            <ul class="main-menu">
+                <!-- 해당 페이지 일때 li.active -->
+                <li class="display-pc"><a href="./home.html"><span>홈</span></a></li>
+                <li>
+                    <a href="./notice_list.html"><span>공지 및 자료실</span><img class="toggle-open-icon"
+                            src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                    <ul class="sub-menu">
+                        <li><a href="./notice_list.html">공지사항</a></li>
+                        <li><a href="./guide_list.html">가이드 게시판</a></li>
+                        <li><a href="./data_list.html">자료실</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="./faq_list.html"><span>사용 문의</span><img class="toggle-open-icon"
+                            src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                    <ul class="sub-menu">
+                        <li><a href="./faq_list.html">자주 묻는 질문</a></li>
+                        <li><a href="./qna_list.html">Q&A</a></li>
+                    </ul>
+                </li>
+                <li class="display-pc">
+                    <a href="./cp_request_list.html"><span>Cloud PC 관리</span><img class="toggle-open-icon"
+                            src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                    <ul class="sub-menu">
+                        <li><a href="./cp_request_list.html">Cloud PC 작업 신청</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="./export_fail_down_list.html"><span>망연계 관리</span><img class="toggle-open-icon"
+                            src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                    <ul class="sub-menu">
+                        <li><a href="./export_fail_down_list.html">반출 신청 파일 다운로드</a></li>
+                        <li><a href="./url_redirection_list.html">URL Redirection</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- 모바일 로그아웃 버튼 -->
+            <button type="button" class="mo-btn-logout button">로그아웃</button>
+        </nav>
+        <div class="header-profile">
+            <button type="button" class="btn-profile"><img src="../assets/images/ic_profile_52.svg"
+                    alt="프로필"></button>
+            <div class="hover-content">
+                <!-- PC 로그아웃 버튼 -->
+                <button type="button" class="btn-logout"><span>로그아웃</span><img
+                        src="../assets/images/ic_logout_20.svg" alt="로그아웃"></button>
+            </div>
+        </div>
+    </div>
+</header>
+  <!-- 모바일 헤더 오버레이 -->
+  <div class="overlay"></div>
+
+  <article class="write-page">
+
+    <section class="write-header">
+      <a class="move-list" href="./qna_list"><img src="../assets/images/ic_arrow_right_20.svg" alt="이전 아이콘"></a>
+      <strong class="title">Q&A 문의 등록</strong>
+    </section>
+    <section class="write-contents">
+      <div class="container">
+
+        <!-- 문의 유형 선택 -->
+        <div class="input-item">
+          <span class="input-title">문의 유형</span>
+          <div class="custom-select" id="questionTypeSelect">
+            <div class="select-selected">문의 유형을 선택해주세요.</div>
+            <div class="select-items select-hide">
+              <div data-value="all">전체</div>
+              <div data-value="title">제목</div>
+              <div data-value="content">내용</div>
+            </div>
+            <input type="hidden" id="questionType" value="all">
+          </div>
+          <span id="questionTypeError" class="input-error-message">
+            <i><img src="../assets/images/icn_error.svg" alt=""></i><span>문의유형을 선택해주세요</span></span>
+        </div>
+        <!-- 제목 입력 -->
+        <div class="input-item">
+          <span class="input-title">제목</span>
+          <div class="input">
+            <input type="text" id="title" class="custom-input" Placeholder="제목을 입력해주세요">
+            <button class="clear-btn"><img src="../assets/images/ic_close_fill_20.svg" alt=""></button>
+          </div>
+          <span id="titleError" class="input-error-message">
+            <i><img src="../assets/images/icn_error.svg" alt=""></i><span>제목을 입력해주세요</span></span>
+        </div>
+        <!-- 내용 입력 -->
+        <div class="input-item">
+          <span class="input-title">내용</span>
+          <div class="textarea">
+            <textarea name="content" id="content" placeholder="내용을 입력해주세요"></textarea>
+            <span>0/1000</span>
+          </div>
+          <span id="contentError" class="input-error-message">
+            <i><img src="../assets/images/icn_error.svg" alt=""></i><span>내용을 입력해주세요</span></span>
+        </div>
+
+        <!-- 파일 첨부 (선택) -->
+        <div class="input-item">
+          <span class="input-title">파일 첨부 <span>(선택사항)</span></span>
+          <div class="file-upload-container">
+            <div class="file-upload-area">
+              <img class="upload-icon " src="../assets//images/File_Upload_Icon.svg" alt="아이콘">
+              <p class="upload-text pc">파일을 첨부하거나 마우스로 파일을 끌어 넣으세요.</p>
+              <p class="upload-text mo">파일을 첨부해주세요.</p>
+              <button type="button" class="upload-btn">첨부하기</button>
+              <input type="file" id="fileInput" class="file-input" multiple>
+            </div>
+            <ul class="file-upload-desc">
+              <li>• 지원 파일 확장자: xlsx,xls,docx,doc,pptx,ppt,txt,pdf,zip,jpg,jpeg,png,gif</li>
+              <li>• 파일 업로드 가능 용량: 총 15MB</li>
+            </ul>
+            <div class="file-list-container">
+              <ul class="file-list"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-btn-wrap">
+          <button type="button" class="button button-cancel">취소</button>
+          <button type="submit" class="button button-default">등록하기</button>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <!-- 알럿 / alert.js 에서 내용 불러옵니다. -->
+  <div id="alertOverlay" class="alert-overlay">
+    <div class="alert-content">
+      <div id="alertBody" class="alert-body">
+        <p id="alertBodyText"></p>
+      </div>
+      <div id="alertFooter" class="alert-footer"></div>
+    </div>
+  </div>
+
+
+  <footer>
+    <p class="footer-copy">ⓒkt corp. All rights reserved</p>
+    <ul class="footer-menu">
+      <li><a href="#">개인 정보 보호</a></li>
+      <li><a href="#">서비스 약관</a></li>
+    </ul>
+
+  </footer>
+
+  <script src="../assets/js/header.js"></script>
+  <script src="../assets/js/input.js"></script>
+  <script src="../assets/js/alert.js"></script>
+
+
+</body>
+
+<script>
+
+  // 등록하기 버튼 클릭 시 유효성 검사
+  document.addEventListener('DOMContentLoaded', function () {
+    const submitButton = document.querySelector('.button-default');
+
+    // 입력 필드들에 입력 이벤트 리스너 추가 (에러 클래스 제거용)
+    const questionTypeSelect = document.getElementById('questionTypeSelect');
+    const titleInput = document.getElementById('title');
+    const contentInput = document.getElementById('content');
+
+    // 제목 입력 시 에러 클래스 제거
+    titleInput.addEventListener('input', function () {
+      if (this.value.trim()) {
+        this.closest('.input-item').classList.remove('error');
+      }
+    });
+
+    // 내용 입력 시 에러 클래스 제거
+    contentInput.addEventListener('input', function () {
+      if (this.value.trim()) {
+        this.closest('.input-item').classList.remove('error');
+      }
+    });
+
+    // 셀렉트박스 변경 시 에러 클래스 제거
+    questionTypeSelect.addEventListener('change', function () {
+      this.closest('.input-item').classList.remove('error');
+    });
+
+    // 등록하기 버튼 클릭 시 유효성 검사
+    submitButton.addEventListener('click', function (e) {
+      // 기본 제출 동작 방지
+      e.preventDefault();
+
+      // 각 필드 참조
+      const questionTypeInput = document.getElementById('questionType');
+
+      // 에러 플래그 초기화
+      let hasError = false;
+
+      // 1. 문의 유형 검사
+      if (!questionTypeInput.value || questionTypeInput.value === "" ||
+        document.querySelector('.select-selected').textContent === "문의 유형을 선택해주세요.") {
+        // 문의 유형 선택 안한 경우
+        questionTypeInput.closest('.input-item').classList.add('error');
+        hasError = true;
+      }
+
+      // 2. 제목 검사
+      if (!titleInput.value.trim()) {
+        // 제목 입력 안한 경우
+        titleInput.closest('.input-item').classList.add('error');
+        hasError = true;
+      }
+
+      // 3. 내용 검사
+      if (!contentInput.value.trim()) {
+        // 내용 입력 안한 경우
+        contentInput.closest('.input-item').classList.add('error');
+        hasError = true;
+      }
+    });
+  });
+
+
+  /** 텍스트박스 글자수 **/
+  document.addEventListener('DOMContentLoaded', function () {
+    const textarea = document.getElementById('content');
+    const charCounter = document.querySelector('.textarea span');
+    const maxLength = 1000;
+
+    // 텍스트 입력 시 글자 수 카운트 및 표시
+    textarea.addEventListener('input', function () {
+      const currentLength = this.value.length;
+
+      // span 태그에 현재 글자 수 업데이트
+      charCounter.textContent = currentLength + '/' + maxLength;
+
+      // 최대 글자 수 제한
+      if (currentLength > maxLength) {
+        this.value = this.value.substring(0, maxLength);
+        charCounter.textContent = maxLength + '/' + maxLength;
+      }
+    });
+
+    // 초기 글자 수 표시
+    charCounter.textContent = '0/' + maxLength;
+  });
+
+  /** 커스텀 셀렉트박스 스크립트 **/
+  document.addEventListener('DOMContentLoaded', function () {
+    // 모든 커스텀 셀렉트박스 초기화
+    initCustomSelects();
+
+    function initCustomSelects() {
+      const customSelects = document.querySelectorAll('.custom-select');
+
+      customSelects.forEach(function (select) {
+        const selected = select.querySelector('.select-selected');
+        const items = select.querySelector('.select-items');
+        const options = items.querySelectorAll('div');
+        const hiddenInput = select.querySelector('input[type="hidden"]');
+
+        // 셀렉트박스 클릭 시 옵션 표시/숨김 토글
+        selected.addEventListener('click', function (e) {
+          e.stopPropagation();
+          closeAllSelects(select);
+          items.classList.toggle('select-hide');
+          this.classList.toggle('select-arrow-active');
+        });
+
+        // 옵션 선택 시 동작
+        options.forEach(function (option) {
+          option.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            // 선택된 값과 텍스트 업데이트
+            const value = this.getAttribute('data-value');
+            const text = this.textContent;
+
+            // 선택된 텍스트 업데이트
+            selected.textContent = text;
+
+            // 숨겨진 input 값 업데이트
+            if (hiddenInput) {
+              hiddenInput.value = value;
+            }
+
+            // 옵션 목록 닫기
+            items.classList.add('select-hide');
+            selected.classList.remove('select-arrow-active');
+
+            // 선택 이벤트 발생 (필요 시 사용)
+            const changeEvent = new CustomEvent('change', {
+              detail: { value, text }
+            });
+            select.dispatchEvent(changeEvent);
+          });
+        });
+      });
+
+      // 문서 클릭 시 모든 셀렉트박스 닫기
+      document.addEventListener('click', function () {
+        closeAllSelects();
+      });
+    }
+
+    function closeAllSelects(exceptSelect) {
+      const selects = document.querySelectorAll('.custom-select');
+
+      selects.forEach(function (select) {
+        if (select !== exceptSelect) {
+          const items = select.querySelector('.select-items');
+          const selected = select.querySelector('.select-selected');
+
+          if (items) {
+            items.classList.add('select-hide');
+          }
+
+          if (selected) {
+            selected.classList.remove('select-arrow-active');
+          }
+        }
+      });
+    }
+
+  });
+
+  // 파일첨부
+  document.addEventListener('DOMContentLoaded', function () {
+    // 요소 참조
+    const fileUploadArea = document.querySelector('.file-upload-area');
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.querySelector('.file-list');
+    const uploadBtn = document.querySelector('.upload-btn');
+
+    // 최대 파일 크기 (15MB를 바이트로 변환)
+    const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB
+    let totalFileSize = 0;
+
+    // 파일 업로드 버튼 클릭
+    uploadBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      fileInput.click();
+    });
+
+    // 파일 선택 시 처리
+    fileInput.addEventListener('change', function () {
+      handleFiles(this.files);
+    });
+
+    // 드래그 앤 드롭 이벤트 처리
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      fileUploadArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    // 드래그 효과 처리
+    ['dragenter', 'dragover'].forEach(eventName => {
+      fileUploadArea.addEventListener(eventName, function () {
+        fileUploadArea.classList.add('drag-over');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      fileUploadArea.addEventListener(eventName, function () {
+        fileUploadArea.classList.remove('drag-over');
+      }, false);
+    });
+
+    // 파일 드롭 처리
+    fileUploadArea.addEventListener('drop', function (e) {
+      const files = e.dataTransfer.files;
+      handleFiles(files);
+    }, false);
+
+    // 파일 처리 함수
+    function handleFiles(files) {
+      if (files.length > 0) {
+        // 추가될 파일들의 크기 계산
+        let newFilesSize = 0;
+        for (let i = 0; i < files.length; i++) {
+          newFilesSize += files[i].size;
+        }
+
+        // 총 파일 크기 확인
+        if (totalFileSize + newFilesSize > MAX_FILE_SIZE) {
+          // 15MB 초과 시 알림 표시
+          openAlert('alertFileUploadFail')
+          return;
+        }
+
+        // 파일 크기 제한을 넘지 않으면 파일 추가
+        totalFileSize += newFilesSize;
+
+        // 파일마다 처리
+        for (let i = 0; i < files.length; i++) {
+          addFileToList(files[i]);
+        }
+      }
+    }
+
+    // 파일 목록에 파일 추가
+    function addFileToList(file) {
+      const fileItem = document.createElement('li');
+
+      // 파일 이름 요소
+      const fileName = document.createElement('div');
+      fileName.className = 'file-name';
+      fileName.textContent = file.name;
+
+      // 삭제 버튼
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.innerHTML = '×';
+      deleteBtn.addEventListener('click', function () {
+        // 파일 삭제 시 전체 용량에서 제외
+        totalFileSize -= file.size;
+        fileItem.remove();
+      });
+
+      // 요소 조합
+      fileItem.appendChild(fileName);
+      fileItem.appendChild(deleteBtn);
+      fileList.appendChild(fileItem);
+
+      // 여기에서 파일 업로드 로직 추가 가능
+      // 예: FormData를 사용하여 AJAX로 서버에 업로드
+    }
+  });
+</script>
+</html>

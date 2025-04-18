@@ -1,0 +1,106 @@
+.info-message-page {
+    display: flex;
+    height: calc(100vh - 84px);
+    align-items: center;
+    justify-content: center;
+}
+.info-message-page .container {
+    text-align: center;
+}
+.info-message-page .icon {
+    width: 56px;
+    height: 56px;
+}
+.info-message-page h3 {
+    color: #171719;
+    margin: 32px 0 16px;
+    font-size: 28px;
+    font-weight: 600;
+}
+.info-message-page .desc {
+    color: #171719;
+    font-size: 16px;
+    line-height: 160%;
+}
+.info-message-page .btn-wrap {
+    margin-top: 32px;
+}
+.info-message-page .btn-wrap a {
+    display: inline-flex;
+    padding: 8px 16px;
+    align-items: center;
+    justify-content: center;
+}
+.info-message-page .btn-wrap .button-cancel {
+    background-color: rgba(112, 115, 124, 0.08);
+}
+
+/* 서비스 점검 안내 페이지 */
+.info-message-page .date-info p {
+    margin: 28px 0;   
+    font-size: 16px;
+}
+.info-message-page .date-info p strong {
+    margin-right: 16px;
+    color: #60606A;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1079px) {
+    /* 서비스 점검 안내 페이지 */
+    .info-message-page .date-info p {
+        padding: 12px;
+        background-color: #EAECEF;
+        border-radius: 12px;
+    }
+}
+@media screen and (max-width: 767px) {
+
+    .info-message-page {
+        height: calc(100vh - 37.78vw);
+    }
+    .info-message-page .icon {
+        width: 15.56vw;
+        height: 15.56vw;
+    }
+    .info-message-page h3 {
+        margin: 8.89vw 0 4.44vw;
+        font-size: 6.11vw;
+    }
+    .info-message-page .desc {
+        font-size: 4.17vw;
+    }
+    .info-message-page .btn-wrap {
+        position: fixed;
+        bottom: 6.67vw;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+        margin-top: 0;
+    }
+    .info-message-page .btn-wrap a {
+        height: 11.11vw;
+        padding: 2.22vw 4.44vw;
+        font-size: 3.89vw;
+    }
+    /* 서비스 점검 안내 페이지 */
+    .info-message-page .date-info p {
+        width: 88.89vw;
+        margin: 7.78vw 0; 
+        padding: 3.33vw;
+        font-size: 4.44vw;
+        border-radius: 3.33vw;
+    }
+    .info-message-page .date-info p strong {
+        display: block;
+        margin-right: 4.44vw;
+        margin-bottom: 2.22vw;
+        text-align: left;
+    }
+    .info-message-page .date-info p span {
+        display: block;
+        text-align: center;
+        font-size: 4.17vw;
+    }
+
+}

@@ -1,0 +1,410 @@
+.write-page {
+    padding: 0 40px;
+}
+.write-page section {
+    max-width: 1400px;
+    margin: 0 auto 12px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 10px 20ox 30px reba(0, 0, 0, 0.02);
+}
+.write-page section:last-child {
+    margin-bottom: 0;
+}
+
+.write-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 32px;
+}
+.write-header .move-list {
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+}
+.write-header .move-list img {
+    width: 100%;
+    height: 100%;
+}
+.write-header .title {
+    font-size: 22px;
+    font-weight: 600;
+}
+.write-contents {
+    padding: 32px 32px;
+}
+.write-contents .container {
+    width: 520px;
+    margin: 0 auto;
+}
+
+.write-page .input-item {
+    width: 100%;
+}
+.write-page .input-item .input {
+    width: 100%;
+}
+.input-title span {
+    color: rgba(55, 56, 60, 0.61);
+    font-weight: 300;
+}
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1px solid rgba(112, 115, 124, 0.16);
+    background-color: #fff;
+    overflow-x: hidden;
+    border-radius: 4px;
+}
+textarea::placeholder {
+    color: #989BA2;
+}
+.textarea span {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    margin-top: 4px;
+    color: rgba(55, 56, 60, 0.61);
+}
+.input-item.error textarea {
+    border-color: var(--Status-Negative-Text-default);
+}
+.input-item textarea:focus {
+    outline: none;
+    border-color: var(--Neutral-Border-focus);
+}
+
+/* 커스텀 셀렉트박스 스타일 */
+.input-item.error .select-selected {
+    border-color: var(--Status-Negative-Text-default);
+}
+.custom-select {
+    position: relative;
+    width: 100%;
+    font-size: 14px;
+  }
+  .select-selected {
+    padding: 12px 16px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    color: #989BA2;
+  }
+  /* 화살표 스타일 */
+  .select-selected:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background-image: url(../../assets/images/ico_open.svg);
+    background-size: cover;
+  }
+
+  /* 옵션 목록 컨테이너 */
+  .select-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border: 1px solid rgba(0,0,0,0.1);
+    background-color: #fff;
+    overflow-y: auto;
+  }
+
+  /* 숨겨진 상태 */
+  .select-hide {
+    display: none;
+  }
+  /* 개별 옵션 스타일 */
+  .select-items div {
+    position: relative;
+    padding: 10px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: all .3s;
+  }
+  /* 옵션에 마우스를 올렸을 때 */
+  .select-items div:hover::after, .select-items div.selected::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 25px;
+        width: 18px;
+        height: 18px;
+        background-image: url(../../assets/images/ic_check.svg);
+        background-size: cover;
+    }
+    .select-items div:hover, .select-items div.selected {
+        color: var(--Primary-Fill-default);
+    }
+
+
+  /* 마지막 옵션 아이템 */
+  .select-items div:last-child {
+    border-bottom: none;
+  }
+  /* 비활성화 상태 (필요시 사용) */
+  .custom-select.disabled .select-selected {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+  }
+
+  /* 파일첨부 */
+  /* 파일 업로드 컨테이너 스타일 */
+.file-upload-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  /* 파일 업로드 영역 스타일 */
+  .file-upload-area {
+    background-color: #F4F6F8;
+    border: 1px dashed #EDEFF3;
+    border-radius: 8px;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .file-upload-area.drag-over {
+    background-color: #eef2f7;
+    border-color: #aaa;
+  }
+  
+  /* 업로드 아이콘 스타일 */
+  .upload-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* 업로드 텍스트 스타일 */
+  .upload-text {
+    font-size: 14px;
+    color: rgba(46, 47, 51, 0.88);
+    margin: 8px 0 12px
+  }
+  
+  /* 첨부하기 버튼 스타일 */
+  .upload-btn {
+    background-color: transparent;
+    border: 1px solid rgba(112, 115, 124, 0.28);
+    color: #171719;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .file-upload-desc {
+    color: rgba(46, 47, 51, 0.88);
+    font-size: 12px;
+    margin-top: 8px;
+    line-height: 130%;
+  }
+  /* 파일 입력 필드 숨김 */
+  .file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  /* 파일 목록 스타일 */
+  .file-list-container {
+    margin-top: 16px;
+  }
+  .file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .file-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    background-color: #F4F6F8;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .file-list .file-name {
+    flex: 1;
+    margin-right: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .file-list .delete-btn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.2s ease;
+  }
+  .file-list .delete-btn:hover {
+    color: #ff3b30;
+  }
+
+  .bottom-btn-wrap {
+    margin-top: 147px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bottom-btn-wrap button {
+    padding: 8px 22px;
+    margin-right: 5px;
+  }
+  .bottom-btn-wrap button:last-child {
+    margin-right: 0px;
+  }
+
+  @media screen and (max-width: 767px) {
+
+    .write-page {
+        padding: 0 5.56vw;
+    }
+    .write-page section {
+        margin: 0 auto 3.33vw;
+    }
+    .write-header {
+        padding: 5.56vw 8.89vw;
+    }
+    .write-header .move-list {
+        width: 7.78vw;
+        height: 7.78vw;
+        margin-right: 3.33vw;
+    }
+    .write-header .title {
+        font-size: 6.11vw;
+    }
+    .write-contents {
+        padding: 3.33vw 5.56vw;
+    }
+    .write-contents .container {
+        width: 77.78vw;
+        padding: 0;
+    }
+
+    .input-item .input {
+        height: 11.11vw;
+    }
+    .input-item input {
+        padding: 2.78vw 11.67vw 2.78vw 4.44vw;
+        font-size: 3.89vw;
+    }
+    .input-item .input-title {
+        margin-bottom: 2.22vw;
+        font-size: 3.89vw;
+    }
+
+
+    textarea {
+        height: 41.67vw;
+        padding: 3.33vw 4.44vw;
+        font-size: 3.89vw;
+    }
+    .textarea span {
+        font-size: 3.33vw;
+        margin-top: 1.11vw;
+    }
+
+    /* 커스텀 셀렉트박스 스타일 */
+    .custom-select {
+        font-size: 3.89vw;
+    }
+    .select-selected {
+        padding: 3.33vw 4.44vw;
+    }
+    /* 화살표 스타일 */
+    .select-selected:after {
+        top: 50%;
+        right: 3.33vw;
+        width: 6.67vw;
+        height: 6.67vw;
+    }
+    /* 개별 옵션 스타일 */
+    .select-items div {
+        padding: 2.78vw 4.44vw;
+    }
+     /* 옵션에 마우스를 올렸을 때 */
+    .select-items div:hover::after, .select-items div.selected::after {
+        top: 50%;
+        right: 6.94vw;
+        width: 5.00vw;
+        height: 5.00vw;
+    }
+
+    /* 파일첨부 */
+    /* 파일 업로드 영역 스타일 */
+    .file-upload-area {
+        border-radius: 2.22vw;
+        padding: 8.33vw 5.56vw;
+    }
+    /* 업로드 아이콘 스타일 */
+    .upload-icon {
+        width: 6.67vw;
+        height: 6.67vw;
+    }
+    /* 업로드 텍스트 스타일 */
+    .upload-text {
+        font-size: 3.89vw;
+        margin: 2.22vw 0 3.33vw
+    }
+    /* 첨부하기 버튼 스타일 */
+    .upload-btn {
+        border-radius: 1.11vw;
+        padding: 2.22vw 4.44vw;
+        font-size: 3.89vw;
+    }
+    .file-upload-desc {
+        font-size: 3.33vw;
+        margin-top: 2.22vw;
+    }
+    /* 파일 목록 스타일 */
+    .file-list-container {
+        margin-top: 4.44vw;
+    }
+    .file-list li {
+        padding: 2.22vw 3.33vw;
+        margin-bottom: 2.22vw;
+        border-radius: 1.11vw;
+        font-size: 3.89vw;
+    }
+    .file-list .file-name {
+        margin-right: 2.22vw;
+    }
+    .file-list .delete-btn {
+        font-size: 4.44vw;
+        transition: color 0.2s ease;
+    }
+    .bottom-btn-wrap {
+        margin-top: 12.50vw;
+    }
+    .bottom-btn-wrap button {
+        padding: 2.22vw 6.11vw;
+        margin-right: 1.39vw;
+    }
+    .bottom-btn-wrap button:last-child {
+        margin-right: 0.00vw;
+    }
+    .write-page .button {
+        height: 11.11vw;
+        border-radius: 1.11vw;
+        font-size: 4.44vw;
+    }
+
+  }
