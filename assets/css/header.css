@@ -215,26 +215,27 @@ nav .mo-btn-logout {
         border-radius: 0;
     }
     .sub-menu {
+        display: none;
         position: static;
         left: initial;
         width: 320px;
         padding: 0;
         margin: 0 auto;
-        box-shadow: none;
-        max-height: 0;
+        /* max-height: 0;
         overflow: hidden;
         opacity: 0;
-        visibility: hidden;
+        visibility: hidden; */
         background-color: var(--Primary-Fill-neutral);
         border: none;
     }
     
     .sub-menu.active {
-        max-height: 500px;
+        display: block;
+        /* max-height: 500px;
         padding: 20px 0;
         opacity: 1;
         visibility: visible;
-        transition: max-height 0.25s, opacity 0.4s;
+        transition: max-height 0.25s, opacity 0.4s; */
     }
     
     .mobile-menu-header {
