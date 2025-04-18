@@ -3,7 +3,7 @@ const toastMessages = {
     toastUnlockSuccess: {
         text: '잠금 해제가 완료되었습니다.',
         icon: '../assets/images/ic_check_fill.svg',
-        redirect: './index' // 이동할 경로 지정
+        redirect: './login/lonin.html' // 이동할 경로 지정
     },
 };
 // 토스트 관리 객체
