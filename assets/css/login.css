@@ -185,7 +185,7 @@
         margin-top: 0;
         padding: 20px;
         width: 100%;
-        height: calc(100vh - 60px);
+        /* height: calc(100vh - 60px); */
     }
 
     /* title */
