@@ -32,6 +32,7 @@ article {
     line-height: 40px;
 }.page-title button.btn_list_re {
     width: 32px;
+    line-height: 32px;
 }
 .table-container {
     margin: 12px auto 0;
@@ -73,7 +74,7 @@ article {
 .tabs li button.active {
     border-bottom: 3px solid var(--Primary-Fill-default);
     color: var(--Primary-Fill-default);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* 검색 컨테이너 스타일 */
@@ -776,7 +777,7 @@ article {
     .sort-select .select-selected {
         width: 23.06vw;
         height: 6.11vw;
-        padding: 2.78vw 2.78vw;
+        padding: 2.78vw 3.78vw;
         font-size: 3.89vw;
         background-color: #fff;
     }
@@ -784,7 +785,7 @@ article {
         min-width: 23.06vw;
     }
     .select-selected:after {
-        right: 2.78vw;
+        right: 0;
         width: 4.44vw;
         height: 4.44vw;
         background-size: cover;

@@ -28,7 +28,7 @@
                     <li class="display-pc"><a href="./home.html"><span>홈</span></a></li>
                     <li>
                         <a href="./notice_list.html"><span>공지 및 자료실</span><img class="toggle-open-icon"
-                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                                src="../assets/images/chevron_icon.svg" alt="열기"></a>
                         <ul class="sub-menu">
                             <li><a href="./notice_list.html">공지사항</a></li>
                             <li><a href="./guide_list.html">가이드 게시판</a></li>
@@ -37,7 +37,7 @@
                     </li>
                     <li>
                         <a href="./faq_list.html"><span>사용 문의</span><img class="toggle-open-icon"
-                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                                src="../assets/images/chevron_icon.svg" alt="열기"></a>
                         <ul class="sub-menu">
                             <li><a href="./faq_list.html">자주 묻는 질문</a></li>
                             <li><a href="./qna_list.html">Q&A</a></li>
@@ -45,14 +45,14 @@
                     </li>
                     <li class="display-pc">
                         <a href="./cp_request_list.html"><span>Cloud PC 관리</span><img class="toggle-open-icon"
-                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                                src="../assets/images/chevron_icon.svg" alt="열기"></a>
                         <ul class="sub-menu">
                             <li><a href="./cp_request_list.html">Cloud PC 작업 신청</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="./export_fail_down_list.html"><span>망연계 관리</span><img class="toggle-open-icon"
-                                src="../assets/images/chevron_Icon.svg" alt="열기"></a>
+                                src="../assets/images/chevron_icon.svg" alt="열기"></a>
                         <ul class="sub-menu">
                             <li><a href="./export_fail_down_list.html">반출 신청 파일 다운로드</a></li>
                             <li><a href="./url_redirection_list.html">URL Redirection</a></li>
@@ -86,7 +86,7 @@
                         <div class="id-selector custom-select__trigger">
                             <button class="selector-btn"><span class="id">001E82265602COA</span>
                                 <img class="selectorBtnImg pc" src="../assets/images/ic_id_selector.svg" alt="열기">
-                                <img class="selectorBtnImg mo" src="../assets/images/chevron_Icon.svg" alt="열기">
+                                <img class="selectorBtnImg mo" src="../assets/images/chevron_icon.svg" alt="열기">
                             </button>
                         </div>
                         <!-- 클라우드 pc 리스트 드롭다운 박스 : data-value -->
@@ -623,7 +623,7 @@
         actionButtons.forEach(button => {
             button.addEventListener('click', function () {
                 // Get the control icon inside this button
-                const controlIcon = this.querySelector('.btn-control-icon');
+                const controlicon = this.querySelector('.btn-control-icon');
 
                 // Get the content div that follows this button
                 const content = this.nextElementSibling;
@@ -639,7 +639,7 @@
                 });
 
                 document.querySelectorAll('.btn-control-icon').forEach(icon => {
-                    if (icon !== controlIcon) {
+                    if (icon !== controlicon) {
                         icon.classList.remove('active');
                     }
                 });
@@ -647,11 +647,11 @@
                 if (isVisible) {
                     // If it's already visible, hide it and remove active class
                     content.classList.remove('show');
-                    controlIcon.classList.remove('active');
+                    controlicon.classList.remove('active');
                 } else {
                     // If it's hidden, show it and add active class
                     content.classList.add('show');
-                    controlIcon.classList.add('active');
+                    controlicon.classList.add('active');
 
                 }
             });

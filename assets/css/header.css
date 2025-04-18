@@ -135,6 +135,15 @@ nav .mo-btn-logout {
     width: 24px;
     height: 24px;
 }
+.menu-toggle {
+    display: none;
+    width: 24px;
+    height: 24px;
+}
+.menu-toggle img {
+    width: 24px;
+    height: 24px;
+}
 
 /* 모바일 메뉴 오버레이 */
 .overlay {
@@ -312,6 +321,10 @@ nav .mo-btn-logout {
             width: 6.67vw;
             height: 6.67vw;
         }
+        .menu-toggle img {
+            width: 6.67vw;
+            height: 6.67vw;
+        }
         
         nav {
             right: -100.00vw;
@@ -351,6 +364,10 @@ nav .mo-btn-logout {
         .close-btn {
             width: 6.67vw;
             height: 6.67vw;
+        }
+        .close-btn img {
+            width: 4vw;
+            height: 4vw;
         }
     
         nav .mo-btn-logout  {
