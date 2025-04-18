@@ -289,9 +289,9 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        overflow: hidden;
+        overflow: initial;
         width: 100%;
-        height: calc(100vh - 16.67vw);  
+        height: auto;  
     }
     .login-header {
         position: inherit;
@@ -360,10 +360,19 @@
 
     /* 하단 영역 */
     .bottom-section {
+        position: inherit;
+        bottom: inherit;
+        left: inherit;
+        width: 88.89vw;
+        padding-bottom: 5vh;
+        transform: translateX(0%);
+    }
+    .login-page.otp  .bottom-section {
         position: absolute;
-        bottom: 5.56vw;
+        bottom: 0;
         left: 50%;
         width: 88.89vw;
+        padding-bottom: 5vh;
         transform: translateX(-50%);
     }
     .login-footer {
