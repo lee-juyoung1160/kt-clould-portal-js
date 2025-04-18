@@ -230,12 +230,24 @@ nav .mo-btn-logout {
         border: none;
     }
     
-    .sub-menu.active {
+    .main-menu > li .sub-menu.active  {
         max-height: 500px;
         padding: 20px 0;
-        opacity: 1;
-        visibility: visible;
+        opacity: 1 !important;
+        visibility: visible !important;
         transition: max-height 0.25s, opacity 0.4s;
+    }
+    /* 모바일에서는 hover로 서브메뉴가 나타나지 않도록 설정 */
+    .main-menu > li:hover .sub-menu {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    
+    /* 모바일에서 링크 hover 배경색 제거 */
+    .main-menu > li:hover > a {
+        background-color: transparent;
+        border-radius: 0;
     }
     
     .mobile-menu-header {
