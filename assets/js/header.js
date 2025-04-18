@@ -3,34 +3,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.querySelector('.close-btn');
     const overlay = document.querySelector('.overlay');
     const nav = document.querySelector('nav');
-    const mainMenuItems = document.querySelectorAll('.main-menu > li > a');
     
-    // 모바일 환경에서 서브메뉴가 있는 메인 메뉴의 href 처리
+    // 모바일 환경에서 서브메뉴가 있는 메인 메뉴의 href 변경
     function updateMenuLinks() {
-        if (window.innerWidth <= 1079) {
-            // 서브메뉴가 있는 메인 메뉴 아이템 찾기
-            document.querySelectorAll('.main-menu > li').forEach(function(item) {
-                const menuLink = item.querySelector('a');
-                const subMenu = item.querySelector('.sub-menu');
-                
-                // 서브메뉴가 있는 경우에만 href 수정
-                if (menuLink && subMenu) {
-                    // 원래 링크를 데이터 속성에 저장 (나중에 복원할 수 있도록)
-                    if (!menuLink.getAttribute('data-original-href')) {
-                        menuLink.setAttribute('data-original-href', menuLink.getAttribute('href'));
-                    }
-                    menuLink.setAttribute('href', 'javascript:void(0)');
+        document.querySelectorAll('.main-menu > li > a').forEach(function(link) {
+            const subMenu = link.nextElementSibling;
+            // 서브메뉴가 있고 모바일 환경인 경우
+            if (subMenu && subMenu.classList.contains('sub-menu') && window.innerWidth <= 1079) {
+                // 원래 링크를 저장
+                if (!link.getAttribute('data-original-href')) {
+                    link.setAttribute('data-original-href', link.getAttribute('href'));
                 }
-            });
-        } else {
-            // PC 환경에서는 원래 링크 복원
-            document.querySelectorAll('.main-menu > li > a[data-original-href]').forEach(function(menuLink) {
-                menuLink.setAttribute('href', menuLink.getAttribute('data-original-href'));
-            });
-        }
+                // href 변경
+                link.setAttribute('href', 'javascript:void(0)');
+            } else if (link.getAttribute('data-original-href') && window.innerWidth > 1079) {
+                // PC 환경일 때 원래 링크 복원
+                link.setAttribute('href', link.getAttribute('data-original-href'));
+            }
+        });
     }
     
-    // 초기 로드 시 실행
+    // 초기 실행
     updateMenuLinks();
     
     // 햄버거 메뉴 토글
@@ -60,27 +53,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 모바일에서 메인 메뉴 클릭 시 서브메뉴 토글
-    mainMenuItems.forEach(function(item) {
-        item.addEventListener('click', function(e) {
+    // 모바일에서 li > a 클릭 시 서브메뉴 토글
+    document.querySelectorAll('.main-menu > li > a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
             if (window.innerWidth <= 1079) {
-                const parent = this.parentElement;
-                const subMenu = parent.querySelector('.sub-menu');
+                const subMenu = this.nextElementSibling;
                 
                 // 서브메뉴가 있는 경우에만 처리
-                if (subMenu) {
+                if (subMenu && subMenu.classList.contains('sub-menu')) {
                     e.preventDefault(); // 링크 이동 방지
                     
+                    // 현재 토글 아이콘
                     const toggleIcon = this.querySelector('.toggle-open-icon');
                     
                     // 다른 모든 서브메뉴 닫기
-                    document.querySelectorAll('.main-menu > li > .sub-menu').forEach(function(menu) {
+                    document.querySelectorAll('.sub-menu.active').forEach(function(menu) {
                         if (menu !== subMenu) {
                             menu.classList.remove('active');
-                            const menuParent = menu.parentElement;
-                            const menuToggleIcon = menuParent.querySelector('.toggle-open-icon');
-                            if (menuToggleIcon) {
-                                menuToggleIcon.classList.remove('active');
+                            // 관련 아이콘도 비활성화
+                            const parentA = menu.previousElementSibling;
+                            if (parentA) {
+                                const icon = parentA.querySelector('.toggle-open-icon');
+                                if (icon) icon.classList.remove('active');
                             }
                         }
                     });
@@ -94,11 +88,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-    });     
+    });
     
     // 화면 크기 변경 시 모바일 메뉴 상태 초기화
     window.addEventListener('resize', function() {
-        updateMenuLinks(); // 화면 크기 변경 시 링크 업데이트
+        updateMenuLinks(); // 링크 업데이트
         
         if (window.innerWidth > 1079) {
             nav.classList.remove('active');
@@ -106,14 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = '';
             
             // 서브메뉴 초기화
-            const activeSubMenus = document.querySelectorAll('.sub-menu.active');
-            activeSubMenus.forEach(function(menu) {
+            document.querySelectorAll('.sub-menu.active').forEach(function(menu) {
                 menu.classList.remove('active');
             });
             
             // 아이콘 초기화
-            const activeIcons = document.querySelectorAll('.toggle-open-icon.active');
-            activeIcons.forEach(function(icon) {
+            document.querySelectorAll('.toggle-open-icon.active').forEach(function(icon) {
                 icon.classList.remove('active');
             });
         }
