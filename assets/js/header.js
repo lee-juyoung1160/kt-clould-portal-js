@@ -4,90 +4,84 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.querySelector('.overlay');
     const nav = document.querySelector('nav');
     
-    // 해결책: 페이지 로드 즉시 모든 메뉴 항목을 초기화
-    function initializeMenuItems() {
+    // 모바일 메뉴의 모든 링크 초기화 (직접 클릭 이벤트 추가)
+    function setupMobileMenu() {
+        // 모바일 환경인지 확인
+        const isMobile = window.innerWidth <= 1079;
+        
+        // 모든 메인 메뉴 항목 가져오기
         const menuItems = document.querySelectorAll('.main-menu > li');
         
+        // 모든 이벤트 리스너 제거 및 재설정
         menuItems.forEach(function(item) {
             const link = item.querySelector('a');
             const subMenu = item.querySelector('.sub-menu');
+            const toggleIcon = link?.querySelector('.toggle-open-icon');
             
-            if (link && subMenu) {
-                // 기존 이벤트 리스너 제거 (중복 방지)
-                link.removeEventListener('click', handleMenuClick);
+            // 이미 있는 이벤트 리스너 제거 (중요!)
+            if (link) {
+                const clone = link.cloneNode(true);
+                link.parentNode.replaceChild(clone, link);
                 
-                // 새 이벤트 리스너 추가
-                link.addEventListener('click', handleMenuClick);
+                // 새 참조 업데이트
+                const newLink = item.querySelector('a');
                 
-                // 모바일 모드에서는 링크 동작을 방지 (바로 실행되도록 수정)
-                if (window.innerWidth <= 1079) {
-                    // 원래 href를 저장
-                    if (!link.hasAttribute('data-original-href')) {
-                        link.setAttribute('data-original-href', link.getAttribute('href') || '#');
+                // 서브메뉴가 있는 경우에만 처리
+                if (subMenu) {
+                    if (isMobile) {
+                        // 모바일: 클릭 시 서브메뉴 토글
+                        newLink.addEventListener('click', function(e) {
+                            e.preventDefault(); // 기본 동작 중지
+                            
+                            // 다른 열린 서브메뉴 닫기
+                            document.querySelectorAll('.sub-menu.active').forEach(function(menu) {
+                                if (menu !== subMenu) {
+                                    menu.classList.remove('active');
+                                    const otherIcon = menu.parentElement.querySelector('.toggle-open-icon');
+                                    if (otherIcon) otherIcon.classList.remove('active');
+                                }
+                            });
+                            
+                            // 현재 서브메뉴 토글
+                            subMenu.classList.toggle('active');
+                            
+                            // 아이콘 토글 (있는 경우)
+                            const newToggleIcon = this.querySelector('.toggle-open-icon');
+                            if (newToggleIcon) {
+                                newToggleIcon.classList.toggle('active');
+                            }
+                        });
+                        
+                        // href 속성 임시 변경
+                        if (newLink.getAttribute('href') !== 'javascript:void(0)') {
+                            newLink.setAttribute('data-original-href', newLink.getAttribute('href'));
+                            newLink.setAttribute('href', 'javascript:void(0)');
+                        }
+                    } else {
+                        // PC 모드: 원래 링크 복원
+                        const originalHref = newLink.getAttribute('data-original-href');
+                        if (originalHref) {
+                            newLink.setAttribute('href', originalHref);
+                        }
                     }
-                    // href 속성 변경
-                    link.setAttribute('href', 'javascript:void(0)');
                 }
             }
         });
     }
     
-    // 메뉴 클릭 핸들러 - 별도의 함수로 분리
-    function handleMenuClick(e) {
-        // 모바일 모드에서만 특별 처리
-        if (window.innerWidth <= 1079) {
-            const link = this;
-            const menuItem = link.parentElement;
-            const subMenu = menuItem.querySelector('.sub-menu');
-            
-            if (subMenu) {
-                // 기본 동작 방지 (중요!)
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // 모든 서브메뉴 닫기
-                document.querySelectorAll('.main-menu > li > .sub-menu').forEach(function(menu) {
-                    if (menu !== subMenu) {
-                        menu.classList.remove('active');
-                        
-                        const parentItem = menu.parentElement;
-                        const parentLink = parentItem.querySelector('a');
-                        const toggleIcon = parentLink.querySelector('.toggle-open-icon');
-                        
-                        if (toggleIcon) {
-                            toggleIcon.classList.remove('active');
-                        }
-                    }
-                });
-                
-                // 현재 서브메뉴 토글
-                subMenu.classList.toggle('active');
-                
-                // 토글 아이콘 업데이트
-                const toggleIcon = link.querySelector('.toggle-open-icon');
-                if (toggleIcon) {
-                    toggleIcon.classList.toggle('active');
-                }
-            }
-        }
-    }
+    // 초기 설정 실행
+    setupMobileMenu();
     
-    // 초기화 즉시 실행
-    initializeMenuItems();
-    
-    // 햄버거 메뉴
+    // 햄버거 메뉴 클릭 처리
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
             nav.classList.add('active');
             if (overlay) overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            // 중요: 모바일 메뉴가 열릴 때 메뉴 항목 다시 초기화
-            setTimeout(initializeMenuItems, 100);
         });
     }
     
-    // 닫기 버튼
+    // 닫기 버튼 처리
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
             nav.classList.remove('active');
@@ -96,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 오버레이
+    // 오버레이 클릭 처리
     if (overlay) {
         overlay.addEventListener('click', function() {
             nav.classList.remove('active');
@@ -105,49 +99,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 화면 크기 변경 시 메뉴 초기화
+    // 화면 크기 변경 시 메뉴 재설정
     window.addEventListener('resize', function() {
-        // 메뉴 항목 다시 초기화
-        initializeMenuItems();
+        setupMobileMenu();
         
+        // PC 모드로 전환 시 모바일 메뉴 닫기
         if (window.innerWidth > 1079) {
             nav.classList.remove('active');
             if (overlay) overlay.classList.remove('active');
             document.body.style.overflow = '';
             
-            // PC 모드로 전환 시 원래 링크 복원
-            document.querySelectorAll('.main-menu > li > a[data-original-href]').forEach(function(link) {
-                link.setAttribute('href', link.getAttribute('data-original-href'));
-            });
-            
             // 모든 서브메뉴 닫기
             document.querySelectorAll('.sub-menu.active').forEach(function(menu) {
                 menu.classList.remove('active');
             });
-        } else {
-            // 모바일 모드로 전환 시 모든 링크의 href를 변경
-            document.querySelectorAll('.main-menu > li > a').forEach(function(link) {
-                const subMenu = link.parentElement.querySelector('.sub-menu');
-                if (subMenu) {
-                    if (!link.hasAttribute('data-original-href')) {
-                        link.setAttribute('data-original-href', link.getAttribute('href') || '#');
-                    }
-                    link.setAttribute('href', 'javascript:void(0)');
-                }
-            });
         }
     });
-
-    // 페이지 로드 시 추가 초기화 - 모바일 상태 확인 및 적용
-    if (window.innerWidth <= 1079) {
-        document.querySelectorAll('.main-menu > li > a').forEach(function(link) {
-            const subMenu = link.parentElement.querySelector('.sub-menu');
-            if (subMenu) {
-                if (!link.hasAttribute('data-original-href')) {
-                    link.setAttribute('data-original-href', link.getAttribute('href') || '#');
-                }
-                link.setAttribute('href', 'javascript:void(0)');
-            }
-        });
-    }
 });
