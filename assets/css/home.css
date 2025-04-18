@@ -875,9 +875,9 @@
     }
 
     .cloud_vod video {
-        width: 100vw;
+        width: 108vw;
         margin-top: 0;
-        margin-left: -5.5vw;
+        margin-left: -13.5vw;
     }
 
     .id-selector .selector-btn {
@@ -901,6 +901,10 @@
         height: 6.67vw;
         margin-right: 5.00vw;
         background-color: transparent;
+    }
+    .refresh-btn img {
+        width: 6.67vw;
+        height: 6.67vw;
     }
 
     .refresh-btn span {
