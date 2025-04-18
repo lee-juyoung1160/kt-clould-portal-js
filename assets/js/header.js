@@ -19,11 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 새 이벤트 리스너 추가
                 link.addEventListener('click', handleMenuClick);
                 
-                // 모바일 모드에서는 링크 동작을 방지
+                // 모바일 모드에서는 링크 동작을 방지 (바로 실행되도록 수정)
                 if (window.innerWidth <= 1079) {
+                    // 원래 href를 저장
                     if (!link.hasAttribute('data-original-href')) {
-                        link.setAttribute('data-original-href', link.getAttribute('href'));
+                        link.setAttribute('data-original-href', link.getAttribute('href') || '#');
                     }
+                    // href 속성 변경
                     link.setAttribute('href', 'javascript:void(0)');
                 }
             }
@@ -32,15 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 메뉴 클릭 핸들러 - 별도의 함수로 분리
     function handleMenuClick(e) {
+        // 모바일 모드에서만 특별 처리
         if (window.innerWidth <= 1079) {
             const link = this;
             const menuItem = link.parentElement;
             const subMenu = menuItem.querySelector('.sub-menu');
             
             if (subMenu) {
+                // 기본 동작 방지 (중요!)
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('메뉴 클릭 처리:', link.textContent);
                 
                 // 모든 서브메뉴 닫기
                 document.querySelectorAll('.main-menu > li > .sub-menu').forEach(function(menu) {
@@ -121,6 +124,30 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.sub-menu.active').forEach(function(menu) {
                 menu.classList.remove('active');
             });
+        } else {
+            // 모바일 모드로 전환 시 모든 링크의 href를 변경
+            document.querySelectorAll('.main-menu > li > a').forEach(function(link) {
+                const subMenu = link.parentElement.querySelector('.sub-menu');
+                if (subMenu) {
+                    if (!link.hasAttribute('data-original-href')) {
+                        link.setAttribute('data-original-href', link.getAttribute('href') || '#');
+                    }
+                    link.setAttribute('href', 'javascript:void(0)');
+                }
+            });
         }
     });
+
+    // 페이지 로드 시 추가 초기화 - 모바일 상태 확인 및 적용
+    if (window.innerWidth <= 1079) {
+        document.querySelectorAll('.main-menu > li > a').forEach(function(link) {
+            const subMenu = link.parentElement.querySelector('.sub-menu');
+            if (subMenu) {
+                if (!link.hasAttribute('data-original-href')) {
+                    link.setAttribute('data-original-href', link.getAttribute('href') || '#');
+                }
+                link.setAttribute('href', 'javascript:void(0)');
+            }
+        });
+    }
 });
