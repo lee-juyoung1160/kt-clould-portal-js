@@ -665,7 +665,7 @@
 
     .connection-message {
         margin-top: 1.56vw;
-        font-size: 2.34vw;
+        font-size: 3.34vw;
     }
 
     .info-mo-layout {
@@ -858,6 +858,7 @@
 @media screen and (max-width: 767px) {
 
     .main-panel {
+        overflow: hidden;
         max-width: 88.89vw;
         height: 176.94vw;
         margin: 0 auto;
@@ -869,13 +870,14 @@
     }
 
     .cloud_vod {
-        width: 88.89vw;
+        width: 100vw;
         margin: 46.39vw auto 0;
     }
 
     .cloud_vod video {
-        width: 88.89vw;
+        width: 100vw;
         margin-top: 0;
+        margin-left: -5.5vw;
     }
 
     .id-selector .selector-btn {
@@ -919,6 +921,7 @@
         width: 100%;
         font-size: 7.78vw;
         text-align: center;
+        line-height: 1.4em;
     }
 
     .connection-message {
@@ -929,7 +932,11 @@
     }
 
     .progress-container {
+        position: absolute;
+        left: 50%;
+        top: 43.5vw;
         width: 85%;
+        transform: translateX(-50%);
         max-width: 85%;
         margin: 8.33vw auto 0;
     }
