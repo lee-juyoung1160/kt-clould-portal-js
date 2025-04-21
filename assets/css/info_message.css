@@ -1,8 +1,9 @@
 .info-message-page {
     display: flex;
-    height: calc(100vh - 84px);
+    height: calc(100vh - 72px);
     align-items: center;
     justify-content: center;
+    margin-top: 72px;
 }
 .info-message-page .container {
     text-align: center;
