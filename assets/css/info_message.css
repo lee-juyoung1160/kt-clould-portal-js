@@ -1,4 +1,5 @@
 .info-message-page {
+    overflow: hidden;
     display: flex;
     height: calc(100vh - 72px);
     align-items: center;
@@ -59,6 +60,7 @@
 
     .info-message-page {
         height: calc(100vh - 37.78vw);
+        margin-top: 0;
     }
     .info-message-page .icon {
         width: 15.56vw;
