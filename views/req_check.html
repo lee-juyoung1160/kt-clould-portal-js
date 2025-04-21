@@ -102,11 +102,16 @@
 
         document.getElementById('btnCheckreq').addEventListener('click', () => {
 
+
+            LoadingSpinner.init({
+            textColor: 'rgba(46, 47, 51, 0.88)',
+            defaultText: '설치파일 확인 중 입니다.'
+            });
             LoadingSpinner.show();
             setTimeout(() => {
             LoadingSpinner.hide();
             window.location.href = '../index.html'
-        }, 500);
+        }, 1000);
 
         });
 
