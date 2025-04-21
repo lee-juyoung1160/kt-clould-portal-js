@@ -52,7 +52,7 @@
 .info-message-page.req_check {
     overflow: inherit;
     display: flex;
-    height: auto;
+    height: 100vh;
     align-items: center;
     justify-content: center;
     margin-top: 0;
@@ -162,6 +162,14 @@
 .req_check .button-default {
     width: 100px;
 }
+.req_contents .show_content ul li .btn-down.btn-complete {
+    color: #2DBDB6;
+    background-color: rgba(45, 189, 182, 0.05);
+}
+.req_contents .show_content ul li .btn-down.btn-incomplete {
+    color: #FF1E1E;
+    background-color: rgba(255, 30, 30, 0.05);
+}
 
 @media screen and (max-width: 1079px) {
     /* 서비스 점검 안내 페이지 */
@@ -221,6 +229,9 @@
         font-size: 4.17vw;
     }
     /* 초기 설치 파일 확인 페이지 */
+    .info-message-page.req_check {
+        height: auto;
+    }
     .req_check .container {
         width: 144.44vw;
     }

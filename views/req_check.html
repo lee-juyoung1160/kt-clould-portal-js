@@ -39,12 +39,12 @@
                         <div class="show_content">
                             <ul>
                                 <li>접속 Agent <a href="#" class="btn-down btn-complete">설치됨 <img
-                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>포탈 Agent <a href="#" class="btn-down">미설치 <img
-                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                            src="../assets/images/icon_complete.svg" alt="다운로드"></a></li>
+                                <li>포탈 Agent <a href="#" class="btn-down btn-incomplete">미설치 <img
+                                            src="../assets/images/icon_incomplete.svg" alt="다운로드"></a></li>
                                 <li>망연계 Agent <a href="#" class="btn-down btn-incomplete">미설치 <img
-                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>설치 가이드 <a href="#" class="btn-down">설치됨 <img src="../assets/images/ic_down_16.svg"
+                                            src="../assets/images/icon_incomplete.svg" alt="다운로드"></a></li>
+                                <li>설치 가이드 <a href="#" class="btn-down btn-complete">설치됨 <img src="../assets/images/icon_complete.svg"
                                             alt="다운로드"></a></li>
                             </ul>
                         </div>
@@ -58,14 +58,14 @@
                         </div>
                         <div class="show_content">
                             <ul>
-                                <li>접속 Agent <a href="#" class="btn-down">다운로드 <img
-                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>포탈 Agent <a href="#" class="btn-down">다운로드 <img
-                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>망연계 Agent <a href="#" class="btn-down">다운로드 <img
-                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>설치 가이드 <a href="#" class="btn-down">다운로드 <img src="../assets/images/ic_down_16.svg"
-                                            alt="다운로드"></a></li>
+                                <li>접속 Agent <a href="#" class="btn-down btn-complete">설치됨 <img
+                                    src="../assets/images/icon_complete.svg" alt="다운로드"></a></li>
+                                <li>포탈 Agent <a href="#" class="btn-down btn-complete">설치됨 <img
+                                    src="../assets/images/icon_complete.svg" alt="다운로드"></a></li>
+                                <li>망연계 Agent <a href="#" class="btn-down btn-incomplete">미설치 <img
+                                    src="../assets/images/icon_incomplete.svg" alt="다운로드"></a></li>
+                                <li>설치 가이드 <a href="#" class="btn-down btn-incomplete">미설치 <img
+                                    src="../assets/images/icon_incomplete.svg" alt="다운로드"></a></li>
                             </ul>
                         </div>
                     </li>
@@ -78,14 +78,14 @@
                         </div>
                         <div class="show_content">
                             <ul>
-                                <li>접속 Agent <a href="#" class="btn-down">다운로드 <img
-                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>포탈 Agent <a href="#" class="btn-down">다운로드 <img
-                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>망연계 Agent <a href="#" class="btn-down">다운로드 <img
-                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>설치 가이드 <a href="#" class="btn-down">다운로드 <img src="../assets/images/ic_down_16.svg"
-                                            alt="다운로드"></a></li>
+                                <li>접속 Agent <a href="#" class="btn-down btn-incomplete">미설치 <img
+                                    src="../assets/images/icon_incomplete.svg" alt="다운로드"></a></li>
+                                <li>포탈 Agent <a href="#" class="btn-down btn-incomplete">미설치 <img
+                                    src="../assets/images/icon_incomplete.svg" alt="다운로드"></a></li>
+                                <li>망연계 Agent <a href="#" class="btn-down btn-incomplete">미설치 <img
+                                    src="../assets/images/icon_incomplete.svg" alt="다운로드"></a></li>
+                                <li>설치 가이드 <a href="#" class="btn-down btn-complete">설치됨 <img
+                                    src="../assets/images/icon_complete.svg" alt="다운로드"></a></li>
                             </ul>
                         </div>
                     </li>
@@ -93,11 +93,24 @@
             </div>
             <div class="bottom-wrap">
                 <button type="button" class="button button-cancel">이전</button>
-                <button type="button" class="button button-default">설치확인</button>
+                <button type="button" id="btnCheckreq" class="button button-default">설치확인</button>
             </div>
        </section>
     </article>
+    <script src="../assets/js/loading_spinner.js"></script>
     <script>
+
+        document.getElementById('btnCheckreq').addEventListener('click', () => {
+
+            LoadingSpinner.show();
+            setTimeout(() => {
+            LoadingSpinner.hide();
+            window.location.href = '../index.html'
+        }, 500);
+
+        });
+
+
         // 초기 설치 프로그램 다운로드
         const actionButtons = document.querySelectorAll('.action_button');
         // 화면 너비 감지
