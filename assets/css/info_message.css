@@ -48,6 +48,121 @@
     font-weight: 500;
 }
 
+/* 초기 설치 파일 확인 페이지 */
+.info-message-page.req_check {
+    overflow: inherit;
+    display: flex;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+}
+.req_check .container {
+    width: 520px;
+}
+.req_check .title {
+    margin-bottom: 40px;
+}
+.req_check .title h2  {
+    margin-bottom: 16px;
+    font-size: 28px;
+    font-weight: 700;
+}
+.req_check .title h2 img {
+    display: block;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 20px;
+}
+.req_check .title span {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+    color: var(--Neutral-Text-neutral);
+}
+.req_contents {
+    max-width: 520px;
+    height: 360px;
+    padding: 12px;
+    border-top: 1px solid #EDEFF3;
+    border-bottom: 1px solid #EDEFF3;
+}
+.req_contents .action_button {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.req_contents .action_button .logo-icon {
+    margin-right: 20px;
+}
+.req_contents .action_button .btn-control-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+/* show */
+.req_contents .action_button .btn-control-icon.active {
+    transform: rotate(-180deg);
+}
+.req_contents .show_content {
+    background-color: #F4F6F8;
+    border-radius: 12px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.05s ease-out;
+    opacity: 0;
+
+}
+.req_contents .show_content.show {
+    overflow-y: scroll;
+    max-height: 179px; /* Adjust based on your content's maximum height */
+    opacity: 1;
+    transition: max-height 0.25s ease-in, opacity 0.4s ease-in;
+}
+.req_contents .show_content ul li {
+    position: relative;
+    display: flex;
+    padding: 8px 16px 8px 80px;
+    font-size: 14px;
+    color: var(--Neutral-Text-neutral);
+}
+.req_contents .show_content ul li::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 68px;
+    width: 3px;
+    height: 3px;
+    background-image: url(../images/dot.svg);
+}
+.req_contents .show_content ul li .btn-down {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 4px;
+    background-color: var(--Neutral-Fill-alternative);
+}
+.req_contents .show_content ul li .btn-down img {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+}
+.req_check .bottom-wrap {
+    margin-top: 40px;
+}
+.req_check .button-cancel {
+    width: 60px;
+}
+.req_check .button-default {
+    width: 100px;
+}
+
 @media screen and (max-width: 1079px) {
     /* 서비스 점검 안내 페이지 */
     .info-message-page .date-info p {
@@ -104,6 +219,76 @@
         display: block;
         text-align: center;
         font-size: 4.17vw;
+    }
+    /* 초기 설치 파일 확인 페이지 */
+    .req_check .container {
+        width: 144.44vw;
+    }
+    .req_check .title {
+        margin-bottom: 11.11vw;
+    }
+    .req_check .title h2  {
+        margin-bottom: 4.44vw;
+        font-size: 7.78vw;
+        font-weight: 700;
+    }
+    .req_check .title h2 img {
+        width: 15.56vw;
+        height: 15.56vw;
+        margin: 0 auto 5.56vw;
+    }
+    .req_check .title span {
+        font-size: 3.89vw;
+        font-weight: 400;
+        line-height: 150%;
+    }
+    .req_contents {
+        max-width: 144.44vw;
+        height: 112.00vw;
+        padding: 3.33vw;
+    }
+    .req_contents .action_button {
+        padding: 4.44vw;
+        font-size: 4.44vw;
+        font-weight: 500;
+    }
+    .req_contents .action_button .logo-icon {
+        margin-right: 5.56vw;
+    }
+    /* show */
+    .req_contents .show_content.show {
+        max-height: 49.72vw; /* Adjust based on your content's maximum height */
+    }
+    .req_contents .show_content ul li {
+        padding: 2.22vw 4.44vw 2.22vw 22.22vw;
+        font-size: 3.89vw;
+    }
+    .req_contents .show_content ul li::before {
+        top: 4.44vw;
+        left: 18.89vw;
+        width: 0.83vw;
+        height: 0.83vw;
+    }
+    .req_contents .show_content ul li .btn-down {
+        padding: 1.11vw 2.22vw;
+        font-size: 3.33vw;
+        font-weight: 400;
+        border-radius: 1.11vw;
+    }
+    .req_contents .show_content ul li .btn-down img {
+        width: 4.44vw;
+        height: 4.44vw;
+        margin-left: 2.22vw;
+    }
+    .req_check .bottom-wrap {
+        margin-top: 8vw;
+        margin-bottom: 8vw;
+    }
+    .req_check .button-cancel {
+        width: 16.67vw;
+    }
+    .req_check .button-default {
+        width: 27.78vw;
     }
 
 }

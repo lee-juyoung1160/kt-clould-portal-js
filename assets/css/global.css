@@ -25,6 +25,9 @@
 body {
     background-color: var(--Primary-Fill-neutral-bg);
 }
+body.bg_none {
+    background-color: #fff;
+}
 
 /* 반응형에 따른 display */
 .pc {display: block !important;}

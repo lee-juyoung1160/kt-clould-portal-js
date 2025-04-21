@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/info_message.css">
+</head>
+
+<body class="bg_none">
+    <header class="login-header">
+        <h1><a href="/"><img src="../assets/images/logo.svg" alt="로고"></a></h1>
+    </header>
+
+    <article class="info-message-page req_check">
+       <section class="container">
+        <div class="title">
+            <h2>
+                <img src="../assets//images/ic__warn.svg" alt="icon">
+                초기 설치 파일 다운
+            </h2>
+              <span>서비스 이용을 위해<br class="mo">필수 설치 파일을 먼저 다운로드해 주세요.<br>
+                해당 파일을 설치하지 않으면<br class="mo">로그인 및 기능 이용이 제한됩니다.</span>
+            </div>
+            <div class="req_contents">
+                <ul>
+                    <li>
+                        <div class="action_button windows">
+                            <img class="logo-icon" src="../assets/images/windows_logo.svg" alt="윈도우 로고">
+                            <strong>Windows 사용자용 <span class="mo">x86 / x64</span></strong>
+                            <button type="button" class="btn-control-icon"><img src="../assets/images/chevron_Icon.svg"
+                                    alt="아이콘"></button>
+                        </div>
+                        <!-- 설치됨 : .btn-complete / 미설치 : btn-incomplete -->
+                        <div class="show_content">
+                            <ul>
+                                <li>접속 Agent <a href="#" class="btn-down btn-complete">설치됨 <img
+                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                <li>포탈 Agent <a href="#" class="btn-down">미설치 <img
+                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                <li>망연계 Agent <a href="#" class="btn-down btn-incomplete">미설치 <img
+                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                <li>설치 가이드 <a href="#" class="btn-down">설치됨 <img src="../assets/images/ic_down_16.svg"
+                                            alt="다운로드"></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="action_button mac">
+                            <img class="logo-icon" src="../assets/images/mac_logo.svg" alt="맥 로고">
+                            <strong>Mac 사용자용 <span class="mo">x86 / x64</span></strong>
+                            <button type="button" class="btn-control-icon"><img src="../assets/images/chevron_Icon.svg"
+                                    alt="아이콘"></button>
+                        </div>
+                        <div class="show_content">
+                            <ul>
+                                <li>접속 Agent <a href="#" class="btn-down">다운로드 <img
+                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                <li>포탈 Agent <a href="#" class="btn-down">다운로드 <img
+                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                <li>망연계 Agent <a href="#" class="btn-down">다운로드 <img
+                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                <li>설치 가이드 <a href="#" class="btn-down">다운로드 <img src="../assets/images/ic_down_16.svg"
+                                            alt="다운로드"></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="action_button tablet">
+                            <img class="logo-icon" src="../assets/images/tablet_icon.svg" alt="테블릿 아이콘">
+                            <strong>Tablet 사용자용 <span class="mo">x86 / x64</span></strong>
+                            <button type="button" class="btn-control-icon"><img src="../assets/images/chevron_Icon.svg"
+                                    alt="아이콘"></button>
+                        </div>
+                        <div class="show_content">
+                            <ul>
+                                <li>접속 Agent <a href="#" class="btn-down">다운로드 <img
+                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                <li>포탈 Agent <a href="#" class="btn-down">다운로드 <img
+                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                <li>망연계 Agent <a href="#" class="btn-down">다운로드 <img
+                                            src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
+                                <li>설치 가이드 <a href="#" class="btn-down">다운로드 <img src="../assets/images/ic_down_16.svg"
+                                            alt="다운로드"></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-wrap">
+                <button type="button" class="button button-cancel">이전</button>
+                <button type="button" class="button button-default">설치확인</button>
+            </div>
+       </section>
+    </article>
+    <script>
+        // 초기 설치 프로그램 다운로드
+        const actionButtons = document.querySelectorAll('.action_button');
+        // 화면 너비 감지
+        const windowWidth = window.innerWidth;
+        //pc 진입 os 체크
+        function detectOS() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const platform = navigator.platform.toLowerCase();
+
+            if (userAgent.indexOf('win') !== -1 || platform.indexOf('win') !== -1) {
+                return 'Windows';
+            } else if (userAgent.indexOf('mac') !== -1 || platform.indexOf('mac') !== -1) {
+                return 'MacOS';
+            } else {
+                return 'Other OS';
+            }
+        }
+        // mo 진입 os 체크
+        function detectMobileOS() {
+            const userAgent = navigator.userAgent.toLowerCase();
+
+            if (userAgent.indexOf('android') !== -1) {
+                return 'Android';
+            } else if (
+                userAgent.indexOf('iphone') !== -1 ||
+                userAgent.indexOf('ipad') !== -1 ||
+                userAgent.indexOf('ipod') !== -1 ||
+                (userAgent.indexOf('mac') !== -1 && 'ontouchend' in document) // iPadOS 감지
+            ) {
+                return 'iOS';
+            } else {
+                return 'Other';
+            }
+        }
+        const currentOS = detectOS();
+        // 윈도우 
+        if (currentOS === 'Windows' && windowWidth > 1079) {
+            document.querySelector('.action_button.windows').nextElementSibling.classList.add('show');
+            document.querySelector('.action_button.windows .btn-control-icon').classList.add('active');
+
+            //console.log('윈도우용 값 설정');
+            // 맥
+        } else if (currentOS === 'MacOS' && windowWidth > 1079) {
+            document.querySelector('.action_button.mac').nextElementSibling.classList.add('show');
+            document.querySelector('.action_button.mac .btn-control-icon').classList.add('active');
+            console.log('맥OS용 값 설정');
+            // 태블릿
+        } else if (windowWidth <= 1079) {
+            document.querySelector('.action_button.tablet').nextElementSibling.classList.add('show');
+            document.querySelector('.action_button.tablet .btn-control-icon').classList.add('active');
+            //console.log('태블릿 값 설정');
+
+            // 테블릿 일 경우, 모바일 os 설정
+            // const mobileOS = detectMobileOS();
+            // if (mobileOS === 'Android') {
+            // console.log('안드로이드용 값 설정');
+            // // 안드로이드 전용 코드
+            // } else if (mobileOS === 'iOS') {
+            // console.log('iOS용 값 설정');
+            // // iOS 전용 코드
+            // } else {
+            // console.log('기타 OS용 값 설정');
+            // // 기타 OS 전용 코드
+            // }
+
+            //그 외 윈도우로 처리
+        } else {
+            document.querySelector('.action_button.windows').nextElementSibling.classList.add('show');
+            document.querySelector('.action_button.windows .btn-control-icon').classList.add('active');
+            //console.log('기타 OS용 값 설정');
+        }
+
+        // Add click event listener to each action button
+        actionButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Get the control icon inside this button
+                const controlicon = this.querySelector('.btn-control-icon');
+
+                // Get the content div that follows this button
+                const content = this.nextElementSibling;
+
+                // Check if this content is already visible
+                const isVisible = content.classList.contains('show');
+
+                // Close all open contents and remove active class from all control icons
+                document.querySelectorAll('.show_content').forEach(item => {
+                    if (item !== content) {
+                        item.classList.remove('show');
+                    }
+                });
+
+                document.querySelectorAll('.btn-control-icon').forEach(icon => {
+                    if (icon !== controlicon) {
+                        icon.classList.remove('active');
+                    }
+                });
+                // Toggle this content and control icon
+                if (isVisible) {
+                    // If it's already visible, hide it and remove active class
+                    content.classList.remove('show');
+                    controlicon.classList.remove('active');
+                } else {
+                    // If it's hidden, show it and add active class
+                    content.classList.add('show');
+                    controlicon.classList.add('active');
+
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
