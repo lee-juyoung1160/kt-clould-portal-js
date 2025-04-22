@@ -1,13 +1,34 @@
 
-window.addEventListener('load', () => {
-    // 모든 이미지, 스타일, 폰트 등 로딩 끝나면 보여줌
-    LoadingSpinner.show() ;
-    setTimeout(() => {
-        //document.body.style.visibility = 'visible';
-        //document.body.style.opacity = '1';
-        LoadingSpinner.hide() ;
-    }, 500);
+// 페이지 로딩 시작 시간 저장
+const startTime = performance.now();
+// 페이지 로딩 시작 시 스피너 표시
+document.addEventListener('DOMContentLoaded', function() {
+  // 스피너 초기화 (필요한 경우)
+  if (typeof LoadingSpinner.init === 'function' && !LoadingSpinner.initialized) {
+    LoadingSpinner.init();
+  }
+  // 스피너 표시
+  LoadingSpinner.show();
 });
+// 페이지 로드 완료 시 스피너 숨기기 및 로드 시간 계산
+window.addEventListener('load', function() {
+  // 로드 완료 시간 
+  const endTime = performance.now();
+  // 로드 시간 계산 (밀리초)
+  const loadTime = endTime - startTime;
+  // 로드 시간을 초 단위로 변환 (소수점 둘째 자리까지)
+  const loadTimeSeconds = (loadTime / 1000).toFixed(2);
+  // 로드 시간 콘솔에 출력
+  console.log(`페이지 로드 시간: ${loadTimeSeconds}초 (${loadTime.toFixed(0)}ms)`);
+  // 로드 시간을 스피너에 표시
+  //LoadingSpinner.updateText(`페이지 로드 완료! (${loadTimeSeconds}초)`);
+  // 잠시 후 스피너 숨기기 (로드 시간을 잠깐 표시)
+  setTimeout(function() {
+    LoadingSpinner.hide();
+  }, 100);
+});
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.querySelector('.menu-toggle');
     const closeBtn = document.querySelector('.close-btn');
