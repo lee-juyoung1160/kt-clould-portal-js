@@ -94,6 +94,9 @@
                             <li class="custom-option" data-value="001E82265602COA"></li>
                             <li class="custom-option" data-value="001E82265602COB"></li>
                             <li class="custom-option" data-value="001E82265602COC"></li>
+                            <li class="custom-option" data-value="001E82265602sss"></li>
+                            <li class="custom-option" data-value="001E8226560fff"></li>
+                            <li class="custom-option" data-value="001E82265602fff"></li>
                         </ul>
                     </div>
                     <button class="refresh-btn"><img src="../assets/images/ic_refresh_24.svg" alt="icon"> <span>상태
@@ -416,6 +419,21 @@
                     selectorTrigger.classList.remove('hover');
                 });
             }
+
+             // 첫번째 li의 data-value를 span.id에 설정
+            const firstOption = document.querySelector('.custom-option');
+            if (firstOption) {
+                const firstDataValue = firstOption.getAttribute('data-value');
+                const idSpan = document.querySelector('.selector-btn .id');
+                
+                if (firstDataValue && idSpan) {
+                    idSpan.textContent = firstDataValue;
+                    
+                    // 첫 번째 옵션에 selected 클래스 추가
+                    firstOption.classList.add('selected');
+                }
+            }
+
         });
 
         // 셀렉트 트리거 클릭 이벤트
