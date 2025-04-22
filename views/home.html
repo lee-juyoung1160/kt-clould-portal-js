@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="../assets/css/home.css">
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -78,112 +79,121 @@
 
     <article clgss="home-page">
         <div class="container">
-            <section class="main-panel">
-                <div class="main-panel-header">
+            <section class="main-panel-wrap">
 
-                    <!-- 클라우드 pc 리스트 드롭다운 박스 -->
-                    <div class="custom-select">
-                        <div class="id-selector custom-select__trigger">
-                            <button class="selector-btn"><span class="id">001E82265602COA</span>
-                                <img class="selectorBtnImg pc" src="../assets/images/ic_id_selector.svg" alt="열기">
-                                <img class="selectorBtnImg mo" src="../assets/images/chevron_Icon.svg" alt="열기">
-                            </button>
-                        </div>
-                        <!-- 클라우드 pc 리스트 드롭다운 박스 : data-value -->
-                        <ul class="id-selector-option custom-options">
-                            <li class="custom-option" data-value="001E82265602COA"></li>
-                            <li class="custom-option" data-value="001E82265602COB"></li>
-                            <li class="custom-option" data-value="001E82265602COC"></li>
-                            <li class="custom-option" data-value="001E82265602sss"></li>
-                            <li class="custom-option" data-value="001E8226560fff"></li>
-                            <li class="custom-option" data-value="001E82265602fff"></li>
-                        </ul>
-                    </div>
-                    <button class="refresh-btn"><img src="../assets/images/ic_refresh_24.svg" alt="icon"> <span>상태
-                            재확인</span></button>
+                <div class="svg-container" id="svgContainer">
+                    <!-- SVG는 JavaScript로 동적 생성됨 -->
                 </div>
 
-                <!-- body -->
-                <div class="main-panel-body">
-                    <!-- vod -->
-                    <div class="cloud_vod">
-
-                        <!-- 비디오 상태 변경 -->
-                        <video autoplay muted playsinline poster="../assets/images/vod/mov_open.svg">
-                            <source src="../assets/images/vod/open.webm" type="video/webm">
-                        </video>
+                <div class="main-panel" style="background-image: none;">
+                    <div class="main-panel-header">
+                        <!-- 클라우드 pc 리스트 드롭다운 박스 -->
+                        <div class="custom-select">
+                            <div class="id-selector custom-select__trigger">
+                                <button class="selector-btn"><span class="id">001E82265602COA</span>
+                                    <img class="selectorBtnImg pc" src="../assets/images/ic_id_selector.svg" alt="열기">
+                                    <img class="selectorBtnImg mo" src="../assets/images/chevron_Icon.svg" alt="열기">
+                                </button>
+                            </div>
+                            <!-- 클라우드 pc 리스트 드롭다운 박스 : data-value -->
+                            <ul class="id-selector-option custom-options">
+                                <li class="custom-option" data-value="001E82265602COA"></li>
+                                <li class="custom-option" data-value="001E82265602COB"></li>
+                                <li class="custom-option" data-value="001E82265602COC"></li>
+                                <li class="custom-option" data-value="001E82265602sss"></li>
+                                <li class="custom-option" data-value="001E8226560fff"></li>
+                                <li class="custom-option" data-value="001E82265602fff"></li>
+                            </ul>
+                        </div>
+                        <button class="refresh-btn"><img src="../assets/images/ic_refresh_24.svg" alt="icon"> <span>상태
+                                재확인</span></button>
                     </div>
-                    <!-- info -->
-                    <div class="info-mo-layout">
-                        <div class="cloud-pc-title-wrap">
-                            <h2 class="cloud-pc-title">
-                                <span>Cloud PC</span><strong class="gradient-text gradient-text-blue">현재 접속 중</strong>
-                                입니다.
 
-                                <!-- 접속 하는 중 (접속하기 버튼 선택 시) -->
-                                <!-- span>Cloud PC</span><strong class="gradient-text gradient-text-blue">접속 하는 중</strong> 입니다. -->
+                    <!-- body -->
+                    <div class="main-panel-body">
+                        <!-- vod -->
+                        <div class="cloud_vod">
 
-                                <!-- 접속 가능 상태 -->
-                                <!-- span>Cloud PC</span><strong class="gradient-text gradient-text-blue">접속 가능 상태</strong> 입니다. -->
+                            <!-- 비디오 상태 변경 -->
+                            <video autoplay muted playsinline poster="../assets/images/vod/mov_open.svg">
+                                <source src="../assets/images/vod/open.webm" type="video/webm">
+                            </video>
+                        </div>
+                        <!-- info -->
+                        <div class="info-mo-layout">
+                            <div class="cloud-pc-title-wrap">
+                                <h2 class="cloud-pc-title">
+                                    <span>Cloud PC</span><strong class="gradient-text gradient-text-blue">현재 접속
+                                        중</strong>
+                                    입니다.
 
-                                <!-- 전원 부팅 중 -->
-                                <!-- span>Cloud PC</span><strong class="gradient-text gradient-text-blue">전원 부팅 중</strong> 입니다. -->
+                                    <!-- 접속 하는 중 (접속하기 버튼 선택 시) -->
+                                    <!-- span>Cloud PC</span><strong class="gradient-text gradient-text-blue">접속 하는 중</strong> 입니다. -->
 
-                                <!-- 종료 -->
-                                <!-- <span>Cloud PC</span><strong class="gradient-text gradient-text-red">전원 종료 상태</strong> 입니다. -->
+                                    <!-- 접속 가능 상태 -->
+                                    <!-- span>Cloud PC</span><strong class="gradient-text gradient-text-blue">접속 가능 상태</strong> 입니다. -->
 
-                                <!-- 종료 중 -->
-                                <!-- <span>Cloud PC</span><strong class="gradient-text gradient-text-red">전원 종료 중</strong> 입니다. -->
+                                    <!-- 전원 부팅 중 -->
+                                    <!-- span>Cloud PC</span><strong class="gradient-text gradient-text-blue">전원 부팅 중</strong> 입니다. -->
 
-                                <!-- 접속 불가 -->
-                                <!-- <span>Cloud PC</span><strong class="gradient-text gradient-text-red">접속 불가 상태</strong> 입니다. -->
-                            </h2>
+                                    <!-- 종료 -->
+                                    <!-- <span>Cloud PC</span><strong class="gradient-text gradient-text-red">전원 종료 상태</strong> 입니다. -->
 
-                            <!-- 상태 설명 메세지 : 기획서 참고해서 넣어주세요. -->
-                            <p class="connection-message">최대 4분까지 소요될 수 있어요.<br>잠시만 기다려주세요.</p>
+                                    <!-- 종료 중 -->
+                                    <!-- <span>Cloud PC</span><strong class="gradient-text gradient-text-red">전원 종료 중</strong> 입니다. -->
 
-                            <!-- 
-                            progress bar : 접속하는 중에만 노출해주세요.
-                            하단 스크립트 ' connectionTime ' 에 초단위로 값을 넣어주시면 됩니다.
-                            -->
-                            <div class="progress-container">
-                                <div class="progress-bar">
-                                    <div class="progress-fill"></div>
+                                    <!-- 접속 불가 -->
+                                    <!-- <span>Cloud PC</span><strong class="gradient-text gradient-text-red">접속 불가 상태</strong> 입니다. -->
+                                </h2>
+
+                                <!-- 상태 설명 메세지 : 기획서 참고해서 넣어주세요. -->
+                                <p class="connection-message">최대 4분까지 소요될 수 있어요.<br>잠시만 기다려주세요.</p>
+
+                                <!-- 
+                                progress bar : 접속하는 중에만 노출해주세요.
+                                하단 스크립트 ' connectionTime ' 에 초단위로 값을 넣어주시면 됩니다.
+                                -->
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- profile-info -->
+                            <div class="profile-info">
+                                <div class="info-row">
+                                    <span class="info-label">Profile</span>
+                                    <span class="info-value">직원 Standard</span>
+                                    <span class="info-value">Windows 11 24H2, Office 365</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Cloud PC IP</span>
+                                    <span class="info-value">10.214.124.79</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">접속 위치</span>
+                                    <span class="info-value">사내 접속</span>
                                 </div>
                             </div>
-
                         </div>
 
-                        <!-- profile-info -->
-                        <div class="profile-info">
-                            <div class="info-row">
-                                <span class="info-label">Profile</span>
-                                <span class="info-value">직원 Standard</span>
-                                <span class="info-value">Windows 11 24H2, Office 365</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">Cloud PC IP</span>
-                                <span class="info-value">10.214.124.79</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">접속 위치</span>
-                                <span class="info-value">사내 접속</span>
-                            </div>
+                        <div class="buttons-container">
+                            <button class="reboot-btn"><img src="../assets/images/ic_reboot_28.svg" alt="icon">
+                                <span>재부팅</span></button>
+                            <!-- 접속하기 버튼 : 비활성화 일때 disabled 속성 추가 -->
+                            <button class="connect-btn active">
+                                <img class="connect-btn-img" src="../assets/images/ic_play_28.svg" alt="icon">
+                                <img class="connect-btn-disabled-img" src="../assets/images/ic_play_28_disabled.svg"
+                                    alt="icon">
+                                <span>접속하기</span></button>
                         </div>
-                    </div>
-
-                    <div class="buttons-container">
-                        <button class="reboot-btn"><img src="../assets/images/ic_reboot_28.svg" alt="icon">
-                            <span>재부팅</span></button>
-                        <!-- 접속하기 버튼 : 비활성화 일때 disabled 속성 추가 -->
-                        <button class="connect-btn active">
-                            <img class="connect-btn-img" src="../assets/images/ic_play_28.svg" alt="icon">
-                            <img class="connect-btn-disabled-img" src="../assets/images/ic_play_28_disabled.svg"
-                                alt="icon">
-                            <span>접속하기</span></button>
                     </div>
                 </div>
+
             </section>
+
 
             <section class="sidebar">
                 <div>
@@ -386,6 +396,63 @@
     <script src="../assets/js/modal.js"></script>
     <script src="../assets/js/loading_spinner.js"></script>
 
+
+    <script>
+        // 화면 크기에 따른 SVG 생성 함수
+        function createResponsiveSvg() {
+            const svgContainer = document.getElementById('svgContainer');
+            if (!svgContainer) {
+                console.error('SVG 컨테이너를 찾을 수 없습니다.');
+                return;
+            }
+            const width = window.innerWidth;
+            if (width >= 1480) {
+                // 1480 이상의 화면
+                svgContainer.innerHTML = `<svg width="100%" height="767" viewBox="0 0 956 767" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 103.904C0 86.2313 14.3269 71.9044 32 71.9044H274.612C292.285 71.9044 306.612 57.5775 306.612 39.9044V32C306.612 14.3269 320.939 0 338.612 0L613.274 0L924 0C941.673 0 956 14.3269 956 32L956 630.725C956 648.398 941.673 662.725 924 662.725H632.066C614.393 662.725 600.066 677.051 600.066 694.724V735C600.066 752.673 585.739 767 568.066 767H32C14.3269 767 0 752.673 0 735V103.904Z" fill="#E1E7F4"/>
+    </svg>`;
+            } else if (width >= 1081 && width <= 1479) {
+                svgContainer.innerHTML = `<svg width="1000" height="767" viewBox="0 0 1000 767" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 103.904C0 86.2313 14.3269 71.9044 32 71.9044H274.612C292.285 71.9044 306.612 57.5775 306.612 39.9044V32C306.612 14.3269 320.939 0 338.612 0L657.274 0L968 0C985.673 0 1000 14.3269 1000 32L1000 630.725C1000 648.398 985.673 662.725 968 662.725H676.066C658.393 662.725 644.066 677.051 644.066 694.724V735C644.066 752.673 629.739 767 612.066 767H32C14.3269 767 0 752.673 0 735V103.904Z" fill="#E1E7F4"/>
+</svg>`;
+            } else if (width >= 768 && width <= 1079) {
+                const containerWidth = width - 64; // 패딩이나 여백을 제외한 컨테이너 너비
+                const middleSvgWidth = containerWidth - (337 + 344); // 첫 번째와 마지막 SVG 너비를 뺀 중간 SVG 너비
+                // 768 이상 1079 이하의 화면 
+                svgContainer.innerHTML =
+                    `<svg width="337" height="697" viewBox="0 0 336 697" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M337 697.04H32C14.3269 697.04 1.24319e-06 682.713 0 665.04V103.908C0.000196905 86.2353 14.327 71.9082 32 71.9082H274.612C292.285 71.9081 306.612 57.5812 306.612 39.9082V32C306.612 14.8675 320.076 0.87971 337 0.0400391V697.04Z" fill="#E1E7F4"/>
+    </svg>
+    <svg width="${middleSvgWidth}" height="697" preserveAspectRatio="none" viewBox="0 0 ${middleSvgWidth} 697" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="${middleSvgWidth}" height="697" fill="#E1E7F4"/>
+    </svg>
+    <svg width="344" height="697" viewBox="0 0 344 697" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M312 0C329.673 8.92959e-05 344 14.3269 344 32V560.725C344 578.398 329.673 592.725 312 592.725H60.0664C42.3933 592.725 28.0664 607.052 28.0664 624.725L28.0654 665C28.0654 681.341 15.8168 694.816 0 696.755V0H312Z" fill="#E1E7F4"/>
+    </svg>`;
+
+            } else {
+                // 767 이하의 화면 - 가로축 10~50% 동적 조절
+                const containerWidth = width - 40; // 패딩이나 여백을 제외한 컨테이너 너비
+                const middleSvgWidth = containerWidth - (62 + 116); // 첫 번째와 마지막 SVG 너비를 뺀 중간 SVG 너비
+                svgContainer.innerHTML =
+                    `<svg width="62" height="578" viewBox="0 0 62 578" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M62 578H24C10.7452 578 7.08983e-07 567.255 0 554V24.9043C3.9731e-05 11.6495 10.7452 0.904297 24 0.904297H62V578Z" fill="#E1E7F4"/>
+    </svg>
+    <svg width="${middleSvgWidth}" height="578" preserveAspectRatio="none" viewBox="0 0 ${middleSvgWidth} 578" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="${middleSvgWidth}" height="578" fill="#E1E7F4"/>
+    </svg>
+    <svg width="116" height="637" viewBox="0 0 116 637" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M92 0C105.255 6.37229e-05 116 10.7452 116 24V613C116 626.255 105.255 637 92 637H0V59.9043H11.9863C25.2411 59.9042 35.9863 49.1591 35.9863 35.9043V24C35.9863 10.7452 46.7315 0 59.9863 0H92Z" fill="#E1E7F4"/>
+    </svg>`;
+            }
+        }
+        // DOM이 로드되면 SVG 생성
+        document.addEventListener('DOMContentLoaded', createResponsiveSvg);
+        // 화면 크기가 변경될 때 SVG 업데이트
+        window.addEventListener('resize', createResponsiveSvg);
+
+    </script>
+
     <script>
         // 홈화면 : Cloud PC 종료시
         //openAlert('alertPcEnd');
@@ -420,15 +487,15 @@
                 });
             }
 
-             // 첫번째 li의 data-value를 span.id에 설정
+            // 첫번째 li의 data-value를 span.id에 설정
             const firstOption = document.querySelector('.custom-option');
             if (firstOption) {
                 const firstDataValue = firstOption.getAttribute('data-value');
                 const idSpan = document.querySelector('.selector-btn .id');
-                
+
                 if (firstDataValue && idSpan) {
                     idSpan.textContent = firstDataValue;
-                    
+
                     // 첫 번째 옵션에 selected 클래스 추가
                     firstOption.classList.add('selected');
                 }

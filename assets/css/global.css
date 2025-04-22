@@ -672,19 +672,6 @@ button:disabled, button:disabled:hover {
         .pc {display: none !important;}
         .mo {display: block !important;}
 
-       /*************************    
-            footer 
-        *************************/
-        footer {
-            font-size: 3.33vw;
-        }
-        footer  .footer-copy {
-            margin-right: 4.44vw;
-        }
-        footer .footer-menu li {
-            margin-right: 4.44vw;
-        }
-
         /*************************    
             modal 
         *************************/
