@@ -81,12 +81,8 @@
         <div class="container">
             <section class="main-panel-wrap">
                 <div class="overlaySvg"></div>
-
-                <div class="svg-container" id="svgContainer">
-                    <!-- SVG는 JavaScript로 동적 생성됨 -->
-                </div>
-
-                <div class="main-panel" style="background-image: none;">
+                <div class="svg-container" id="svgContainer"></div>
+                <div class="main-panel">
                     <div class="main-panel-header">
                         <!-- 클라우드 pc 리스트 드롭다운 박스 -->
                         <div class="custom-select">
@@ -414,16 +410,8 @@
       <path d="M0 103.904C0 86.2313 14.3269 71.9044 32 71.9044H274.612C292.285 71.9044 306.612 57.5775 306.612 39.9044V32C306.612 14.3269 320.939 0 338.612 0L613.274 0L924 0C941.673 0 956 14.3269 956 32L956 630.725C956 648.398 941.673 662.725 924 662.725H632.066C614.393 662.725 600.066 677.051 600.066 694.724V735C600.066 752.673 585.739 767 568.066 767H32C14.3269 767 0 752.673 0 735V103.904Z" fill="#E1E7F4"/>
     </svg>`;
 
-                overlaySvgContent = `<svg width="956" height="767" viewBox="0 0 956 767" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <foreignObject x="-12" y="-12" width="980" height="791">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(12px);clip-path:url(#bgblur_1_clip_path);height:100%;width:100%"></div>
-      </foreignObject>
-      <path data-figma-bg-blur-radius="12" d="M0 103.904C0 86.2313 14.3269 71.9044 32 71.9044H274.612C292.285 71.9044 306.612 57.5775 306.612 39.9044V32C306.612 14.3269 320.939 0 338.612 0L613.274 0L924 0C941.673 0 956 14.3269 956 32L956 630.725C956 648.398 941.673 662.725 924 662.725H632.066C614.393 662.725 600.066 677.051 600.066 694.724V735C600.066 752.673 585.739 767 568.066 767H32C14.3269 767 0 752.673 0 735V103.904Z" fill="rgba(0, 0, 0, 0.4)"/>
-      <defs>
-        <clipPath id="bgblur_1_clip_path" transform="translate(12 12)">
-          <path d="M0 103.904C0 86.2313 14.3269 71.9044 32 71.9044H274.612C292.285 71.9044 306.612 57.5775 306.612 39.9044V32C306.612 14.3269 320.939 0 338.612 0L613.274 0L924 0C941.673 0 956 14.3269 956 32L956 630.725C956 648.398 941.673 662.725 924 662.725H632.066C614.393 662.725 600.066 677.051 600.066 694.724V735C600.066 752.673 585.739 767 568.066 767H32C14.3269 767 0 752.673 0 735V103.904Z"/>
-        </clipPath>
-      </defs>
+                overlaySvgContent = `<svg width="100%" height="767" viewBox="0 0 956 767" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 103.904C0 86.2313 14.3269 71.9044 32 71.9044H274.612C292.285 71.9044 306.612 57.5775 306.612 39.9044V32C306.612 14.3269 320.939 0 338.612 0L613.274 0L924 0C941.673 0 956 14.3269 956 32L956 630.725C956 648.398 941.673 662.725 924 662.725H632.066C614.393 662.725 600.066 677.051 600.066 694.724V735C600.066 752.673 585.739 767 568.066 767H32C14.3269 767 0 752.673 0 735V103.904Z" fill="rgba(0, 0, 0, 0.4)"/>
     </svg>`;
             } else if (width >= 1081 && width <= 1479) {
                 svgContent = `<svg width="1000" height="767" viewBox="0 0 1000 767" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -531,87 +519,85 @@
         }
 
         // 로딩 스피너 생성 및 표시 함수
-function showLoadingSpinner() {
-    // 기존 스피너가 있으면 제거
-    hideLoadingSpinner();
-    
-    // 로딩 스피너 컨테이너 생성
-    const spinnerContainer = document.createElement('div');
-    spinnerContainer.className = 'loading-spinner-container';
-    
-    // 컨테이너 스타일 설정
-    spinnerContainer.style.position = 'absolute';
-    spinnerContainer.style.top = '50%';
-    spinnerContainer.style.left = '50%';
-    spinnerContainer.style.transform = 'translate(-50%, -50%)';
-    spinnerContainer.style.display = 'flex';
-    spinnerContainer.style.flexDirection = 'column';
-    spinnerContainer.style.alignItems = 'center';
-    spinnerContainer.style.justifyContent = 'center';
-    spinnerContainer.style.zIndex = '9999999999';
-    
-    // 스피너 요소 생성
-    const spinner = document.createElement('div');
-    spinner.className = 'loading-spinner';
-    
-    // 스피너 스타일 설정
-    spinner.style.width = '32px';
-    spinner.style.height = '32px';
-    spinner.style.border = '3px solid rgba(255, 255, 255, 0.28)';
-    spinner.style.borderTop = '3px solid #2DBDB6';
-    spinner.style.borderRadius = '50%';
-    spinner.style.marginBottom = '16px';
-    
-    // 애니메이션 적용
-    spinner.style.animation = 'spin 1s linear infinite';
-    
-    // 텍스트 요소 생성
-    const spinnerText = document.createElement('div');
-    spinnerText.className = 'loading-spinner-text';
-    spinnerText.textContent = '상태 재확인 중입니다.';
-    
-    // 텍스트 스타일 설정
-    spinnerText.style.color = '#fff';
-    spinnerText.style.fontSize = '14px';
-    spinnerText.style.fontWeight = '300';
-    spinnerText.style.textAlign = 'center';
-    
-    // 스타일시트에 애니메이션 키프레임 추가
-    if (!document.getElementById('spinner-style')) {
-        const styleSheet = document.createElement('style');
-        styleSheet.id = 'spinner-style';
-        styleSheet.textContent = `
+        function showLoadingSpinner() {
+            // 기존 스피너가 있으면 제거
+            hideLoadingSpinner();
+
+            // 로딩 스피너 컨테이너 생성
+            const spinnerContainer = document.createElement('div');
+            spinnerContainer.className = 'loading-spinner-container';
+
+            // 컨테이너 스타일 설정
+            spinnerContainer.style.position = 'absolute';
+            spinnerContainer.style.top = '50%';
+            spinnerContainer.style.left = '50%';
+            spinnerContainer.style.transform = 'translate(-50%, -50%)';
+            spinnerContainer.style.display = 'flex';
+            spinnerContainer.style.flexDirection = 'column';
+            spinnerContainer.style.alignItems = 'center';
+            spinnerContainer.style.justifyContent = 'center';
+            spinnerContainer.style.zIndex = '9999999999';
+
+            // 스피너 요소 생성
+            const spinner = document.createElement('div');
+            spinner.className = 'loading-spinner';
+
+            // 스피너 스타일 설정
+            spinner.style.width = '32px';
+            spinner.style.height = '32px';
+            spinner.style.border = '3px solid rgba(255, 255, 255, 0.28)';
+            spinner.style.borderTop = '3px solid #2DBDB6';
+            spinner.style.borderRadius = '50%';
+            spinner.style.marginBottom = '16px';
+
+            // 애니메이션 적용
+            spinner.style.animation = 'spin 1s linear infinite';
+
+            // 텍스트 요소 생성
+            const spinnerText = document.createElement('div');
+            spinnerText.className = 'loading-spinner-text';
+            spinnerText.textContent = '상태 재확인 중입니다.';
+
+            // 텍스트 스타일 설정
+            spinnerText.style.color = '#fff';
+            spinnerText.style.fontSize = '14px';
+            spinnerText.style.fontWeight = '300';
+            spinnerText.style.textAlign = 'center';
+
+            // 스타일시트에 애니메이션 키프레임 추가
+            if (!document.getElementById('spinner-style')) {
+                const styleSheet = document.createElement('style');
+                styleSheet.id = 'spinner-style';
+                styleSheet.textContent = `
             @keyframes spin {
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
             }
         `;
-        document.head.appendChild(styleSheet);
-    }
-    
-    // 요소들을 컨테이너에 추가
-    spinnerContainer.appendChild(spinner);
-    spinnerContainer.appendChild(spinnerText);
-    
-    // 오버레이 요소에 스피너 컨테이너 추가
-    const overlayElement = document.querySelector('.overlaySvg');
-    if (overlayElement) {
-        overlayElement.appendChild(spinnerContainer);
-    } else {
-        // 오버레이가 없으면 body에 직접 추가
-        document.body.appendChild(spinnerContainer);
-    }
-}
+                document.head.appendChild(styleSheet);
+            }
 
-// 로딩 스피너 숨기기 함수
-function hideLoadingSpinner() {
-    const spinnerContainer = document.querySelector('.loading-spinner-container');
-    if (spinnerContainer) {
-        spinnerContainer.remove();
-    }
-}
+            // 요소들을 컨테이너에 추가
+            spinnerContainer.appendChild(spinner);
+            spinnerContainer.appendChild(spinnerText);
 
+            // 오버레이 요소에 스피너 컨테이너 추가
+            const overlayElement = document.querySelector('.overlaySvg');
+            if (overlayElement) {
+                overlayElement.appendChild(spinnerContainer);
+            } else {
+                // 오버레이가 없으면 body에 직접 추가
+                document.body.appendChild(spinnerContainer);
+            }
+        }
 
+        // 로딩 스피너 숨기기 함수
+        function hideLoadingSpinner() {
+            const spinnerContainer = document.querySelector('.loading-spinner-container');
+            if (spinnerContainer) {
+                spinnerContainer.remove();
+            }
+        }
     </script>
 
     <script>

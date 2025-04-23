@@ -36,6 +36,7 @@
     border-radius: 32px;
     transition: all .3s;
 }
+disa
 .selector-btn img {
     width: 32px;
     height: 32px;
@@ -647,8 +648,14 @@
         display: flex;
         align-items: center;
     }
+    .cloud_vod video {
+        width: 480px;
+        margin-top: 40px;
+    }
     .info-mo-layout {
-        min-width: 320px;
+        position: absolute;
+        right: 10px;
+        width: 320px;
     }
     .cloud-pc-title-wrap {
         margin-top: 24px;
@@ -664,10 +671,6 @@
     }
     .progress-container {
         width: 300px;
-    }
-    .cloud_vod video {
-        width: 100%;
-        margin-top: 40px;
     }
     .buttons-container {
         position: absolute;
