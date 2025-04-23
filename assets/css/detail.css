@@ -1,5 +1,5 @@
 .detail-page {
-    padding: 0 40px;
+    padding: 0 40px 24px;
 }
 .detail-page section {
     max-width: 1400px;
@@ -196,6 +196,20 @@
     background-image: url(../../assets/images/pending.svg);
 }
 
+@media screen and (max-width: 1070px) {
+    .scroll {
+        overflow-x: scroll;
+    }
+    .detail-page {
+        padding: 0 32px 24px;
+    }
+
+}
+
 @media screen and (max-width: 767px) {
+
+    .detail-page {
+        padding: 0 20px 24px;
+    }
 
 }

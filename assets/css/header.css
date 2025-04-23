@@ -335,13 +335,6 @@ nav .mo-btn-logout {
             width: 28px;
             height: 28px;
         }
-        /* 라운드 박스 - 로그인 페이지용 */
-        .login-page .login-box {
-            margin-top: 0;
-            padding: 20px;
-            width: 100%;
-            /* height: calc(100vh - 60px); */
-        }
         
     }
     /* 모바일 스타일 */

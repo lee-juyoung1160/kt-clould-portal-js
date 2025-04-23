@@ -110,11 +110,32 @@
                     <div class="main-panel-body">
                         <!-- vod -->
                         <div class="cloud_vod">
-
                             <!-- 비디오 상태 변경 -->
+                            <!-- mov_open -->
                             <video autoplay muted playsinline poster="../assets/images/vod/mov_open.svg">
                                 <source src="../assets/images/vod/open.webm" type="video/webm">
+                                <source src="../assets/images/vod/open.mp4" type="video/mp4">
                             </video>
+                            <!-- mov_open -->
+                            <!-- <video autoplay muted playsinline poster="../assets/images/vod/mov_open.svg">
+                                <source src="../assets/images/vod/mov_close.webm" type="video/webm">
+                                <source src="../assets/images/vod/mov_close.mp4" type="video/mp4">
+                            </video> -->
+                            <!-- mov_reboot -->
+                            <!-- <video autoplay muted playsinline poster="../assets/images/vod/mov_open.svg">
+                                <source src="../assets/images/vod/mov_reboot.webm" type="video/webm">
+                                <source src="../assets/images/vod/mov_reboot.mp4" type="video/mp4">
+                            </video> -->
+                             <!-- mov_wait_open -->
+                            <!-- <video autoplay muted playsinline poster="../assets/images/vod/mov_open.svg">
+                                <source src="../assets/images/vod/mov_wait_open.webm" type="video/webm">
+                                <source src="../assets/images/vod/mov_wait_open.mp4" type="video/mp4">
+                            </video> -->
+                             <!-- mov_wait_close -->
+                            <!-- <video autoplay muted playsinline poster="../assets/images/vod/mov_wait_close.svg">
+                                <source src="../assets/images/vod/mov_wait_close.webm" type="video/webm">
+                                <source src="../assets/images/vod/mov_wait_close.mp4" type="video/mp4">
+                            </video> -->
                         </div>
                         <!-- info -->
                         <div class="info-mo-layout">
@@ -372,13 +393,6 @@
             </div>
         </div>
     </div>
-    <footer>
-        <p class="footer-copy">ⓒkt corp. All rights reserved</p>
-        <ul class="footer-menu">
-            <li><a href="#">개인 정보 보호</a></li>
-            <li><a href="#">서비스 약관</a></li>
-        </ul>
-    </footer>
     <!-- 알럿 / alert.js 에서 내용 불러옵니다. -->
     <div id="alertOverlay" class="alert-overlay">
         <div class="alert-content">
@@ -598,6 +612,63 @@
                 spinnerContainer.remove();
             }
         }
+
+        //브라우저 별 다른 비디오 확장자로 보여지도록
+        function setOptimalVideoSourcesForAllVideos() {
+        // 페이지 내 모든 비디오 요소 선택
+        const videoElements = document.querySelectorAll('video');
+        
+        if (videoElements.length === 0) return;
+        
+        // 브라우저 및 기기 감지
+        const userAgent = navigator.userAgent;
+        const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
+        const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+        
+        // Safari 브라우저 또는 iOS 기기인 경우
+        const needsMP4 = isSafari || isIOS;
+        
+        // 각 비디오 요소에 대해 처리
+        videoElements.forEach(videoElement => {
+            // 비디오의 src 경로 확인 또는 poster 경로에서 추정
+            let basePath;
+            const sourceSrc = videoElement.querySelector('source')?.src;
+            const posterSrc = videoElement.getAttribute('poster');
+            
+            if (sourceSrc) {
+                // src가 있으면 확장자를 제외한 기본 경로 추출
+                basePath = sourceSrc.substring(0, sourceSrc.lastIndexOf('.'));
+            } else if (posterSrc) {
+                // poster 경로에서 파일명 추정 (e.g., mov_open.svg -> open)
+                const fileName = posterSrc.split('/').pop().replace('mov_', '').replace('.svg', '');
+                basePath = `../assets/images/vod/${fileName}`;
+            } else {
+                // 경로를 추정할 수 없는 경우
+                console.error('비디오 소스 경로를 추정할 수 없습니다.');
+                return;
+            }
+            
+            if (needsMP4) {
+                // Safari 또는 iOS 기기는 MP4 사용
+                videoElement.innerHTML = `<source src="${basePath}.mp4" type="video/mp4">`;
+            } else {
+                // 다른 브라우저는 WebM 사용
+                videoElement.innerHTML = `<source src="${basePath}.webm" type="video/webm">`;
+            }
+            
+            // 비디오 로드
+            videoElement.load();
+            
+            // 오류 발생 시 MP4로 폴백
+            videoElement.addEventListener('error', function() {
+                console.error('비디오 로드 오류. MP4로 대체합니다.');
+                videoElement.innerHTML = `<source src="${basePath}.mp4" type="video/mp4">`;
+                videoElement.load();
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', setOptimalVideoSourcesForAllVideos);
     </script>
 
     <script>

@@ -17,7 +17,7 @@
 
     --Neutral-Border-alternative: rgba(112, 115, 124, 0.16);
     --Neutral-Border-Neutral: #EDEFF3;
-    --Neutral-Border-focus: #1A75FF;
+    --Neutral-Border-focus: #2dbdb6;
 }
 /*************************    
     common 
@@ -617,7 +617,7 @@ button:disabled, button:disabled:hover {
     margin-right: auto;
 }
 .input-item.input-item-btn .input button {
-    width: 80px;
+    width: 83px;
     height: 40px;
     margin-left: auto;
     text-align: center;
@@ -909,7 +909,7 @@ button:disabled, button:disabled:hover {
         margin-right: auto;
     }
     .input-item.input-item-btn .input button {
-        width: 22.22vw;
+        width: 23vw;
         height: 11.11vw;
         margin-left: auto;
         text-align: center;
@@ -936,11 +936,31 @@ button:disabled, button:disabled:hover {
         width: 8.89vw;
         height: 8.89vw;
     }
-
-
-
 }
 
+/* 스크롤 */
+  .modal-content.login-modal .modal-body .show_content.show {
+    overflow-y: auto; /* 내용이 넘칠 때만 스크롤바 표시 */
+  }
+  /* Chrome, Safari, Opera에서 스크롤바 스타일링 */
+  .modal-content.login-modal .modal-body .show_content.show::-webkit-scrollbar {
+    width: 8px; /* 스크롤바 너비 */
+  }
+  .modal-content.login-modal .modal-body .show_content.show::-webkit-scrollbar-track {
+    background: transparent; /* 스크롤바 트랙 배경 */
+  }
+  .modal-content.login-modal .modal-body .show_content.show::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2); /* 스크롤바 색상 */
+    border-radius: 4px; /* 스크롤바 둥근 모서리 */
+  }
+  .modal-content.login-modal .modal-body .show_content.show::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3); /* 호버 시 스크롤바 색상 */
+  }
+  /* Firefox에서 스크롤바 스타일링 */
+  .modal-content.login-modal .modal-body .show_content.show {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  }
 
 
 
