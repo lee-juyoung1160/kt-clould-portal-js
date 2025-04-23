@@ -237,9 +237,10 @@ nav .mo-btn-logout {
         width: 24px;
         height: 24px;
         transition: all .3s;
+        transform: rotate(-180deg);
     }
     .main-menu > li .toggle-open-icon.active {
-        transform: rotate(-180deg);
+        transform: rotate(0);
     }
     .main-menu > li:hover > a  {
         background-color: transparent;
@@ -272,7 +273,6 @@ nav .mo-btn-logout {
         opacity: 0;
         visibility: hidden;
     }
-    
     
     /* 모바일에서 링크 hover 배경색 제거 */
     .main-menu > li:hover > a {
