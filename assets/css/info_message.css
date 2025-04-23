@@ -1,10 +1,9 @@
 .info-message-page {
     overflow: hidden;
     display: flex;
-    height: calc(100vh - 72px);
+    height: calc(100vh - 100px);
     align-items: center;
     justify-content: center;
-    margin-top: 72px;
 }
 .info-message-page .container {
     text-align: center;
@@ -38,11 +37,11 @@
 }
 
 /* 서비스 점검 안내 페이지 */
-.info-message-page .date-info p {
+.info-message-page .date-info .g_box {
     margin: 28px 0;   
     font-size: 16px;
 }
-.info-message-page .date-info p strong {
+.info-message-page .date-info .g_box strong {
     margin-right: 16px;
     color: #60606A;
     font-weight: 500;
@@ -173,7 +172,9 @@
 
 @media screen and (max-width: 1079px) {
     /* 서비스 점검 안내 페이지 */
-    .info-message-page .date-info p {
+    .info-message-page .date-info .g_box {
+        display: flex;
+        justify-content: space-around;
         padding: 12px;
         background-color: #EAECEF;
         border-radius: 12px;
@@ -185,48 +186,31 @@
         height: calc(100vh - 37.78vw);
         margin-top: 0;
     }
-    .info-message-page .icon {
-        width: 15.56vw;
-        height: 15.56vw;
-    }
-    .info-message-page h3 {
-        margin: 8.89vw 0 4.44vw;
-        font-size: 6.11vw;
-    }
-    .info-message-page .desc {
-        font-size: 4.17vw;
+    .container {
+        width: 100%;
     }
     .info-message-page .btn-wrap {
         position: fixed;
-        bottom: 6.67vw;
+        bottom: 24px;
         left: 50%;
         width: 100%;
         transform: translateX(-50%);
         margin-top: 0;
     }
-    .info-message-page .btn-wrap a {
-        height: 11.11vw;
-        padding: 2.22vw 4.44vw;
-        font-size: 3.89vw;
+    .date-info {
+        /* width: calc(100% - 40px); */
     }
-    /* 서비스 점검 안내 페이지 */
-    .info-message-page .date-info p {
-        width: 88.89vw;
-        margin: 7.78vw 0; 
-        padding: 3.33vw;
-        font-size: 4.44vw;
-        border-radius: 3.33vw;
-    }
-    .info-message-page .date-info p strong {
+    .date-info strong, .date-info span {
         display: block;
-        margin-right: 4.44vw;
-        margin-bottom: 2.22vw;
+        margin-bottom: 8px;
         text-align: left;
     }
-    .info-message-page .date-info p span {
-        display: block;
+    .date-info span {
+        padding-left: 10px;
+    }
+    .date-info .desc {
         text-align: center;
-        font-size: 4.17vw;
+        padding-left: 0;
     }
     /* 초기 설치 파일 확인 페이지 */
     .info-message-page.req_check {

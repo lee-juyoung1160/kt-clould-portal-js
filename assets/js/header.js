@@ -65,11 +65,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 모바일에서 메인 메뉴 클릭 시 서브메뉴 토글
-    mainMenuItems.forEach(function (item) {
-        item.addEventListener('click', function (e) {
-            if (window.innerWidth <= 1079) {
+    // 모바일에서 메인 메뉴 클릭 시 서브메뉴 토글
+mainMenuItems.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        if (window.innerWidth <= 1079) {
+            const subMenu = this.nextElementSibling;
+            
+            // 서브메뉴가 있는 경우에만 기본 동작 막기
+            if (subMenu && subMenu.classList.contains('sub-menu')) {
                 e.preventDefault();
-                const subMenu = this.nextElementSibling;
                 const toggleIcon = this.querySelector('.toggle-open-icon');
 
                 // 현재 활성화된 다른 서브메뉴 닫기
@@ -92,8 +96,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 subMenu.classList.toggle('active');
                 toggleIcon.classList.toggle('active');
             }
-        });
+            // 서브메뉴가 없는 경우 기본 동작 유지 (href 이동)
+        }
     });
+});
 
     // 화면 크기 변경 시 모바일 메뉴 상태 초기화
     window.addEventListener('resize', function () {

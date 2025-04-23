@@ -3,7 +3,7 @@
 
 article {
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 0 auto 24px;
 }
 .text-center {
     text-align: center;
@@ -199,8 +199,6 @@ article {
     background-image: url(../../assets/images/icn_end.png);
     transform: translateY(-50%);
 }
-
-
 /* 테이블 헤더 스타일 */
 .table-header {
     display: flex;
@@ -209,7 +207,6 @@ article {
     margin: 12px 0 4px;
     padding: 6px 0;
 }
-
 .total-count {
     font-size: 14px;
     font-weight: 300;
@@ -276,12 +273,7 @@ article {
     background-image: url(../../assets/images/ic_chart_sort.svg);
     background-repeat: no-repeat;
     transform: translateY(-50%);
-
 }
-
-
-
-
 /* 상태 표시 스타일 */
 .status-answered span {
     position: relative;
@@ -448,6 +440,9 @@ article {
 .faq-table tr.open .toggle-icon {
     transform: rotate(180deg);
 }
+#dataTable tbody tr.open td, #dataTable tbody tr.show td {
+    border-bottom: none;
+}
 
 .faq-answer {
     background-color: #F4F6F8;
@@ -471,6 +466,7 @@ article {
 }
 
 .answer-content {
+    padding-left: calc(20%);
     transform: translateY(-20px);
     transition: transform 0.4s ease-out;
     opacity: 0;
@@ -491,10 +487,6 @@ article {
     border-radius: 8px 8px 8px 8px;
     border-bottom: none;
 }
-.faq-question.open td {
-    border-bottom: none;
-} 
-
 
 /* 클라우드 피시 신청페이지 */
 .cp-list-page .table-container {
@@ -541,7 +533,7 @@ article {
 @media (max-width: 1479px) {
     article {
         max-width: 1400px;
-       padding: 0 40px;
+        padding: 0 40px;
     }
 }
 
@@ -549,6 +541,10 @@ article {
     .pc-table { display: none !important; }
     .mo-card-table { display: block !important; margin-top: 4px; }
 
+    article {
+        max-width: 1079px;
+        padding: 0 32px;
+    }
 
     /* 모바일 카드 테이블 */
     .mo-card-table .card-item {
@@ -608,6 +604,7 @@ article {
 
     .faq-list-page  .card-item.expanded .answer-content {
         background-color: #F4F6F8;
+
     }
     
     .faq-list-page  .card-item.expanded .answer-content {
@@ -647,8 +644,7 @@ article {
         background-color: #F4F6F8;
         padding: 24px;
         margin-bottom: 10px;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
+        border-radius: 8px;
         border-bottom:none;
         overflow: hidden;
         max-height: 0;
@@ -665,230 +661,92 @@ article {
     .card-item.expanded {
         border-bottom:  none;
     }
-
-
 }
 
 /* 반응형 디자인 */
 @media (max-width: 767px) {
     article {
-        padding: 0 5.56vw;
-     }
-     .page-title {
-         padding: 5.00vw 8.89vw;
-         border-radius: 4.44vw;
-         box-shadow: 2.78vw 20ox 8.33vw reba(0, 0, 0, 0.02);
-     }
-     .page-title h2 img {
-         width: 10.00vw;
-         height: 10.00vw;
-     }
-     .page-title strong {
-         margin-left: 3.33vw;
-         font-size: 6.11vw;
-     }
-     .page-title a {
-        width: 27.78vw;
-        height: 11.11vw;
-        line-height: 11.11vw;
-        font-size: 4.44vw;
+        max-width: 767px;
+        padding: 0 20px;
     }
-     .table-container {
-        padding: 5.56vw 5.56vw;
-     }
-
-     /* 검색 영역 */
-     .table-header-top {
+    .table-container {
         position: relative;
-        height: 12.22vw;
-     }
-
+    }
      .search-container {
         display: none;
-        width: 77.78vw;
-        padding: 3.06vw 0;
-        background-color: #fff;
-        border-bottom: 0.28vw solid #EDEFF3;
-        border-radius: 0;
-    }
-    .search-container.active {
+     }
+     .search-container.active {
         display: flex;
-    }
-    .search-container .select-selected {
-        border-right: 0.28vw solid #EDEFF3;
-    }
-    .search-container .select-selected {
-        width: 18.06vw;
-        height: 5.83vw;
-        line-height: 5.83vw;
-        font-size: 4.17vw;
-    }
-    .search-container .select-items {
-        right: initial;
-        left: 0;
+        align-items: center;
+        position: absolute;
+        width: calc(100% - 64px);
+        height: 44px;
+        border-radius: 0;
+        padding: 10px 0;
+        background-color: #fff;
+        border-bottom: 1px solid #EDEFF3;
+     }
+     .search-container .select-selected {
+        width: 68px;
+        /* height: 44px;
+        line-height: 44px; */
+        font-size: 16px;
+        border-right: 1px solid #EDEFF3;
     }
     .search-container input {
-        width: 52.78vw;
-        height: 5.83vw;
-        font-size: 4.44vw;
-        padding-left: 2.78vw;
-        border-radius: 1.11vw;
+        width: calc(100% - 68px);
+        height: 100%;
+        border-radius: 4px;
+        font-size: 16px;
+        padding-left: 10px;
     }
     .search-container input::placeholder {
-        font-size: 4.44vw;
+        font-size: 16px;
     }
-    .search-container button {
-        justify-content: end;
-        width: 6.67vw;
-        height: 6.67vw;
-        margin-left: 3.33vw;
+    #searchButton {
+        width: 44px;
+        height: 44px;
+        padding: 10px;
     }
-    .search-container button img {
-        width: 6.67vw;
-        height: 6.67vw;
+    #searchButton img {
+        width: 24px;
+        height: 24px;
+    }
+    .search-button-toggle {
+        width: 40.75px;
+        height: 44px;
+        padding: 10px;
     }
     .search-button-toggle img {
-        width: 6.67vw;
-        height: 6.67vw;
+        width: 24px;
+        height: 24px;
     }
-
-    /* 탭 */
     .tab-container {
         overflow-x: scroll;
-        width: 65.56vw;
-        margin-bottom: 0;
+        width: calc(100% - 50px);
     }
     .tabs li button {
-        padding: 3.61vw 0.00vw;
-        margin-right: 5.56vw;
-        font-size: 3.89vw;
+        padding: 8px 2px;
     }
-    
-
-    /* 테이블 헤더 */
-    .table-header {
-        margin: 3.33vw 0 1.11vw;
-        padding: 3.33vw 0;
+    .card-body .card-title {
+        display: inline-block;
+        width: calc(100% - 30px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+}
+    .sort-select {
+        min-width: 74px;
     }
-    .total-count {
-        font-size: 3.89vw;
-    }
-    /* 셀렉 */
-    .sort-select .select-selected {
-        width: 23.06vw;
-        height: 6.11vw;
-        padding: 2.78vw 3.78vw;
-        font-size: 3.89vw;
+    .select-selected {
         background-color: #fff;
     }
-    .sort-select {
-        min-width: 23.06vw;
+    .sort-select .select-selected {
+        padding: 0;
     }
     .select-selected:after {
         right: 0;
-        width: 4.44vw;
-        height: 4.44vw;
-        background-size: cover;
-    }
-    .select-items {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 36.67vw;
-        max-height: 55.56vw;
-        padding: 1.11vw;
-        font-size: 3.89vw;
-        font-weight: 300;
-        background-color: #fff;
-        border: 0.28vw solid var(--Neutral-Border-Neutral);
-        border-radius: 1.11vw;
-        z-index: 99;
-        overflow-y: auto;
-        box-shadow: 2.78vw 5.56vw 8.61vw rgba(0, 0, 0, 0.02);
-    }
-
-    /* 모바일 카드 테이블 */
-    .mo-card-table .card-item {
-        padding: 4.44vw 0;
-    }
-    .card-body {
-        margin: 1.11vw 0 2.22vw;
-    }
-    .card-body .card-title {
-        display: block;
-        width: 70.00vw;
-        font-size: 4.44vw;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden; 
-    }
-
-    .card-footer .card-info div {
-        padding: 0 2.22vw;
-        font-size: 3.61vw;
-    }
-    .card-header .card-category {
-        font-size: 3.89vw;
-    }
-    .card-footer .card-info .card-views img {
-        margin-right: 1.11vw;
-        width: 4.44vw;
-        height: 4.44vw;
-    }
-
-    .search-no-result {
-        font-size: 3.89vw;
-        min-height: 111.11vw;
-    }
-
-    /* qna */
-
-    .status-answered span {
-        padding: 1.39vw 3.33vw 1.39vw 7.78vw;
-    }
-    .status-answered span::before {
-        left: 2.22vw;
-        width: 4.44vw;
-        height: 4.44vw;
-        background-size: cover;
-    }
-
-    /* FAQ */
-    .faq-answer-mobile {
-        padding: 6.67vw;
-        margin-bottom: 2.78vw;
-        font-size: 3.89vw;
     }
     
-    .faq-answer-mobile.expanded {
-        padding: 4.44vw;
-    }
-    .faq-list-page .toggle-icon {
-        right: 0;
-        width: 6.67vw;
-        height: 6.67vw;
-    }
-    /* 페이징 */
-    .pagination {
-        margin-top: 3.33vw;
-    }
-    .pagination button {
-        width: 8.33vw;
-        height: 8.33vw;
-        line-height: 8.33vw;
-        margin: 0 1.11vw;
-    }
-    .pagination button img {
-        width: 8.33vw;
-        height: 8.33vw;
-    }
-    .page-number {
-        width: 8.33vw;
-        height: 8.33vw;
-        line-height: 8.33vw;
-        font-size: 4.17vw;
-        margin: 0 1.11vw;
-    }
-
     
 }
