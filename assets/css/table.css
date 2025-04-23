@@ -120,6 +120,7 @@ article {
     justify-content: flex-start;
     height: 32px;
     padding: 0 10px;
+    background-color: #fff;
 }
 
 /* 커스텀 셀렉트 박스 스타일 */

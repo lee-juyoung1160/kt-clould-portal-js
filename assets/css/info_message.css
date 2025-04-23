@@ -121,17 +121,21 @@
     opacity: 1;
     transition: max-height 0.25s ease-in, opacity 0.4s ease-in;
 }
+.req_contents .show_content ul {
+    padding: 4px 0;
+}
 .req_contents .show_content ul li {
     position: relative;
     display: flex;
-    padding: 6px 16px 8px 80px;
+    align-items: center;
+    padding: 8px 16px 8px 80px;
     font-size: 14px;
     color: var(--Neutral-Text-neutral);
 }
 .req_contents .show_content ul li::before {
     content: '';
     position: absolute;
-    top: 16px;
+    top: 19px;
     left: 68px;
     width: 3px;
     height: 3px;
