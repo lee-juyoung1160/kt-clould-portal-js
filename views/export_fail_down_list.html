@@ -391,12 +391,12 @@
                     // 다운로드 기간
                     const periodInfo = document.createElement('div');
                     periodInfo.className = 'info-item period';
-                    periodInfo.innerHTML = `<span class="info-label">다운로드 기간:</span> <span class="info-value">${item.date}</span>`;
+                    periodInfo.innerHTML = `<span class="info-label">다운로드 기간:</span><br><span class="info-value">${item.date}</span>`;
 
                     // 잔여횟수
                     const remainingInfo = document.createElement('div');
                     remainingInfo.className = 'info-item remaining';
-                    remainingInfo.innerHTML = `<span class="info-label">잔여횟수:</span> <span class="info-value">${item.remainingNum}</span>`;
+                    remainingInfo.innerHTML = `<span class="info-label">잔여횟수:</span><br><span class="info-value">${item.remainingNum}</span>`;
 
                     // 정보 영역에 다운로드 기간, 잔여횟수 추가
                     infoArea.appendChild(periodInfo);

@@ -731,9 +731,8 @@ article {
         font-size: 16px;
     }
     #searchButton {
-        width: 44px;
+        width: 40.75px;
         height: 44px;
-        padding: 10px;
     }
     #searchButton img {
         width: 24px;
@@ -742,7 +741,9 @@ article {
     .search-button-toggle {
         width: 40.75px;
         height: 44px;
-        padding: 10px;
+        padding: 10px 7px;
+        margin-bottom: 5px;
+        margin-right: 2px;
     }
     .search-button-toggle img {
         width: 24px;
