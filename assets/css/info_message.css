@@ -116,7 +116,7 @@
 
 }
 .req_contents .show_content.show {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 179px; /* Adjust based on your content's maximum height */
     opacity: 1;
     transition: max-height 0.25s ease-in, opacity 0.4s ease-in;

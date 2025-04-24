@@ -163,6 +163,7 @@ article {
     width: 16px;
     height: 16px;
     background-image: url(../../assets/images/chevron_Icon.svg);
+    background-size: cover;
     transform: translateY(-50%) rotate(180deg);
     transition: transform 0.3s ease;
 }
@@ -459,6 +460,8 @@ article {
 }
 
 .faq-table .toggle-icon {
+    width: 16px;
+    height: 16px;
     transition: transform 0.3s ease;
     transform: rotate(180deg);
 }

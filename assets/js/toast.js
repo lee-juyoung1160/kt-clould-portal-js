@@ -84,7 +84,7 @@ const ToastManager = (function() {
                     }, 500);
                 }
             }, 500);
-        }, 1000);
+        }, 2000);
     }
     // 공개 메서드
     return {
