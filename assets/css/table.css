@@ -778,6 +778,9 @@ article {
     .pagination {
         width: 90%;
     }
-    
+    .search-no-result {
+        margin-top: 100px;
+        justify-content: flex-start;
+    }
     
 }
