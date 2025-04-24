@@ -901,14 +901,65 @@ document.addEventListener('DOMContentLoaded', function () {
     const tableHeaderTop = document.querySelector('.table-header-top');
     const pagination = document.querySelector('.pagination');
     const scroll = document.querySelector('.scroll');
-
+    
+    // 브라우저 및 기기 감지
+    const ua = navigator.userAgent;
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+    const isIOS = /iPad|iPhone|iPod/.test(ua);
+    const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
+    const isChrome = /Chrome/.test(ua) && !/Edge/.test(ua);
+    
+    // 브라우저별 하단바 높이 추정값 (기본값으로 시작)
+    let bottomBarHeight = 0;
+    
+    // 브라우저/기기별 하단바 높이 설정
+    function estimateBottomBarHeight() {
+        if (!isMobile) return 0;
+        
+        if (isIOS) {
+            // iOS Safari (iPhone X 이상은 홈 인디케이터 높이가 더 큼)
+            bottomBarHeight = isSafari ? 85 : 75; // Safari vs 기타 브라우저
+        } else {
+            // Android 기기
+            bottomBarHeight = isChrome ? 56 : 50; // Chrome vs 기타 브라우저
+        }
+        
+        // 가로 모드일 경우 값 조정
+        if (window.innerWidth > window.innerHeight) {
+            bottomBarHeight = Math.min(bottomBarHeight, 40);
+        }
+        
+        return bottomBarHeight;
+    }
+    
+    // 실제 사용 가능한 화면 높이 감지 관련 변수
+    let lastInnerHeight = window.innerHeight;
+    let lastOrientation = window.orientation;
+    
     // 모든 요소 높이를 업데이트하는 함수
     function updateElementHeights() {
         // 헤더의 높이를 가져옵니다
         const headerHeight = header.offsetHeight;
         
-        // article의 높이를 100vh - 헤더 높이로 설정
-        article.style.height = `calc(100vh - ${headerHeight}px)`;
+        // 현재 하단바 높이 추정
+        const currentBottomBarHeight = estimateBottomBarHeight();
+        
+        // 실제 사용 가능한 화면 높이 계산
+        const viewportHeight = window.innerHeight;
+        
+        // article의 높이 설정 (하단바 고려)
+        if (isMobile) {
+            if ('CSS' in window && CSS.supports('height', '100dvh')) {
+                // 최신 브라우저는 dvh 지원
+                article.style.height = `calc(100dvh - ${headerHeight}px)`;
+            } else {
+                // dvh 미지원 브라우저는 innerHeight 사용
+                article.style.height = `${viewportHeight - headerHeight}px`;
+            }
+        } else {
+            // 데스크톱은 일반 vh 사용
+            article.style.height = `calc(100vh - ${headerHeight}px)`;
+        }
         
         // page-title 높이를 가져옵니다 (존재하는 경우)
         let pageTitleHeight = 0;
@@ -919,50 +970,99 @@ document.addEventListener('DOMContentLoaded', function () {
         // article 실제 높이 계산
         const articleHeight = article.offsetHeight;
         
-        // table-container 높이를 article 높이 - page-title 높이로 설정
+        // table-container 높이를 설정
         tableContainer.style.height = `${articleHeight - pageTitleHeight - 36}px`;
         
         // 스크롤 영역의 높이를 계산합니다
-        updateScrollHeight();
+        updateScrollHeight(currentBottomBarHeight);
         
+        // 디버깅을 위한 로그
         console.log('Header height:', headerHeight);
         console.log('Article height:', articleHeight);
         console.log('Page title height:', pageTitleHeight);
-        console.log('Table container height:', articleHeight - pageTitleHeight);
+        console.log('Bottom bar height estimate:', currentBottomBarHeight);
+        console.log('Viewport height:', viewportHeight);
     }
 
     // 스크롤 영역의 높이를 계산하는 함수
-    function updateScrollHeight() {
+    function updateScrollHeight(bottomBarOffset) {
         // 각 요소의 높이를 가져옵니다
         const containerHeight = tableContainer.offsetHeight;
         const headerHeight = tableHeaderTop.offsetHeight;
         const paginationHeight = pagination.offsetHeight;
         
+        // 하단 안전 영역 계산 (모바일일 경우 하단바 높이 고려)
+        const safeAreaBottom = isMobile ? bottomBarOffset : 0;
+        
         // 스크롤 영역의 높이를 계산합니다
-        const scrollHeight = containerHeight - headerHeight - paginationHeight;
+        let scrollHeight = containerHeight - headerHeight - paginationHeight;
+        
+        // 모바일이고 스크롤 높이가 충분히 크면 하단 안전 영역 적용
+        if (isMobile && scrollHeight > 300) {
+            scrollHeight -= safeAreaBottom;
+        }
         
         // 계산된 높이를 스크롤 영역에 적용합니다
-        scroll.style.height = scrollHeight + 'px';
+        scroll.style.height = `${scrollHeight}px`;
+        
+        // 모바일에서는 하단 패딩 추가 (스크롤 시 하단 콘텐츠 보이도록)
+        if (isMobile) {
+            scroll.style.paddingBottom = `${safeAreaBottom}px`;
+        } else {
+            scroll.style.paddingBottom = '0';
+        }
         
         console.log('Container height:', containerHeight);
         console.log('Table header height:', headerHeight);
         console.log('Pagination height:', paginationHeight);
         console.log('Calculated scroll height:', scrollHeight);
     }
-
-    // 페이지 로드 시 함수 실행
-    // 모든 요소가 렌더링된 후 실행되도록 약간의 지연 추가
-    setTimeout(updateElementHeights, 0);
-
-    // 창 크기가 변경될 때마다 높이를 다시 계산합니다
-    window.addEventListener('resize', updateElementHeights);
     
-    // header 클래스 변경 감지 (fixed 클래스 추가/제거)
-    const observer = new MutationObserver(function() {
-        updateElementHeights();
+    // 화면 높이 변경 감지 (주소창 표시/숨김)
+    function detectHeightChanges() {
+        const currentInnerHeight = window.innerHeight;
+        const currentOrientation = window.orientation;
+        
+        // 방향이 변경되었거나 높이가 크게 변경된 경우 (주소창 상태 변경)
+        if (lastOrientation !== currentOrientation || 
+            Math.abs(lastInnerHeight - currentInnerHeight) > 150) {
+            lastInnerHeight = currentInnerHeight;
+            lastOrientation = currentOrientation;
+            
+            // 재계산 전 짧은 지연 추가 (브라우저 UI 안정화 대기)
+            setTimeout(updateElementHeights, 300);
+        }
+    }
+    
+    // 스크롤 또는 resize 이벤트 발생 시 화면 높이 다시 계산
+    let resizeTimeout;
+    function handleResize() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            updateElementHeights();
+            detectHeightChanges();
+        }, 100);
+    }
+    
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', detectHeightChanges);
+    
+    // 방향 변경 감지 (가로/세로 모드 전환)
+    window.addEventListener('orientationchange', function() {
+        // 방향 전환 후 충분한 지연을 두고 재계산
+        setTimeout(updateElementHeights, 500);
     });
     
-    // header 요소의 속성 변경 감시 시작
+    // 페이지 로드 시 함수 실행 (약간의 지연 추가)
+    setTimeout(updateElementHeights, 100);
+    
+    // 페이지가 완전히 로드된 후 한 번 더 계산 (모든 리소스 로드 완료 후)
+    window.addEventListener('load', function() {
+        setTimeout(updateElementHeights, 200);
+    });
+    
+    // header 클래스 변경 감지
+    const observer = new MutationObserver(updateElementHeights);
     if (header) {
         observer.observe(header, { attributes: true, attributeFilter: ['class'] });
     }
