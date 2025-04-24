@@ -967,7 +967,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // table-container 높이 설정 (하단바 높이 고려)
         if (isMobile) {
             // 모바일: articleHeight - pageTitleHeight - 하단바 높이
-            tableContainer.style.height = `${articleHeight - pageTitleHeight - bottomBarHeight - 36}px`;
+            tableContainer.style.height = `${articleHeight - pageTitleHeight - bottomBarHeight}px`;
         } else {
             // 데스크톱: articleHeight - pageTitleHeight
             tableContainer.style.height = `${articleHeight - pageTitleHeight - 36 }px`;

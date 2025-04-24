@@ -399,7 +399,7 @@ article {
     margin-top: 12px;
     background-color: #fff;
     padding: 15px 20px 20px;
-    z-index: 999;
+    z-index: 9;
 }
 .pagination button {
     width: 30px;
