@@ -1,5 +1,9 @@
 .write-page {
+  margin-bottom: 24px;
     padding: 0 40px;
+}
+.write-contents .container {
+  padding: 0;
 }
 .write-page section {
     max-width: 1400px;
@@ -34,7 +38,7 @@
     padding: 32px 32px;
 }
 .write-contents .container {
-    width: 520px;
+    max-width: 520px;
     margin: 0 auto;
 }
 
@@ -273,138 +277,11 @@ textarea::placeholder {
   }
 
   @media screen and (max-width: 767px) {
-
     .write-page {
-        padding: 0 5.56vw;
-    }
-    .write-page section {
-        margin: 0 auto 3.33vw;
-    }
-    .write-header {
-        padding: 5.56vw 8.89vw;
-    }
-    .write-header .move-list {
-        width: 7.78vw;
-        height: 7.78vw;
-        margin-right: 3.33vw;
-    }
-    .write-header .title {
-        font-size: 6.11vw;
+      padding: 0 20px;
     }
     .write-contents {
-        padding: 3.33vw 5.56vw;
-    }
-    .write-contents .container {
-        width: 77.78vw;
-        padding: 0;
-    }
-
-    .input-item .input {
-        height: 11.11vw;
-    }
-    .input-item input {
-        padding: 2.78vw 11.67vw 2.78vw 4.44vw;
-        font-size: 3.89vw;
-    }
-    .input-item .input-title {
-        margin-bottom: 2.22vw;
-        font-size: 3.89vw;
-    }
-
-
-    textarea {
-        height: 41.67vw;
-        padding: 3.33vw 4.44vw;
-        font-size: 3.89vw;
-    }
-    .textarea span {
-        font-size: 3.33vw;
-        margin-top: 1.11vw;
-    }
-
-    /* 커스텀 셀렉트박스 스타일 */
-    .custom-select {
-        font-size: 3.89vw;
-    }
-    .select-selected {
-        padding: 3.33vw 4.44vw;
-    }
-    /* 화살표 스타일 */
-    .select-selected:after {
-        top: 50%;
-        right: 3.33vw;
-        width: 6.67vw;
-        height: 6.67vw;
-    }
-    /* 개별 옵션 스타일 */
-    .select-items div {
-        padding: 2.78vw 4.44vw;
-    }
-     /* 옵션에 마우스를 올렸을 때 */
-    .select-items div:hover::after, .select-items div.selected::after {
-        top: 50%;
-        right: 6.94vw;
-        width: 5.00vw;
-        height: 5.00vw;
-    }
-
-    /* 파일첨부 */
-    /* 파일 업로드 영역 스타일 */
-    .file-upload-area {
-        border-radius: 2.22vw;
-        padding: 8.33vw 5.56vw;
-    }
-    /* 업로드 아이콘 스타일 */
-    .upload-icon {
-        width: 6.67vw;
-        height: 6.67vw;
-    }
-    /* 업로드 텍스트 스타일 */
-    .upload-text {
-        font-size: 3.89vw;
-        margin: 2.22vw 0 3.33vw
-    }
-    /* 첨부하기 버튼 스타일 */
-    .upload-btn {
-        border-radius: 1.11vw;
-        padding: 2.22vw 4.44vw;
-        font-size: 3.89vw;
-    }
-    .file-upload-desc {
-        font-size: 3.33vw;
-        margin-top: 2.22vw;
-    }
-    /* 파일 목록 스타일 */
-    .file-list-container {
-        margin-top: 4.44vw;
-    }
-    .file-list li {
-        padding: 2.22vw 3.33vw;
-        margin-bottom: 2.22vw;
-        border-radius: 1.11vw;
-        font-size: 3.89vw;
-    }
-    .file-list .file-name {
-        margin-right: 2.22vw;
-    }
-    .file-list .delete-btn {
-        font-size: 4.44vw;
-        transition: color 0.2s ease;
-    }
-    .bottom-btn-wrap {
-        margin-top: 12.50vw;
-    }
-    .bottom-btn-wrap button {
-        padding: 2.22vw 6.11vw;
-        margin-right: 1.39vw;
-    }
-    .bottom-btn-wrap button:last-child {
-        margin-right: 0.00vw;
-    }
-    .write-page .button {
-        height: 11.11vw;
-        border-radius: 1.11vw;
-        font-size: 4.44vw;
-    }
-
+      padding: 12px 20px;
+  }
+   
   }

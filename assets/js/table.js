@@ -894,34 +894,76 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 document.addEventListener('DOMContentLoaded', function () {
     // DOM 요소들을 가져옵니다
-const tableContainer = document.querySelector('.table-container');
-const tableHeaderTop = document.querySelector('.table-header-top');
-const pagination = document.querySelector('.pagination');
-const scroll = document.querySelector('.scroll');
+    const header = document.querySelector('header');
+    const article = document.querySelector('article');
+    const pageTitle = document.querySelector('.page-title');
+    const tableContainer = document.querySelector('.table-container');
+    const tableHeaderTop = document.querySelector('.table-header-top');
+    const pagination = document.querySelector('.pagination');
+    const scroll = document.querySelector('.scroll');
 
-// 스크롤 영역의 높이를 계산하는 함수
-function updateScrollHeight() {
-// 각 요소의 높이를 가져옵니다
-const containerHeight = tableContainer.offsetHeight;
-const headerHeight = tableHeaderTop.offsetHeight;
-const paginationHeight = pagination.offsetHeight;
+    // 모든 요소 높이를 업데이트하는 함수
+    function updateElementHeights() {
+        // 헤더의 높이를 가져옵니다
+        const headerHeight = header.offsetHeight;
+        
+        // article의 높이를 100vh - 헤더 높이로 설정
+        article.style.height = `calc(100vh - ${headerHeight}px)`;
+        
+        // page-title 높이를 가져옵니다 (존재하는 경우)
+        let pageTitleHeight = 0;
+        if (pageTitle) {
+            pageTitleHeight = pageTitle.offsetHeight;
+        }
+        
+        // article 실제 높이 계산
+        const articleHeight = article.offsetHeight;
+        
+        // table-container 높이를 article 높이 - page-title 높이로 설정
+        tableContainer.style.height = `${articleHeight - pageTitleHeight - 36}px`;
+        
+        // 스크롤 영역의 높이를 계산합니다
+        updateScrollHeight();
+        
+        console.log('Header height:', headerHeight);
+        console.log('Article height:', articleHeight);
+        console.log('Page title height:', pageTitleHeight);
+        console.log('Table container height:', articleHeight - pageTitleHeight);
+    }
 
-// 스크롤 영역의 높이를 계산합니다
-const scrollHeight = containerHeight - headerHeight - paginationHeight;
+    // 스크롤 영역의 높이를 계산하는 함수
+    function updateScrollHeight() {
+        // 각 요소의 높이를 가져옵니다
+        const containerHeight = tableContainer.offsetHeight;
+        const headerHeight = tableHeaderTop.offsetHeight;
+        const paginationHeight = pagination.offsetHeight;
+        
+        // 스크롤 영역의 높이를 계산합니다
+        const scrollHeight = containerHeight - headerHeight - paginationHeight;
+        
+        // 계산된 높이를 스크롤 영역에 적용합니다
+        scroll.style.height = scrollHeight + 'px';
+        
+        console.log('Container height:', containerHeight);
+        console.log('Table header height:', headerHeight);
+        console.log('Pagination height:', paginationHeight);
+        console.log('Calculated scroll height:', scrollHeight);
+    }
 
-// 계산된 높이를 스크롤 영역에 적용합니다
-scroll.style.height = scrollHeight + 'px';
+    // 페이지 로드 시 함수 실행
+    // 모든 요소가 렌더링된 후 실행되도록 약간의 지연 추가
+    setTimeout(updateElementHeights, 0);
 
-console.log('Container height:', containerHeight);
-console.log('Header height:', headerHeight);
-console.log('Pagination height:', paginationHeight);
-console.log('Calculated scroll height:', scrollHeight);
-}
-
-// 페이지 로드 시 함수 실행
-updateScrollHeight();
-
-// 창 크기가 변경될 때마다 높이를 다시 계산합니다
-window.addEventListener('resize', updateScrollHeight);
-
+    // 창 크기가 변경될 때마다 높이를 다시 계산합니다
+    window.addEventListener('resize', updateElementHeights);
+    
+    // header 클래스 변경 감지 (fixed 클래스 추가/제거)
+    const observer = new MutationObserver(function() {
+        updateElementHeights();
+    });
+    
+    // header 요소의 속성 변경 감시 시작
+    if (header) {
+        observer.observe(header, { attributes: true, attributeFilter: ['class'] });
+    }
 });

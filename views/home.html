@@ -506,7 +506,7 @@
                 overlayElement.style.display = 'none';
                 overlayElement.style.alignItems = 'flex-end';
                 overlayElement.style.pointerEvents = 'none';
-                overlayElement.style.zIndex = '99999999';
+                overlayElement.style.zIndex = '9';
 
                 // backgroundColor 제거 (fill 속성으로 대체)
                 overlayElement.style.backgroundColor = '';
@@ -825,6 +825,8 @@
         }
 
         ///////// 공지사항 툴팁
+        function setupNoticeTooltips() {
+        
         const noticeLinks = document.querySelectorAll('.notice-item a');
         noticeLinks.forEach(link => {
             // 내용이 넘쳐서 말줄임표가 표시되고 있는지 확인
@@ -856,6 +858,15 @@
                 });
             }
         });
+    }
+
+    if (window.innerWidth >= 1080) {
+    // 페이지 로드 시 실행
+    document.addEventListener('DOMContentLoaded', setupNoticeTooltips);
+    }
+    // 화면 크기 변경 시 실행
+    window.addEventListener('resize', setupNoticeTooltips);
+
         // 초기 설치 프로그램 다운로드
         const actionButtons = document.querySelectorAll('.action_button');
         // 화면 너비 감지

@@ -3,7 +3,7 @@
 
 article {
     max-width: 1400px;
-    margin: 0 auto 24px;
+    margin: 0 auto;
 }
 .text-center {
     text-align: center;
@@ -558,6 +558,9 @@ article {
         max-width: 1400px;
         padding: 0 40px;
     }
+    .sort-select .select-selected:hover {
+        background-color: #fff;
+    }
 }
 
 @media (max-width: 1079px) {
@@ -659,6 +662,7 @@ article {
         right: 0;
         width: 24px;
         height: 24px;
+        transform: rotate(180deg);
         transition: transform 0.3s ease;
     }
     

@@ -70,9 +70,13 @@ footer .footer-menu {
 }
 footer .footer-menu li {
     margin-right: 24px;
+    text-align: center;
 }
 footer .footer-menu li a {
     color: var(--Neutral-Text-alternative);
+}
+footer .footer-menu li:last-child {
+    margin-right:0;
 }
 
 /*************************    
@@ -303,7 +307,7 @@ button:disabled, button:disabled:hover {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
-    z-index: 999;
+    z-index: 9999999;
     cursor: not-allowed;
 }
 #toast-container {
@@ -354,7 +358,7 @@ button:disabled, button:disabled:hover {
     visibility:hidden;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 9999999;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -682,20 +686,14 @@ button:disabled, button:disabled:hover {
         .modal-content.login-modal .modal-body {
             height: 400px;
         }
+        footer {
+            font-size: 13px;
+        }
     }
 
     @media screen and (max-width: 500px) {
         
 
-    /*************************    
-        button 
-    *************************/
-    /* Base Button Styles */
-    .button {
-        height: 11.11vw;
-        border-radius: 1.11vw;
-        font-size: 4.44vw;
-    }
 
     /*************************    
         modal 
@@ -859,83 +857,6 @@ button:disabled, button:disabled:hover {
         font-size: 4.44vw;
     }
 
-    /*************************    
-        input 
-    *************************/
-
-    .input-wrap {
-        width: 88.89vw;
-    }
-    .input-item {
-        margin-bottom: 3.33vw;
-    }
-    .input-item .input-title {
-        margin-bottom: 2.22vw;
-        font-size: 3.89vw;
-    }
-    .input-item .input {
-        width: 88.89vw;
-        height: 11.11vw;
-    }
-    .input-item .input button {
-        right: 2.78vw;
-    }
-    .input-item input {
-        padding: 2.78vw 11.67vw 2.78vw 4.44vw;
-        font-size: 3.89vw;
-        border-radius: 1.11vw;
-    
-    }
-
-    .input-error-message {
-        margin-top: 1.11vw;
-        font-size: 3.33vw;
-    }
-    .input-error-message i {margin-right: 1.11vw;}
-
-    /* otp input */
-    .input-item.otp .input .custom-input {
-        width: 64.44vw;
-    }
-    .input-item.otp .input button {
-        width: 22.22vw;
-        height: 11.11vw;
-        font-size: 4.44vw;
-        border-radius: 1.11vw;
-    }
-
-    .input-item.input-item-btn .input .custom-input {
-        width: 64.44vw;
-        margin-right: auto;
-    }
-    .input-item.input-item-btn .input button {
-        width: 23vw;
-        height: 11.11vw;
-        margin-left: auto;
-        text-align: center;
-        color: var(--Neutral-Text-default);
-        font-size: 4.44vw;
-        background-color: var(--Neutral-Fill-alternative);
-        border-radius: 1.11vw;
-    }
-
-
-    /* input check*/
-    .flex-item-between {
-        margin-top: 6.67vw;
-    }
-    .check-item input[type="checkbox"] + label strong {
-        line-height: 2.3em;
-        font-size: 3.89vw;
-    }
-    .check-item input[type="checkbox"] + label span {
-        width: 8.89vw;
-        height: 8.89vw;
-    }
-    .check-item input[type="checkbox"]:checked + label span {
-        width: 8.89vw;
-        height: 8.89vw;
-    }
 }
 
 /* 스크롤 */
