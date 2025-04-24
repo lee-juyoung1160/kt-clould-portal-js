@@ -750,7 +750,7 @@ article {
         height: 24px;
     }
     .tab-container {
-        overflow-x: scroll;
+        overflow-x: auto;
         width: calc(100% - 50px);
     }
     .tabs li button {
