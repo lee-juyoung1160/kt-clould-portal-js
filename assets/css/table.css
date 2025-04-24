@@ -384,6 +384,7 @@ article {
 }
 .scroll {
     overflow-y: auto;
+    padding-bottom: 30px;
 }
 /* 페이지네이션 스타일 */
 .pagination {
