@@ -216,78 +216,10 @@
         text-align: center;
         padding-left: 0;
     }
-    /* 초기 설치 파일 확인 페이지 */
+    
     .info-message-page.req_check {
         height: auto;
-    }
-    .req_check .container {
-        width: 144.44vw;
-    }
-    .req_check .title {
-        margin-bottom: 11.11vw;
-    }
-    .req_check .title h2  {
-        margin-bottom: 4.44vw;
-        font-size: 7.78vw;
-        font-weight: 700;
-    }
-    .req_check .title h2 img {
-        width: 15.56vw;
-        height: 15.56vw;
-        margin: 0 auto 5.56vw;
-    }
-    .req_check .title span {
-        font-size: 3.89vw;
-        font-weight: 400;
-        line-height: 150%;
-    }
-    .req_contents {
-        max-width: 144.44vw;
-        height: 112.00vw;
-        padding: 3.33vw;
-    }
-    .req_contents .action_button {
-        padding: 4.44vw;
-        font-size: 4.44vw;
-        font-weight: 500;
-    }
-    .req_contents .action_button .logo-icon {
-        margin-right: 5.56vw;
-    }
-    /* show */
-    .req_contents .show_content.show {
-        max-height: 49.72vw; /* Adjust based on your content's maximum height */
-    }
-    .req_contents .show_content ul li {
-        padding: 2.22vw 4.44vw 2.22vw 22.22vw;
-        font-size: 3.89vw;
-    }
-    .req_contents .show_content ul li::before {
-        top: 4.44vw;
-        left: 18.89vw;
-        width: 0.83vw;
-        height: 0.83vw;
-    }
-    .req_contents .show_content ul li .btn-down {
-        padding: 1.11vw 2.22vw;
-        font-size: 3.33vw;
-        font-weight: 400;
-        border-radius: 1.11vw;
-    }
-    .req_contents .show_content ul li .btn-down img {
-        width: 4.44vw;
-        height: 4.44vw;
-        margin-left: 2.22vw;
-    }
-    .req_check .bottom-wrap {
-        margin-top: 8vw;
-        margin-bottom: 8vw;
-    }
-    .req_check .button-cancel {
-        width: 16.67vw;
-    }
-    .req_check .button-default {
-        width: 27.78vw;
+        margin-top: 30px;
     }
 
 }
