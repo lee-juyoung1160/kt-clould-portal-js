@@ -892,6 +892,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
 document.addEventListener('DOMContentLoaded', function () {
     // DOM 요소들을 가져옵니다
     const header = document.querySelector('header');
@@ -906,20 +907,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const ua = navigator.userAgent;
     const isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
     const isIOS = /iPad|iPhone|iPod/.test(ua);
-    const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
     
-    // 브라우저별 하단바 높이 추정
+    // 브라우저별 하단바 높이 추정 (더 작은 값으로 조정)
     function getBottomBarHeight() {
         if (!isMobile) return 0;
         
         // 가로/세로 모드 확인
         const isLandscape = window.innerWidth > window.innerHeight;
         
+        // 하단바 높이 값을 더 작게 조정
         if (isIOS) {
-            return isLandscape ? 20 : (isSafari ? 85 : 75);
+            return isLandscape ? 10 : 30; // iOS 값 축소
         } else {
             // Android
-            return isLandscape ? 30 : 50;
+            return isLandscape ? 10 : 20; // Android 값 축소
         }
     }
     
@@ -945,10 +946,10 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // table-container 높이 설정 (하단바 높이 고려)
         if (isMobile) {
-            // 모바일: articleHeight - pageTitleHeight - 하단바 높이
+            // 모바일: 하단바 높이 조정 (더 작은 값 사용)
             tableContainer.style.height = `${articleHeight - pageTitleHeight - bottomBarHeight}px`;
         } else {
-            // 데스크톱: articleHeight - pageTitleHeight
+            // 데스크톱: 기존 계산 유지
             tableContainer.style.height = `${articleHeight - pageTitleHeight}px`;
         }
         
@@ -986,4 +987,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // 페이지 로드 시 함수 실행
     updateElementHeights();
+    
+    // 페이지가 완전히 로드된 후 한 번 더 계산 (이미지 등 모든 리소스 로드 후)
+    window.addEventListener('load', updateElementHeights);
 });
