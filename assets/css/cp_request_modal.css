@@ -354,3 +354,9 @@ tr.text-center td {
     justify-content: space-between;
     padding: 15px 0 0;
 }
+.modalCpRequestDetail .modal-footer {
+    justify-content: flex-end;
+}
+.modal-overlay {
+    background-color: rgba(0,0,0,.25)
+}

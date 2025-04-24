@@ -13,7 +13,8 @@ article {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 32px;
+    height: 72px;
+    padding: 0 32px;
     background-color: #fff;
     border-radius: 16px;
     box-shadow: 10px 20ox 30px reba(0,0,0,0.02);
@@ -29,12 +30,19 @@ article {
 }
 .page-title a, .page-title button {
     width: 100px;
-    line-height: 40px;
-}.page-title button.btn_list_re {
+}
+.page-title .btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.page-title button.btn_list_re {
     width: 32px;
-    line-height: 32px;
+    line-height: 0;
 }
 .table-container {
+    position: relative;
+    height: calc(100vh - (72px + 84px + 12px + 24px ));
     margin: 12px auto 0;
     padding: 20px 32px;
     background-color: #fff;
@@ -121,6 +129,10 @@ article {
     height: 32px;
     padding: 0 10px;
     background-color: #fff;
+    transition: all .3s;
+}
+.sort-select .select-selected:hover {
+    background-color: var(--Primary-Fill-neutral);
 }
 
 /* 커스텀 셀렉트 박스 스타일 */
@@ -369,13 +381,24 @@ article {
     background-color: rgba(45, 189, 182, 0.05);
     color: #2DBDB6;
 }
-
+.scroll {
+    overflow-y: scroll;
+    max-height: 67vh;
+}
 /* 페이지네이션 스타일 */
 .pagination {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 98%;
     margin-top: 12px;
+    background-color: #fff;
+    padding: 20px;
+    z-index: 999;
 }
 .pagination button {
     width: 30px;
@@ -436,10 +459,11 @@ article {
 
 .faq-table .toggle-icon {
     transition: transform 0.3s ease;
+    transform: rotate(180deg);
 }
 
 .faq-table tr.open .toggle-icon {
-    transform: rotate(180deg);
+    transform: rotate(0deg);
 }
 #dataTable tbody tr.open td, #dataTable tbody tr.show td {
     border-bottom: none;
@@ -527,9 +551,6 @@ article {
     min-height: 500px;
 }
 .cp-list-page .tab-count {font-weight: 500;}
-
-
-
 
 @media (max-width: 1479px) {
     article {
@@ -747,6 +768,9 @@ article {
     }
     .select-selected:after {
         right: 0;
+    }
+    .pagination {
+        width: 90%;
     }
     
     

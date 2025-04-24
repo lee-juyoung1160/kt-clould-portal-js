@@ -116,3 +116,37 @@ mainMenuItems.forEach(function (item) {
         }
     });
 });
+// 스크롤 핸들러 함수
+function handleScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const header = document.querySelector('header');
+    const article = document.querySelector('article');
+    
+    // 헤더 높이 가져오기
+    const headerHeight = header.offsetHeight;
+    
+    // 스크롤이 1이라도 있으면 .fixed 클래스 추가
+    if (scrollTop > 0) {
+      header.classList.add('fixed');
+      // article의 margin-top을 header의 높이로 설정
+        article.style.marginTop = headerHeight + 'px';
+    } else {
+      // 스크롤이 0이면 .fixed 클래스 제거
+      header.classList.remove('fixed');
+      // article의 margin-top을 header의 높이로 설정
+      article.style.marginTop = 0 + 'px';
+    }
+    
+    
+  }
+  
+  // 스크롤 이벤트 리스너
+  window.addEventListener('scroll', handleScroll);
+  
+  // 화면 크기 변경 시에도 margin 조정
+  window.addEventListener('resize', handleScroll);
+  
+  // 페이지 로드 시 초기 실행
+  document.addEventListener('DOMContentLoaded', function() {
+    handleScroll();
+  });

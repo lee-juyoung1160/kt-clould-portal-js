@@ -21,6 +21,7 @@
 
             <nav>
                 <div class="mobile-menu-header">
+                    <h2 class="mobile-menu-logo"><a href="./home.html"><img src="../assets/images/logo.svg" alt="로고"></a></h2>
                     <!-- 닫기 -->
                     <button class="close-btn"><img src="../assets/images/close.svg" alt=""></button>
                 </div>
@@ -81,7 +82,13 @@
     <article class="cp-list-page display-pc">
         <section class="page-title">
             <h2><img src="../assets/images/ic_cp.svg" alt="qna 아이콘"><strong>Cloud PC 작업 신청</strong></h2>
-            <button type="button" class="button button-default" data-modal-target="modalCpRequest">결재 신청</button>
+
+            <div class="btn">
+                <button type="button" class="btn_list_re">
+                    <img src="../assets/images/icon_list_refresh.svg" alt="아이콘">
+                </button>
+                <button type="button" class="button button-default" data-modal-target="modalCpRequest">결재 신청</button>
+            </div>
         </section>
 
         <section class="table-container">
@@ -95,48 +102,51 @@
                 </div>
             </div>
 
-            <div class="table-wrap">
-                <!-- 테이블 -->
-                <div id="dataTable">
-                    <!-- pc:테이블 -->
-                    <table class="pc-table">
-                        <colgroup>
-                            <col style="width: 10%;">
-                            <col style="width: 10%;">
-                            <col style="width: 10%;">
-                            <col style="width: 35%;">
-                            <col style="width: 10%;">
-                            <col style="width: 15%;">
-                            <col style="width: 10%;">
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th data-sort="number">번호</th>
-                                <th data-sort="sosCategory">긴급 구분</th>
-                                <th data-sort="requestCategory">신청 구분</th>
-                                <th data-sort="title">제목</th>
-                                <th data-sort="startDate">신청일</th>
-                                <th data-sort="status">진행현황</th>
-                                <th data-sort="endDate">결재일</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                            <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="pagination" id="pagination">
-                    <button id="firstPage"><img src="../assets/images/ic_table_prev_2.svg" alt="맨앞"></button>
-                    <button id="prevPage"><img src="../assets/images/ic_table_prev_1.svg" alt="이전"></button>
-                    <div id="pageNumbers" class="page-numbers">
-                        <!-- 페이지 번호가 여기에 동적으로 삽입됩니다 -->
+            <div class="scroll">
+                <div class="table-wrap">
+                    <!-- 테이블 -->
+                    <div id="dataTable">
+                        <!-- pc:테이블 -->
+                        <table class="pc-table">
+                            <colgroup>
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                                <col style="width: 35%;">
+                                <col style="width: 10%;">
+                                <col style="width: 15%;">
+                                <col style="width: 10%;">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th data-sort="number">번호</th>
+                                    <th data-sort="sosCategory">긴급 구분</th>
+                                    <th data-sort="requestCategory">신청 구분</th>
+                                    <th data-sort="title">제목</th>
+                                    <th data-sort="startDate">신청일</th>
+                                    <th data-sort="status">진행현황</th>
+                                    <th data-sort="endDate">결재일</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
+                            </tbody>
+                        </table>
                     </div>
-                    <button id="nextPage"><img src="../assets/images/ic_table_next1.svg" alt="다음"></button>
-                    <button id="lastPage"><img src="../assets/images/ic_table_next2.svg" alt="맨끝"></button>
+    
+                    <div class="pagination" id="pagination">
+                        <button id="firstPage"><img src="../assets/images/ic_table_prev_2.svg" alt="맨앞"></button>
+                        <button id="prevPage"><img src="../assets/images/ic_table_prev_1.svg" alt="이전"></button>
+                        <div id="pageNumbers" class="page-numbers">
+                            <!-- 페이지 번호가 여기에 동적으로 삽입됩니다 -->
+                        </div>
+                        <button id="nextPage"><img src="../assets/images/ic_table_next1.svg" alt="다음"></button>
+                        <button id="lastPage"><img src="../assets/images/ic_table_next2.svg" alt="맨끝"></button>
+                    </div>
+    
                 </div>
-
             </div>
+            
         </section>
     </article>
     <!-- 모달 : 클라우드 피시 작업 결제 신청-->

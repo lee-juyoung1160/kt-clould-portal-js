@@ -19,6 +19,7 @@
             <button class="menu-toggle"><img src="../assets/images/ic_menu.svg" alt="햄버거 메뉴"></button>
             <nav>
                 <div class="mobile-menu-header">
+                    <h2 class="mobile-menu-logo"><a href="./home.html"><img src="../assets/images/logo.svg" alt="로고"></a></h2>
                     <!-- 닫기 -->
                     <button class="close-btn"><img src="../assets/images/close.svg" alt=""></button>
                 </div>
@@ -101,29 +102,6 @@
             </button>
         </section>
         <section class="table-container">
-            <div class="table-header-top">
-                <!-- 탭 : 분류 -->
-                <div class="tab-container" style="visibility: hidden;">
-                    <ul class="tabs">
-                        <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
-                    </ul>
-                </div>
-                <!-- 검색 -->
-                <div class="search-container" style="display: flex;">
-                    <!-- 검색 타입 커스텀 셀렉트 -->
-                    <div class="custom-select" id="searchTypeSelect">
-                        <div class="select-selected">전체</div>
-                        <div class="select-items select-hide">
-                            <div data-value="all">전체</div>
-                            <div data-value="title">제목</div>
-                            <div data-value="content">내용</div>
-                        </div>
-                        <input type="hidden" id="searchType" value="all">
-                    </div>
-                    <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
-                    <button id="searchButton"><img src="../assets/images/ic_search_16.svg" alt="검색"></button>
-                </div>
-            </div>
             <div class="table-header">
                 <div class="total-count">총 <span id="totalCount">0</span>개</div>
                 <!-- 정렬 타입 커스텀 셀렉트 -->

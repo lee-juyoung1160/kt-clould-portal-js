@@ -892,5 +892,36 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+document.addEventListener('DOMContentLoaded', function () {
+    // DOM 요소들을 가져옵니다
+const tableContainer = document.querySelector('.table-container');
+const tableHeaderTop = document.querySelector('.table-header-top');
+const pagination = document.querySelector('.pagination');
+const scroll = document.querySelector('.scroll');
 
+// 스크롤 영역의 높이를 계산하는 함수
+function updateScrollHeight() {
+// 각 요소의 높이를 가져옵니다
+const containerHeight = tableContainer.offsetHeight;
+const headerHeight = tableHeaderTop.offsetHeight;
+const paginationHeight = pagination.offsetHeight;
 
+// 스크롤 영역의 높이를 계산합니다
+const scrollHeight = containerHeight - headerHeight - paginationHeight;
+
+// 계산된 높이를 스크롤 영역에 적용합니다
+scroll.style.height = scrollHeight + 'px';
+
+console.log('Container height:', containerHeight);
+console.log('Header height:', headerHeight);
+console.log('Pagination height:', paginationHeight);
+console.log('Calculated scroll height:', scrollHeight);
+}
+
+// 페이지 로드 시 함수 실행
+updateScrollHeight();
+
+// 창 크기가 변경될 때마다 높이를 다시 계산합니다
+window.addEventListener('resize', updateScrollHeight);
+
+});

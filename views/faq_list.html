@@ -20,6 +20,7 @@
 
             <nav>
                 <div class="mobile-menu-header">
+                    <h2 class="mobile-menu-logo"><a href="./home.html"><img src="../assets/images/logo.svg" alt="로고"></a></h2>
                     <!-- 닫기 -->
                     <button class="close-btn"><img src="../assets/images/close.svg" alt=""></button>
                 </div>
@@ -79,7 +80,7 @@
 
     <article class="faq-list-page">
         <section class="page-title">
-            <h2><img src="../assets/images/ic_faq.svg" alt="faq 아이콘"><strong>자주 묻는 질문</strong></h2>
+            <h2><img src="../assets/images/icon_faq.svg" alt="faq 아이콘"><strong>자주 묻는 질문</strong></h2>
         </section>
 
         <section class="table-container">
@@ -109,46 +110,49 @@
                 <button class="search-button-toggle mo"><img src="../assets/images/ic_search_16.svg" alt="검색"></button>
             </div>
 
-            <div class="table-header">
-                <div class="total-count">총 <span id="totalCount">0</span>개</div>
-
-                <!-- 정렬 타입 커스텀 셀렉트 -->
-                <div class="custom-select sort-select" id="sortOrderSelect">
-                    <div class="select-selected">최신순</div>
-                    <div class="select-items select-hide">
-                        <div data-value="newest">최신순</div>
-                        <div data-value="oldest">오래된순</div>
-                        <div data-value="views">조회순</div>
+            <div class="scroll">
+                <div class="table-header">
+                    <div class="total-count">총 <span id="totalCount">0</span>개</div>
+    
+                    <!-- 정렬 타입 커스텀 셀렉트 -->
+                    <div class="custom-select sort-select" id="sortOrderSelect">
+                        <div class="select-selected">최신순</div>
+                        <div class="select-items select-hide">
+                            <div data-value="newest">최신순</div>
+                            <div data-value="oldest">오래된순</div>
+                            <div data-value="views">조회순</div>
+                        </div>
+                        <input type="hidden" id="sortOrder" value="newest">
                     </div>
-                    <input type="hidden" id="sortOrder" value="newest">
                 </div>
+    
+                <!-- 테이블 -->
+                <table id="dataTable" class="faq-table">
+                    <colgroup>
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                        <col style="width: 53%;">
+                        <col style="width: 12%;">
+                        <col style="width: 10%;">
+                        <col style="width: 5%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th data-sort="number">번호</th>
+                            <th data-sort="category">분류</th>
+                            <th data-sort="title">제목</th>
+                            <th data-sort="date">작성일</th>
+                            <th data-sort="views">조회수</th>
+                            <th></th> <!-- 열기/닫기 아이콘 열 -->
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
+                    </tbody>
+                </table>
+    
             </div>
-
-            <!-- 테이블 -->
-            <table id="dataTable" class="faq-table">
-                <colgroup>
-                    <col style="width: 10%;">
-                    <col style="width: 10%;">
-                    <col style="width: 53%;">
-                    <col style="width: 12%;">
-                    <col style="width: 10%;">
-                    <col style="width: 5%;">
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th data-sort="number">번호</th>
-                        <th data-sort="category">분류</th>
-                        <th data-sort="title">제목</th>
-                        <th data-sort="date">작성일</th>
-                        <th data-sort="views">조회수</th>
-                        <th></th> <!-- 열기/닫기 아이콘 열 -->
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
-                </tbody>
-            </table>
-
+            
             <div class="pagination" id="pagination">
                 <button id="firstPage"><img src="../assets/images/ic_table_prev_2.svg" alt="맨앞"></button>
                 <button id="prevPage"><img src="../assets/images/ic_table_prev_1.svg" alt="이전"></button>
@@ -500,7 +504,7 @@
 
                             // 토글 아이콘 회전
                             const icon = this.querySelector('.toggle-icon');
-                            if (icon) icon.style.transform = 'rotate(180deg)';
+                            if (icon) icon.style.transform = 'rotate(0deg)';
 
                             // 답변 표시
                             answer.style.display = 'block';
