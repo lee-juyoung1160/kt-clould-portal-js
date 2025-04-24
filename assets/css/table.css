@@ -743,7 +743,7 @@ article {
         height: 44px;
         padding: 10px 7px;
         margin-bottom: 5px;
-        margin-right: 2px;
+        /* margin-right: -2px; */
     }
     .search-button-toggle img {
         width: 24px;
