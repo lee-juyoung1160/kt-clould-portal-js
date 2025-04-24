@@ -382,7 +382,7 @@ article {
     color: #2DBDB6;
 }
 .scroll {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 67vh;
 }
 /* 페이지네이션 스타일 */
