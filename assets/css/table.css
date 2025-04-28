@@ -8,6 +8,9 @@ article {
 .text-center {
     text-align: center;
 }
+.text-right {
+    text-align: right;
+}
 /* page-title */
 .page-title {
     display: flex;

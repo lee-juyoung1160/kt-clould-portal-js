@@ -1,7 +1,7 @@
 // 토스트 메시지 정의
 const toastMessages = {
     toastUnlockSuccess: {
-        text: `잠금 해제가\r\n완료되었습니다.`,
+        text: `잠금 해제가 완료되었습니다.`,
         icon: '../assets/images/ic_check_fill.svg',
         redirect: './login/lonin.html' // 이동할 경로 지정
     },
@@ -54,8 +54,9 @@ const ToastManager = (function() {
 
         // 텍스트 추가
         const textSpan = document.createElement('span');
-        textSpan.innerHTML = messageObj.text;
+        textSpan.textContent = messageObj.text;
         toast.appendChild(textSpan);
+        textSpan.style.whiteSpace = 'pre-line'
 
         // 컨테이너에 토스트 추가
         toastContainer.appendChild(toast);
@@ -71,20 +72,20 @@ const ToastManager = (function() {
             toast.classList.remove('show');
             
             // // 페이드 아웃 애니메이션 후 제거
-            // setTimeout(() => {
-            //     toastContainer.removeChild(toast);
-            //     toastOverlay.style.display = 'none';
-            //     isToastShown = false;
+            setTimeout(() => {
+                toastContainer.removeChild(toast);
+                toastOverlay.style.display = 'none';
+                isToastShown = false;
 
-            //     // // 리다이렉트 여부 확인
-            //     // if (messageObj.redirect) {
-            //     //     // 1초 후 지정된 페이지로 이동
-            //     //     setTimeout(() => {
-            //     //         window.location.href = messageObj.redirect;
-            //     //     }, 500);
-            //     // }
-            // }, 500);
-        }, 20000000000000000000000000000);
+                // // 리다이렉트 여부 확인
+                // if (messageObj.redirect) {
+                //     // 1초 후 지정된 페이지로 이동
+                //     setTimeout(() => {
+                //         window.location.href = messageObj.redirect;
+                //     }, 500);
+                // }
+            }, 500);
+        }, 2000);
     }
     // 공개 메서드
     return {

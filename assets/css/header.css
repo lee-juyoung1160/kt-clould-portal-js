@@ -68,7 +68,7 @@ nav .mo-btn-logout {
 /* 서브메뉴 스타일 */
 .sub-menu {
     position: absolute;
-    left: -25%;
+    left: 0;
     /* transform: translateX(50%); */
     margin-top: 8px;
     background-color: #fff;

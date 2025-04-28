@@ -38,7 +38,6 @@
     border-radius: 32px;
     transition: all .3s;
 }
-disa
 .selector-btn img {
     width: 32px;
     height: 32px;
@@ -805,6 +804,7 @@ disa
         position: absolute;
         top: 80px;
         left: 0;
+        width: 100%;
         margin-top: 0;
         height: 217px;
         align-content: center;
