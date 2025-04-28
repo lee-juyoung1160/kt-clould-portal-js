@@ -1,5 +1,7 @@
 .container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 30px;
     gap: 16px;
     max-width: 1480px;
@@ -136,6 +138,7 @@ disa
 .cloud-pc-title span {
     display: block;
     font-weight: 400;
+    margin-bottom: 4px;
 }
 .cloud-pc-title .gradient-text {
     font-weight: 600;
@@ -153,6 +156,7 @@ disa
     margin-top: 12px;
     color: var(--Neutral-Text-neutral);
     font-size: 18px;
+    line-height: 140%;
 }
 
 /*  progress-bar  */
@@ -194,12 +198,14 @@ disa
     font-size: 16px;
     font-weight: 300;
     color: var(--Neutral-Text-alternative);
+    line-height: 150%;
 }
 .profile-info .info-value {
     display: block;
     margin-top: 4px;
     font-size: 18px;
     color: var(--Neutral-Text-neutral);
+    line-height: 140%;
 }
 
 /* buttons-container */
@@ -328,7 +334,7 @@ disa
 .stats {
     display: flex;
     /* gap: 16px; */
-    padding: 12px 0 14px;
+    padding: 24px 0 14px;
 }
 
 .stat-item {
@@ -423,7 +429,7 @@ disa
     content: '';
     position: absolute;
     top: -10px;
-    left: 10px;
+    left: 10px;             
     border-width: 5px;
     border-style: solid;
     border-color: var(--Neutral-Text-neutral) transparent transparent transparent;
@@ -450,7 +456,7 @@ disa
 
 .app-shortcut {
     width: 95px;
-    height: 101px;
+    padding: 8px 0;
     transition: all .3s;
     cursor: pointer;
 }
@@ -538,7 +544,7 @@ disa
 .guide-btn {
     display: flex;
     align-items: center;
-    padding: 6px 8px;
+    padding: 6px 8px 6px 16px;
     font-size: 16px;
     color: var(--Neutral-Text-neutral);
     background-color: var(--Primary-Fill-neutral);

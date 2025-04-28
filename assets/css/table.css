@@ -564,6 +564,7 @@ article {
     .sort-select .select-selected:hover {
         background-color: #fff;
     }
+    .tab-count {padding-left: 5px;}
 }
 
 @media (max-width: 1079px) {
