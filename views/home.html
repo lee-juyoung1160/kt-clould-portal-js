@@ -102,8 +102,7 @@
                                 <li class="custom-option" data-value="001E82265602fff"></li>
                             </ul>
                         </div>
-                        <button class="refresh-btn"><img src="../assets/images/ic_refresh_24.svg" alt="icon"> <span>상태
-                                재확인</span></button>
+                        <button class="refresh-btn"><img src="../assets/images/ic_refresh_24.svg" alt="icon"> <span>리프레시</span></button>
                     </div>
 
                     <!-- body -->
@@ -577,7 +576,7 @@
             // 텍스트 요소 생성
             const spinnerText = document.createElement('div');
             spinnerText.className = 'loading-spinner-text';
-            spinnerText.textContent = '상태 재확인 중입니다.';
+            spinnerText.textContent = '리프레시 중입니다.';
 
             // 텍스트 스타일 설정
             spinnerText.style.color = '#fff';
@@ -713,18 +712,18 @@
             }
 
             // 첫번째 li의 data-value를 span.id에 설정
-            const firstOption = document.querySelector('.custom-option');
-            if (firstOption) {
-                const firstDataValue = firstOption.getAttribute('data-value');
-                const idSpan = document.querySelector('.selector-btn .id');
+            // const firstOption = document.querySelector('.custom-option');
+            // if (firstOption) {
+            //     const firstDataValue = firstOption.getAttribute('data-value');
+            //     const idSpan = document.querySelector('.selector-btn .id');
 
-                if (firstDataValue && idSpan) {
-                    idSpan.textContent = firstDataValue;
+            //     if (firstDataValue && idSpan) {
+            //         idSpan.textContent = firstDataValue;
 
-                    // 첫 번째 옵션에 selected 클래스 추가
-                    firstOption.classList.add('selected');
-                }
-            }
+            //         // 첫 번째 옵션에 selected 클래스 추가
+            //         firstOption.classList.add('selected');
+            //     }
+            // }
         });
 
         // 셀렉트 트리거 클릭 이벤트
@@ -783,6 +782,7 @@
 
         ///////progress-bar
         // 여기에서 접속 시간을 초 단위로 설정합니다
+       
         const connectionTime = 5; // 5초 (이 값을 변경하면 됩니다)
 
         const progressBar = document.querySelector('.progress-fill');
@@ -793,16 +793,19 @@
         }
         // 페이지 로드 시 자동으로 프로그레스 바 시작
         document.addEventListener('DOMContentLoaded', () => {
-            // 업데이트 간격 계산 (ms)
-            const updateInterval = connectionTime * 10; // 100번 업데이트하여 부드럽게 표시
-            const interval = setInterval(() => {
-                progress += 1;
-                updateProgressBar(progress);
-                if (progress >= 100) {
-                    clearInterval(interval);
-                }
-            }, updateInterval);
+            if(progressBar) {
+                // 업데이트 간격 계산 (ms)
+                const updateInterval = connectionTime * 10; // 100번 업데이트하여 부드럽게 표시
+                const interval = setInterval(() => {
+                    progress += 1;
+                    updateProgressBar(progress);
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                    }
+                }, updateInterval); 
+            }
         });
+    
 
         //////////하단 재부팅, 접속하기 버튼 호버 이벤트
         const rebootBtn = document.querySelector('.reboot-btn');
