@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const numberCell = document.createElement('td');
             numberCell.textContent = item.id;
             row.appendChild(numberCell);
+            numberCell.classList.add('text-right')
 
             // 분류
             const categoryCell = document.createElement('td');
@@ -286,11 +287,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const dateCell = document.createElement('td');
             dateCell.textContent = item.date;
             row.appendChild(dateCell);
+            dateCell.classList.add('text-right')
 
             // 조회수
             const viewsCell = document.createElement('td');
             viewsCell.textContent = item.views;
             row.appendChild(viewsCell);
+            viewsCell.classList.add('text-right')
 
             tableBody.appendChild(row);
         });

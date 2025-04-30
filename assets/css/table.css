@@ -255,13 +255,14 @@ article {
     font-size: 14px;
     background-color: var(--Primary-Fill-neutral);
     cursor: pointer;
+    text-align: center;
 }
 #dataTable tr:first-child th:first-child {border-radius: 8px 0 0 8px;}
 #dataTable tr:first-child th:last-child {border-radius: 0 8px 8px 0;}
 
 #dataTable tbody td {
     color: #171719;
-    padding: 18px 12px;
+    padding: 18px 20px;
     font-size: 14px;
     border-bottom: 1px solid rgba(112, 115, 124, 0.16);
 }
