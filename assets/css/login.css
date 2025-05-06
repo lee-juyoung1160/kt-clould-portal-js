@@ -20,7 +20,7 @@
     margin: 8px 0 32px;
     color: var(--Neutral-Text-default);
     text-align: center;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
 }
 .login-page h2 span {
@@ -39,6 +39,7 @@
 }
 .move-unlock strong {
     padding: 10px;
+    font-size: 16px;
 }
 /* submit 버튼  */
 .btn-login {
@@ -51,7 +52,7 @@
     align-items: center;
     justify-content: center;
     color: var(--Neutral-Text-alternative);
-    font-size: 14px;
+    font-size: 16px;
 }
 .open-initial-file-download button {
     display: flex;
@@ -60,11 +61,15 @@
     color: var(--Neutral-Text-default);
     font-weight: 500;
 }
+.open-initial-file-download button img {
+    width: 20px;
+    height: 20px;
+}
 /* cs center  */
 .desc-box {
     margin-top: 50px;
     padding: 12px;
-    font-size: 14px;
+    font-size: 16px;
     background-color: var(--Primary-Fill-neutral);
     border-radius: 12px;
 }
@@ -112,7 +117,7 @@
 /* otp */
 .otp-timer {
     margin-top: 24px;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--Neutral-Text-neutral);
     text-align: center;
 }
@@ -127,7 +132,7 @@
 /* 하단 영역 */
 .login-footer {
     width: 100%;
-    color: rgba(55, 56, 60, 0.61);
+    color: rgba(46, 47, 51, 0.88);
     font-size: 13px;
     text-align: center;
     padding: 16px 0;

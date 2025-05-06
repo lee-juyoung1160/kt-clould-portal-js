@@ -186,19 +186,19 @@
             // 게시판 데이터
             const qnaData = [
                 { id: 1, category: '이용문의', title: '업무용 Cloud PC 자원 증설 문의 드립니다.', date: '2025.02.14', status: '답변완료', views: 402 },
-                { id: 2, category: '이용문의', title: '사용자전 계정을 변경하려고 하는데 어떻게 변경하나요? 빠른 답변 부탁합니다.', date: '2025.02.14', status: '답변완료', views: 402 },
-                { id: 3, category: '요금문의', title: '기업 PC를 홈오피스 이용하지 않는 중에도 비용이 발생하나요?', date: '2025.02.14', status: '답변완료', views: 402 },
+                { id: 2, category: '이용문의', title: '사용자전 계정을 변경하려고 하는데 어떻게 변경하나요? 빠른 답변 부탁합니다.', date: '2025.02.14', status: '답변완료', views: 34 },
+                { id: 3, category: '요금문의', title: '기업 PC를 홈오피스 이용하지 않는 중에도 비용이 발생하나요?', date: '2025.02.14', status: '답변완료', views: 23 },
                 { id: 4, category: '요금문의', title: '기업 PC의 스펙을 변경할 수 있습니까?', date: '2025.02.14', status: '답변대기', views: 402 },
-                { id: 5, category: '요금문의', title: '사용 라이선스를 가진 상용 솔루션(문서 솔루션)을 설치할 수 있습니까?', date: '2025.02.14', status: '답변완료', views: 402 },
-                { id: 6, category: '이용문의', title: 'Cloud PC 사용 방법 안내', date: '2025.02.13', status: '답변완료', views: 320 },
-                { id: 7, category: '장애문의', title: '인터넷 연결이 불안정합니다', date: '2025.02.12', status: '답변완료', views: 256 },
-                { id: 8, category: '이용문의', title: '업무용 Cloud PC 자원 증설 문의 드립니다.', date: '2025.02.14', status: '답변완료', views: 402 },
-                { id: 9, category: '이용문의', title: '사용자전 계정을 변경하려고 하는데 어떻게 변경하나요? 빠른 답변 부탁합니다.', date: '2025.02.14', status: '답변완료', views: 402 },
-                { id: 10, category: '요금문의', title: '기업 PC를 홈오피스 이용하지 않는 중에도 비용이 발생하나요?', date: '2025.02.14', status: '답변완료', views: 402 },
-                { id: 11, category: '요금문의', title: '기업 PC의 스펙을 변경할 수 있습니까?', date: '2025.02.14', status: '답변대기', views: 402 },
-                { id: 12, category: '요금문의', title: '사용 라이선스를 가진 상용 솔루션(문서 솔루션)을 설치할 수 있습니까?', date: '2025.02.14', status: '답변완료', views: 402 },
-                { id: 13, category: '이용문의', title: 'Cloud PC 사용 방법 안내', date: '2025.02.13', status: '답변완료', views: 320 },
-                { id: 14, category: '장애문의', title: '인터넷 연결이 불안정합니다', date: '2025.02.12', status: '답변완료', views: 256 },
+                { id: 5, category: '요금문의', title: '사용 라이선스를 가진 상용 솔루션(문서 솔루션)을 설치할 수 있습니까?', date: '2025.02.14', status: '답변완료', views: 1 },
+                { id: 6, category: '이용문의', title: 'Cloud PC 사용 방법 안내', date: '2025.02.13', status: '답변완료', views: 323 },
+                { id: 7, category: '장애문의', title: '인터넷 연결이 불안정합니다', date: '2025.02.12', status: '답변완료', views: 4 },
+                { id: 8, category: '이용문의', title: '업무용 Cloud PC 자원 증설 문의 드립니다.', date: '2025.02.14', status: '답변완료', views: 2342 },
+                { id: 9, category: '이용문의', title: '사용자전 계정을 변경하려고 하는데 어떻게 변경하나요? 빠른 답변 부탁합니다.', date: '2025.02.14', status: '답변완료', views: 55 },
+                { id: 10, category: '요금문의', title: '기업 PC를 홈오피스 이용하지 않는 중에도 비용이 발생하나요?', date: '2025.02.14', status: '답변완료', views: 63 },
+                { id: 11, category: '요금문의', title: '기업 PC의 스펙을 변경할 수 있습니까?', date: '2025.02.14', status: '답변대기', views: 12 },
+                { id: 12, category: '요금문의', title: '사용 라이선스를 가진 상용 솔루션(문서 솔루션)을 설치할 수 있습니까?', date: '2025.02.14', status: '답변완료', views: 3 },
+                { id: 13, category: '이용문의', title: 'Cloud PC 사용 방법 안내', date: '2025.02.13', status: '답변완료', views: 44 },
+                { id: 14, category: '장애문의', title: '인터넷 연결이 불안정합니다', date: '2025.02.12', status: '답변완료', views: 4 },
             ];
 
             /**
@@ -234,11 +234,13 @@
                     const numberCell = document.createElement('td');
                     numberCell.textContent = item.id;
                     row.appendChild(numberCell);
+                    numberCell.style.textAlign = 'right';
 
                     // 분류
                     const categoryCell = document.createElement('td');
                     categoryCell.textContent = item.category;
                     row.appendChild(categoryCell);
+                    categoryCell.style.textAlign = 'center';
 
                     // 제목
                     const titleCell = document.createElement('td');
@@ -259,6 +261,7 @@
                     const dateCell = document.createElement('td');
                     dateCell.textContent = item.date;
                     row.appendChild(dateCell);
+                    dateCell.style.textAlign = 'right';
 
                     // 상태
                     const statusCell = document.createElement('td');
@@ -268,12 +271,16 @@
                     statusCell.className = item.status === '답변완료' ? 'status-answered' : 'status-pending';
                     statusCell.appendChild(statusSpan);
                     row.appendChild(statusCell);
+                    statusCell.style.textAlign = 'center';
+                    
+                 
 
                     // 조회수
                     const viewsCell = document.createElement('td');
                     viewsCell.textContent = item.views;
                     row.appendChild(viewsCell);
-
+                    viewsCell.style.textAlign = 'right';
+                    
                     tableBody.appendChild(row);
                 });
             }

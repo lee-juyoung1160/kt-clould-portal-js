@@ -241,7 +241,7 @@
                     const numberCell = document.createElement('td');
                     numberCell.textContent = item.id;
                     row.appendChild(numberCell);
-                    numberCell.style.textAlign = 'right';
+                    numberCell.style.textAlign = 'center';
 
                     // 파일명
                     const fileNameCell = document.createElement('td');
@@ -253,19 +253,19 @@
                     const fileSizeCell = document.createElement('td');
                     fileSizeCell.textContent = item.size;
                     row.appendChild(fileSizeCell);
-                    fileSizeCell.style.textAlign = 'right';
+                    fileSizeCell.style.textAlign = 'center';
 
                     // 다운로드 기간
                     const downloadPeriodCell = document.createElement('td');
                     downloadPeriodCell.textContent = item.date;
                     row.appendChild(downloadPeriodCell);
-                    downloadPeriodCell.style.textAlign = 'right';
+                    downloadPeriodCell.style.textAlign = 'center';
 
                     // 잔여횟수
                     const remainingNumCell = document.createElement('td');
                     remainingNumCell.textContent = item.remainingNum;
                     row.appendChild(remainingNumCell);
-                    remainingNumCell.style.textAlign = 'right';
+                    remainingNumCell.style.textAlign = 'center';
 
                     // 다운로드 버튼
                     const downloadCell = document.createElement('td');

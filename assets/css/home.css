@@ -98,7 +98,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 139px;
+    width: 121px;
     height: 48px;
     font-size: 16px;
     color: var(--Neutral-Text-neutral);
@@ -239,6 +239,7 @@
 .buttons-container button span {
     display: none;
     font-size: 22px;
+    font-weight: 600;
 }
 
 .buttons-container button.active {
@@ -362,7 +363,7 @@
 }
 
 .panel-header h3 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--Neutral-Text-defalut);
 }
@@ -386,7 +387,7 @@
 .notice-item {
     position: relative;
     padding: 5px 0;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .notice-item a {

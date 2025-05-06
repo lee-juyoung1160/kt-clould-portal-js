@@ -239,7 +239,7 @@
                     const numberCell = document.createElement('td');
                     numberCell.textContent = item.id;
                     row.appendChild(numberCell);
-                    numberCell.style.textAlign = 'right';
+                    numberCell.style.textAlign = 'center';
 
                     // 분류
                     const categoryCell = document.createElement('td');
@@ -287,13 +287,13 @@
                     const dateCell = document.createElement('td');
                     dateCell.textContent = item.date;
                     row.appendChild(dateCell);
-                    dateCell.style.textAlign = 'right';
+                    dateCell.style.textAlign = 'center';
 
                     // 조회수
                     const viewsCell = document.createElement('td');
                     viewsCell.textContent = item.views;
                     row.appendChild(viewsCell);
-                    viewsCell.style.textAlign = 'right';
+                    viewsCell.style.textAlign = 'center';
 
                     tableBody.appendChild(row);
                 });

@@ -176,15 +176,9 @@
         document.addEventListener('DOMContentLoaded', function () {
             // 자료실 데이터 예시
             const resourceData = [
-                { id: 1, category: '이용문의', title: '업무용 Cloud PC 자원 증설 문의 드립니다.', date: '2025.02.14', views: 402, isFixed: true, isNew: false },
-                { id: 2, category: '이용문의', title: '사용자전 계정을 변경하려고 하는데 어떻게 변경하나요? 빠른 답변 부탁합니다.', date: '2025.02.14', views: 402, isFixed: false, isNew: true },
-                { id: 3, category: '요금문의', title: '기업 PC를 홈오피스 이용하지 않는 중에도 비용이 발생하나요?', date: '2025.02.14', views: 402, isFixed: false, isNew: true },
-                { id: 4, category: '요금문의', title: '기업 PC의 스펙을 변경할 수 있습니까?', date: '2025.02.14', views: 402, isFixed: false, isNew: true },
-                { id: 5, category: '요금문의', title: '사용 라이선스를 가진 상용 솔루션(문서 솔루션)을 설치할 수 있습니까?', date: '2025.02.14', views: 402, isFixed: false, isNew: false },
-                { id: 6, category: '이용문의', title: 'Cloud PC 사용 방법 안내', date: '2025.02.13', views: 320, isFixed: false, isNew: false },
-                { id: 7, category: '장애문의', title: '인터넷 연결이 불안정합니다', date: '2025.02.12', views: 256, isFixed: false, isNew: false },
-                { id: 8, category: '계정문의', title: '계정 보안 설정 문의', date: '2025.02.11', views: 198, isFixed: false, isNew: false },
-                { id: 9, category: '계정문의', title: '사용자 추가 가능한가요?', date: '2025.02.10', views: 215, isFixed: true, isNew: false },
+                { id: 1, category: '접속', title: '접속 Agent 윈도우용', date: '2025.02.14', views: 402, isFixed: true, isNew: false },
+                { id: 2, category: '포털', title: '접속 Agent MAC용', date: '2025.02.14', views: 3, isFixed: false, isNew: true },
+                { id: 3, category: '망연계', title: '접속 Agent 태블릿용', date: '2025.02.14', views: 56, isFixed: false, isNew: true },
             ];
 
             /**
@@ -251,11 +245,13 @@
                     const numberCell = document.createElement('td');
                     numberCell.textContent = item.id;
                     row.appendChild(numberCell);
+                    numberCell.style.textAlign = 'right';
 
                     // 분류
                     const categoryCell = document.createElement('td');
                     categoryCell.textContent = item.category;
                     row.appendChild(categoryCell);
+                    categoryCell.style.textAlign = 'center';
 
                     // 제목
                     const titleCell = document.createElement('td');
@@ -296,11 +292,13 @@
                     const dateCell = document.createElement('td');
                     dateCell.textContent = item.date;
                     row.appendChild(dateCell);
+                    dateCell.style.textAlign = 'right';
 
                     // 조회수
                     const viewsCell = document.createElement('td');
                     viewsCell.textContent = item.views;
                     row.appendChild(viewsCell);
+                    viewsCell.style.textAlign = 'right';
 
                     tableBody.appendChild(row);
                 });

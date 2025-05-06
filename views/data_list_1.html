@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,14 +15,12 @@
             <h1 class="logo"><a href="./home.html"><img src="../assets/images/logo.svg" alt="로고"></a></h1>
             <!-- 모바일 햄버거 버튼 -->
             <button class="menu-toggle"><img src="../assets/images/ic_menu.svg" alt="햄버거 메뉴"></button>
-
             <nav>
                 <div class="mobile-menu-header">
                     <h2 class="mobile-menu-logo"><a href="./home.html"><img src="../assets/images/logo.svg" alt="로고"></a></h2>
                     <!-- 닫기 -->
                     <button class="close-btn"><img src="../assets/images/close.svg" alt=""></button>
                 </div>
-
                 <ul class="main-menu">
                     <!-- 해당 페이지 일때 li.active -->
                     <li><a href="./home.html"><span>홈</span></a></li>
@@ -76,12 +73,13 @@
     </header>
     <!-- 모바일 헤더 오버레이 -->
     <div class="overlay"></div>
-
     <article class="qna-list-page">
         <section class="page-title">
-            <h2><img src="../assets/images/ic_notice.svg" alt="qna 아이콘"><strong>가이드 게시판</strong></h2>
+            <h2><img src="../assets/images/ic_notice.svg" alt="data 아이콘"><strong>자료실</strong></h2>
         </section>
+
         <section class="table-container">
+
             <div class="table-header-top">
                 <!-- 탭 : 분류 -->
                 <div class="tab-container">
@@ -111,6 +109,7 @@
             <div class="scroll">
                 <div class="table-header">
                     <div class="total-count">총 <span id="totalCount">0</span>개</div>
+    
                     <!-- 정렬 타입 커스텀 셀렉트 -->
                     <div class="custom-select sort-select" id="sortOrderSelect">
                         <div class="select-selected">최신순</div>
@@ -136,7 +135,7 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th data-sort="id">번호</th>
+                                <th data-sort="number">번호</th>
                                 <th data-sort="category">분류유형</th>
                                 <th data-sort="title">제목</th>
                                 <th data-sort="date">작성일</th>
@@ -172,41 +171,48 @@
     <script src="../assets/js/header.js"></script>
     <script src="../assets/js/loading_spinner.js"></script>
     <script src="../assets/js/table.js"></script>
+    <script src="../assets/js/loading_spinner.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // 가이드 게시판 데이터 예시
-            const guideData = [
-                { id: 1, category: '이용문의', title: '업무용 Cloud PC 자원 증설 문의 드립니다.', date: '2025.02.14', views: 2, isFixed: true, isNew: false },
-                { id: 2, category: '이용문의', title: '사용자전 계정을 변경하려고 하는데 어떻게 변경하나요? 빠른 답변 부탁합니다.', date: '2025.02.14', views: 402, isFixed: false, isNew: true },
-                { id: 3, category: '요금문의', title: '기업 PC를 홈오피스 이용하지 않는 중에도 비용이 발생하나요?', date: '2025.02.14', views: 3, isFixed: false, isNew: true },
+            // 자료실 데이터 예시
+            const resourceData = [
+                { id: 1, category: '접속', title: '접속 Agent 윈도우용', date: '2025.02.14', views: 402, isFixed: true, isNew: false },
+                { id: 2, category: '포털', title: '접속 Agent MAC용', date: '2025.02.14', views: 3, isFixed: false, isNew: true },
+                { id: 3, category: '망연계', title: '접속 Agent 태블릿용', date: '2025.02.14', views: 56, isFixed: false, isNew: true },
             ];
 
             /**
-             * 가이드 게시판 데이터 전처리
-             * isNew 플래그를 처리하고 게시일이 7일 이내인 글에 표시합니다.
+             * 자료실 데이터 전처리
+             * 날짜 기준으로 isNew 플래그를 설정하는 기능
              * @param {Array} data - 원본 데이터 배열
              * @returns {Array} - 전처리된 데이터 배열
              */
-            function preprocessGuideData(data) {
+            function preprocessResourceData(data) {
                 const now = new Date();
                 return data.map(item => {
                     const itemDate = new Date(item.date.replace(/\./g, '-'));
                     const daysDiff = (now - itemDate) / (1000 * 60 * 60 * 24);
 
-                    return {
-                        ...item,
-                        isNew: item.isNew || daysDiff <= 7, // 데이터에 isNew가 없거나 7일 이내인 경우
-                        isFixed: item.isFixed || false      // 고정 여부 (기본값 false)
-                    };
+                    // 이미 isNew가 설정되어 있지 않다면, 7일 이내 게시물인지 확인
+                    if (item.isNew === undefined) {
+                        item.isNew = daysDiff <= 7;
+                    }
+
+                    // isFixed가 설정되어 있지 않다면 기본값 false 설정
+                    if (item.isFixed === undefined) {
+                        item.isFixed = false;
+                    }
+
+                    return item;
                 });
             }
 
             /**
-             * 가이드 게시판 PC 테이블 렌더링 함수
+             * 자료실 PC 테이블 렌더링 함수
              * @param {Array} data - 렌더링할 데이터 배열
              * @param {HTMLElement} tableBody - 테이블 바디 요소
              */
-            function renderGuideData(data, tableBody) {
+            function renderResourceData(data, tableBody) {
                 tableBody.innerHTML = '';
 
                 // 검색 결과가 없는 경우
@@ -230,23 +236,22 @@
                 data.forEach(item => {
                     const row = document.createElement('tr');
 
-                    // 고정 글인 경우 클래스 추가
+                    // 고정 게시글인 경우 클래스 추가
                     if (item.isFixed) {
-                        row.classList.add('fixed-post');
+                        row.classList.add('fixed-row');
                     }
 
                     // 번호
                     const numberCell = document.createElement('td');
                     numberCell.textContent = item.id;
                     row.appendChild(numberCell);
-                    numberCell.style.textAlign = 'right';
+                    numberCell.style.textAlign = 'center';
 
                     // 분류
                     const categoryCell = document.createElement('td');
                     categoryCell.textContent = item.category;
                     row.appendChild(categoryCell);
                     categoryCell.style.textAlign = 'center';
-                    
 
                     // 제목
                     const titleCell = document.createElement('td');
@@ -267,7 +272,7 @@
                     titleText.textContent = item.title;
                     titleCell.appendChild(titleText);
 
-                    // 신규 글 뱃지
+                    // 새 글 표시
                     if (item.isNew) {
                         const newBadge = document.createElement('span');
                         newBadge.innerHTML = '<img src="../assets/images/ic_new.svg" alt="새 글">';
@@ -275,10 +280,10 @@
                         titleCell.appendChild(newBadge);
                     }
 
-                    // 제목 클릭 이벤트
+                    // 제목 클릭 이벤트 추가
                     titleCell.addEventListener('click', function () {
-                        //console.log(`게시글 ID ${item.id} 상세 페이지로 이동`);
-                        window.location.href = `./guide_detail.html`;
+                
+                        window.location.href = `./data_detail.html`;
                     });
 
                     row.appendChild(titleCell);
@@ -287,24 +292,24 @@
                     const dateCell = document.createElement('td');
                     dateCell.textContent = item.date;
                     row.appendChild(dateCell);
-                    dateCell.style.textAlign = 'right';
+                    dateCell.style.textAlign = 'center';
 
                     // 조회수
                     const viewsCell = document.createElement('td');
                     viewsCell.textContent = item.views;
                     row.appendChild(viewsCell);
-                    viewsCell.style.textAlign = 'right';
+                    viewsCell.style.textAlign = 'center';
 
                     tableBody.appendChild(row);
                 });
             }
 
             /**
-             * 가이드 게시판 모바일 카드 렌더링 함수
+             * 자료실 모바일 카드 렌더링 함수
              * @param {Array} data - 렌더링할 데이터 배열
              * @param {HTMLElement} cardContainer - 카드 컨테이너 요소
              */
-            function renderGuideMobileCards(data, cardContainer) {
+            function renderResourceMobileCards(data, cardContainer) {
                 cardContainer.innerHTML = '';
 
                 // 검색 결과가 없는 경우
@@ -393,7 +398,7 @@
                     // 클릭 이벤트 설정
                     cardBody.addEventListener('click', function () {
                         //console.log(`게시글 ID ${item.id} 상세 페이지로 이동`);
-                        window.location.href = `./guide_detail.html`;
+                        window.location.href = `./data_detail.html`;
                     });
 
                     // 카드에 헤더와 본문, 푸터 추가
@@ -406,17 +411,17 @@
                 });
             }
 
-            // 가이드 게시판 페이지 전용 메시지 설정
-            const guideMessages = {
+            // 자료실 페이지 전용 메시지 설정
+            const resourceMessages = {
                 emptyData: {
                     pc: `
                 <div class="search-no-result">
-                    <p>등록된 가이드가 없습니다.</p>
+                    <p>등록된 자료가 없습니다.</p>
                 </div>
             `,
                     mobile: `
                 <div class="search-no-result">
-                    <p>등록된 가이드가 없습니다.</p>
+                    <p>등록된 자료가 없습니다.</p>
                 </div>
             `
                 },
@@ -435,19 +440,19 @@
             };
 
             // 데이터 전처리 수행
-            const processedData = preprocessGuideData(guideData);
+            const processedData = preprocessResourceData(resourceData);
 
             // 1. 동적으로 카테고리 탭 생성
             createDynamicTabs(processedData, 'category', document.querySelector('.tabs'));
 
             // 2. 테이블 초기화
-            const guideTable = initializeTable({
+            const resourceTable = initializeTable({
                 // 기본 데이터 설정
                 data: processedData,
 
                 // 렌더링 콜백 함수
-                renderCallback: renderGuideData,         // PC 테이블용 렌더링 함수
-                renderMobileCallback: renderGuideMobileCards, // 모바일 카드 렌더링 함수
+                renderCallback: renderResourceData,         // PC 테이블용 렌더링 함수
+                renderMobileCallback: renderResourceMobileCards, // 모바일 카드 렌더링 함수
 
                 // DOM 요소 ID
                 tableBodyId: 'tableBody',                // PC 테이블 바디 ID
@@ -472,12 +477,15 @@
                 filterProperty: 'category',              // 필터링 속성 (카테고리)
 
                 // 메시지 설정
-                messages: guideMessages                  // 페이지별 커스텀 메시지
+                messages: resourceMessages               // 페이지별 커스텀 메시지
             });
 
             // 3. 테이블 초기화 실행
-            guideTable.init();
+            resourceTable.init();
         });
     </script>
+
 </body>
+
+
 </html>

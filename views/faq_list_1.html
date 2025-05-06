@@ -297,7 +297,7 @@
                     const numberCell = document.createElement('td');
                     numberCell.textContent = item.id;
                     questionRow.appendChild(numberCell);
-                    numberCell.style.textAlign = 'right';
+                    numberCell.style.textAlign = 'center';
 
                     // 카테고리
                     const categoryCell = document.createElement('td');
@@ -315,13 +315,13 @@
                     const dateCell = document.createElement('td');
                     dateCell.textContent = item.date;
                     questionRow.appendChild(dateCell);
-                    questionRow.style.textAlign = 'right';
+                    questionRow.style.textAlign = 'center';
 
                     // 조회수
                     const viewsCell = document.createElement('td');
                     viewsCell.textContent = item.views.toLocaleString();
                     questionRow.appendChild(viewsCell);
-                    viewsCell.style.textAlign = 'right';
+                    viewsCell.style.textAlign = 'center';
 
                     // 토글 아이콘
                     const toggleCell = document.createElement('td');

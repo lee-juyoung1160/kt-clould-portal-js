@@ -73,6 +73,7 @@ article {
 .tabs li button {
     padding: 12px 2px;
     margin-right: 20px;
+    font-size: 16px;
     cursor: pointer;
     color: #989BA2;
     font-weight: 400;
@@ -252,7 +253,7 @@ article {
 #dataTable thead th {
     position: relative;
     padding: 14px 12px;
-    font-size: 14px;
+    font-size: 16px;
     background-color: var(--Primary-Fill-neutral);
     cursor: pointer;
     text-align: center;
@@ -263,7 +264,7 @@ article {
 #dataTable tbody td {
     color: #171719;
     padding: 18px 16px;
-    font-size: 14px;
+    font-size: 16px;
     border-bottom: 1px solid rgba(112, 115, 124, 0.16);
 }
 

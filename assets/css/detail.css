@@ -25,6 +25,10 @@
     align-items: center;
     color: #171719;
     font-size: 16px;
+    display: inline-flex;
+    padding: 2px 12px 2px 6px;
+    border: 1px solid rgba(112, 115, 124, 0.28);
+    border-radius: 4px;
 }
 
 .body-header .move-list img {
@@ -77,8 +81,12 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 12px 44px 12px 12px;
+    padding: 8px 44px 8px 16px;
+    margin-right: 8px;
     color: #0066FF;
+    display: inline-flex;
+    border: 1px solid rgba(112, 115, 124, 0.28);
+    border-radius: 4px;
 }
 
 .download-wrap li a::after {

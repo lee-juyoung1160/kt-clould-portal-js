@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,13 +76,16 @@
     <!-- 모바일 헤더 오버레이 -->
     <div class="overlay"></div>
 
-    <article class="qna-list-page">
+    <article class="notice-list-page">
         <section class="page-title">
-            <h2><img src="../assets/images/ic_notice.svg" alt="qna 아이콘"><strong>가이드 게시판</strong></h2>
+            <h2><img src="../assets/images/ic_qna.svg" alt="qna 아이콘"><strong>Q&A</strong></h2>
+            <a href="./qna_write.html" class="button button-default">문의하기</a>
         </section>
+
         <section class="table-container">
+
             <div class="table-header-top">
-                <!-- 탭 : 분류 -->
+                <!-- 탭 : 상태 -->
                 <div class="tab-container">
                     <ul class="tabs">
                         <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
@@ -108,9 +110,11 @@
                 <button class="search-button-toggle mo"><img src="../assets/images/ic_search_16.svg" alt="검색"></button>
             </div>
 
+
             <div class="scroll">
                 <div class="table-header">
                     <div class="total-count">총 <span id="totalCount">0</span>개</div>
+    
                     <!-- 정렬 타입 커스텀 셀렉트 -->
                     <div class="custom-select sort-select" id="sortOrderSelect">
                         <div class="select-selected">최신순</div>
@@ -123,6 +127,7 @@
                     </div>
     
                 </div>
+    
                 <!-- 테이블 -->
                 <div id="dataTable">
                     <!-- pc:테이블 -->
@@ -130,16 +135,18 @@
                         <colgroup>
                             <col style="width: 7%;">
                             <col style="width: 10%;">
-                            <col style="width: 54%;">
+                            <col style="width: 44%;">
+                            <col style="width: 10%;">
                             <col style="width: 10%;">
                             <col style="width: 9%;">
                         </colgroup>
                         <thead>
                             <tr>
-                                <th data-sort="id">번호</th>
+                                <th data-sort="number">번호</th>
                                 <th data-sort="category">분류유형</th>
                                 <th data-sort="title">제목</th>
                                 <th data-sort="date">작성일</th>
+                                <th data-sort="status">상태</th>
                                 <th data-sort="views">조회수</th>
                             </tr>
                         </thead>
@@ -147,6 +154,7 @@
                             <!-- 데이터가 여기에 동적으로 삽입됩니다 -->
                         </tbody>
                     </table>
+    
                     <!-- mo: 카드 테이블 -->
                     <div class="mo-card-table">
                         <div class="mo-table-body" id="moTableBody">
@@ -156,6 +164,7 @@
                 </div>
             </div>
             
+
             <div class="pagination" id="pagination">
                 <button id="firstPage"><img src="../assets/images/ic_table_prev_2.svg" alt="맨앞"></button>
                 <button id="prevPage"><img src="../assets/images/ic_table_prev_1.svg" alt="이전"></button>
@@ -174,39 +183,30 @@
     <script src="../assets/js/table.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // 가이드 게시판 데이터 예시
-            const guideData = [
-                { id: 1, category: '이용문의', title: '업무용 Cloud PC 자원 증설 문의 드립니다.', date: '2025.02.14', views: 2, isFixed: true, isNew: false },
-                { id: 2, category: '이용문의', title: '사용자전 계정을 변경하려고 하는데 어떻게 변경하나요? 빠른 답변 부탁합니다.', date: '2025.02.14', views: 402, isFixed: false, isNew: true },
-                { id: 3, category: '요금문의', title: '기업 PC를 홈오피스 이용하지 않는 중에도 비용이 발생하나요?', date: '2025.02.14', views: 3, isFixed: false, isNew: true },
+            // 게시판 데이터
+            const qnaData = [
+                { id: 1, category: '이용문의', title: '업무용 Cloud PC 자원 증설 문의 드립니다.', date: '2025.02.14', status: '답변완료', views: 402 },
+                { id: 2, category: '이용문의', title: '사용자전 계정을 변경하려고 하는데 어떻게 변경하나요? 빠른 답변 부탁합니다.', date: '2025.02.14', status: '답변완료', views: 34 },
+                { id: 3, category: '요금문의', title: '기업 PC를 홈오피스 이용하지 않는 중에도 비용이 발생하나요?', date: '2025.02.14', status: '답변완료', views: 23 },
+                { id: 4, category: '요금문의', title: '기업 PC의 스펙을 변경할 수 있습니까?', date: '2025.02.14', status: '답변대기', views: 402 },
+                { id: 5, category: '요금문의', title: '사용 라이선스를 가진 상용 솔루션(문서 솔루션)을 설치할 수 있습니까?', date: '2025.02.14', status: '답변완료', views: 1 },
+                { id: 6, category: '이용문의', title: 'Cloud PC 사용 방법 안내', date: '2025.02.13', status: '답변완료', views: 323 },
+                { id: 7, category: '장애문의', title: '인터넷 연결이 불안정합니다', date: '2025.02.12', status: '답변완료', views: 4 },
+                { id: 8, category: '이용문의', title: '업무용 Cloud PC 자원 증설 문의 드립니다.', date: '2025.02.14', status: '답변완료', views: 2342 },
+                { id: 9, category: '이용문의', title: '사용자전 계정을 변경하려고 하는데 어떻게 변경하나요? 빠른 답변 부탁합니다.', date: '2025.02.14', status: '답변완료', views: 55 },
+                { id: 10, category: '요금문의', title: '기업 PC를 홈오피스 이용하지 않는 중에도 비용이 발생하나요?', date: '2025.02.14', status: '답변완료', views: 63 },
+                { id: 11, category: '요금문의', title: '기업 PC의 스펙을 변경할 수 있습니까?', date: '2025.02.14', status: '답변대기', views: 12 },
+                { id: 12, category: '요금문의', title: '사용 라이선스를 가진 상용 솔루션(문서 솔루션)을 설치할 수 있습니까?', date: '2025.02.14', status: '답변완료', views: 3 },
+                { id: 13, category: '이용문의', title: 'Cloud PC 사용 방법 안내', date: '2025.02.13', status: '답변완료', views: 44 },
+                { id: 14, category: '장애문의', title: '인터넷 연결이 불안정합니다', date: '2025.02.12', status: '답변완료', views: 4 },
             ];
 
             /**
-             * 가이드 게시판 데이터 전처리
-             * isNew 플래그를 처리하고 게시일이 7일 이내인 글에 표시합니다.
-             * @param {Array} data - 원본 데이터 배열
-             * @returns {Array} - 전처리된 데이터 배열
-             */
-            function preprocessGuideData(data) {
-                const now = new Date();
-                return data.map(item => {
-                    const itemDate = new Date(item.date.replace(/\./g, '-'));
-                    const daysDiff = (now - itemDate) / (1000 * 60 * 60 * 24);
-
-                    return {
-                        ...item,
-                        isNew: item.isNew || daysDiff <= 7, // 데이터에 isNew가 없거나 7일 이내인 경우
-                        isFixed: item.isFixed || false      // 고정 여부 (기본값 false)
-                    };
-                });
-            }
-
-            /**
-             * 가이드 게시판 PC 테이블 렌더링 함수
+             * Q&A 데이터 렌더링 함수 (PC 테이블용)
              * @param {Array} data - 렌더링할 데이터 배열
              * @param {HTMLElement} tableBody - 테이블 바디 요소
              */
-            function renderGuideData(data, tableBody) {
+            function renderQnaData(data, tableBody) {
                 tableBody.innerHTML = '';
 
                 // 검색 결과가 없는 경우
@@ -214,11 +214,11 @@
                     const emptyRow = document.createElement('tr');
                     const emptyCell = document.createElement('td');
 
-                    emptyCell.colSpan = 5; // 모든 컬럼을 병합
+                    emptyCell.colSpan = 6; // 모든 컬럼을 병합
                     emptyCell.className = 'empty-message';
                     emptyCell.innerHTML = `
                 <div class="search-no-result">
-                    <p>검색 결과가 존재하지 않습니다.<br>다른 검색어로 검색해보세요.</p>
+                    <p>문의하신 내역이 없습니다.<br><button type="button" class="button" onclick="location.href='./qna_write'">문의하기</button></p>
                 </div>
             `;
 
@@ -230,55 +230,29 @@
                 data.forEach(item => {
                     const row = document.createElement('tr');
 
-                    // 고정 글인 경우 클래스 추가
-                    if (item.isFixed) {
-                        row.classList.add('fixed-post');
-                    }
-
                     // 번호
                     const numberCell = document.createElement('td');
                     numberCell.textContent = item.id;
                     row.appendChild(numberCell);
-                    numberCell.style.textAlign = 'right';
+                    numberCell.style.textAlign = 'center';
 
                     // 분류
                     const categoryCell = document.createElement('td');
                     categoryCell.textContent = item.category;
                     row.appendChild(categoryCell);
                     categoryCell.style.textAlign = 'center';
-                    
 
                     // 제목
                     const titleCell = document.createElement('td');
-                    titleCell.classList.add('td-title');
+                    titleCell.textContent = item.title;
                     titleCell.style.textAlign = 'left';
                     titleCell.style.cursor = 'pointer';
 
-                    // 고정 글 아이콘
-                    if (item.isFixed) {
-                        const fixedIcon = document.createElement('span');
-                        fixedIcon.innerHTML = '<img src="../assets/images/Icon_fixed.svg" alt="고정 게시글">';
-                        fixedIcon.style.marginRight = '7px';
-                        titleCell.appendChild(fixedIcon);
-                    }
-
-                    // 제목 텍스트
-                    const titleText = document.createElement('span');
-                    titleText.textContent = item.title;
-                    titleCell.appendChild(titleText);
-
-                    // 신규 글 뱃지
-                    if (item.isNew) {
-                        const newBadge = document.createElement('span');
-                        newBadge.innerHTML = '<img src="../assets/images/ic_new.svg" alt="새 글">';
-                        newBadge.style.marginLeft = '7px';
-                        titleCell.appendChild(newBadge);
-                    }
-
-                    // 제목 클릭 이벤트
+                    // 제목 클릭 이벤트 추가
                     titleCell.addEventListener('click', function () {
+                        // 실제 구현 시 상세페이지로 이동하는 코드를 추가
                         //console.log(`게시글 ID ${item.id} 상세 페이지로 이동`);
-                        window.location.href = `./guide_detail.html`;
+                         window.location.href = `./qna_detail.html`;
                     });
 
                     row.appendChild(titleCell);
@@ -287,24 +261,36 @@
                     const dateCell = document.createElement('td');
                     dateCell.textContent = item.date;
                     row.appendChild(dateCell);
-                    dateCell.style.textAlign = 'right';
+                    dateCell.style.textAlign = 'center';
+
+                    // 상태
+                    const statusCell = document.createElement('td');
+                    const statusSpan = document.createElement('span');
+
+                    statusSpan.textContent = item.status;
+                    statusCell.className = item.status === '답변완료' ? 'status-answered' : 'status-pending';
+                    statusCell.appendChild(statusSpan);
+                    row.appendChild(statusCell);
+                    statusCell.style.textAlign = 'center';
+                    
+                 
 
                     // 조회수
                     const viewsCell = document.createElement('td');
                     viewsCell.textContent = item.views;
                     row.appendChild(viewsCell);
-                    viewsCell.style.textAlign = 'right';
+                    viewsCell.style.textAlign = 'center';
 
                     tableBody.appendChild(row);
                 });
             }
 
             /**
-             * 가이드 게시판 모바일 카드 렌더링 함수
+             * Q&A 모바일 카드 렌더링 함수
              * @param {Array} data - 렌더링할 데이터 배열
              * @param {HTMLElement} cardContainer - 카드 컨테이너 요소
              */
-            function renderGuideMobileCards(data, cardContainer) {
+            function renderQnaMobileCards(data, cardContainer) {
                 cardContainer.innerHTML = '';
 
                 // 검색 결과가 없는 경우
@@ -312,7 +298,7 @@
                     cardContainer.innerHTML = `
                 <div class="mo-no-result">
                     <div class="search-no-result">
-                        <p>검색 결과가 존재하지 않습니다.<br>다른 검색어로 검색해보세요.</p>
+                        <p>문의하신 내역이 없습니다.<br><button type="button" class="button" onclick="location.href='./qna_write'">문의하기</button></p>
                     </div>
                 </div>
             `;
@@ -322,7 +308,7 @@
                 // 각 데이터 아이템에 대해 카드 생성
                 data.forEach(item => {
                     const card = document.createElement('div');
-                    card.className = `card-item ${item.isFixed ? 'fixed-card' : ''}`;
+                    card.className = 'card-item';
 
                     // 카드 헤더 (분류)
                     const cardHeader = document.createElement('div');
@@ -343,29 +329,12 @@
                     // 제목
                     const title = document.createElement('div');
                     title.className = 'card-title';
-
-                    // 제목 HTML 구성
-                    let titleHTML = '';
-
-                    // 고정 글 아이콘
-                    if (item.isFixed) {
-                        titleHTML += '<img src="../assets/images/Icon_fixed.svg" class="fixed-icon" alt="고정"> ';
-                    }
-
-                    // 제목 텍스트 추가
-                    titleHTML += item.title;
-
-                    // 새 글 뱃지
-                    if (item.isNew) {
-                        titleHTML += ' <img src="../assets/images/ic_new.svg" class="new-badge" alt="새 글">';
-                    }
-
-                    title.innerHTML = titleHTML;
+                    title.textContent = item.title;
 
                     // 본문에 제목 추가
                     cardBody.appendChild(title);
 
-                    // 카드 푸터 (날짜, 조회수)
+                    // 카드 푸터 (날짜, 조회수, 상태)
                     const cardFooter = document.createElement('div');
                     cardFooter.className = 'card-footer';
 
@@ -383,9 +352,18 @@
                     views.className = 'card-views';
                     views.innerHTML = `<img src="../assets/images/ic_view.svg" alt="조회수"> ${item.views}`;
 
-                    // 정보 영역에 날짜와 조회수 추가
+                    // 상태
+                    const status = document.createElement('div');
+                    status.className = item.status === '답변완료' ? 'status-answered' : 'status-pending';
+
+                    const statusSpan = document.createElement('span');
+                    statusSpan.textContent = item.status;
+                    status.appendChild(statusSpan);
+
+                    // 정보 영역에 날짜와 조회수, 상태 추가
                     infoArea.appendChild(date);
                     infoArea.appendChild(views);
+                    infoArea.appendChild(status);
 
                     // 푸터에 정보 영역 추가
                     cardFooter.appendChild(infoArea);
@@ -393,7 +371,7 @@
                     // 클릭 이벤트 설정
                     cardBody.addEventListener('click', function () {
                         //console.log(`게시글 ID ${item.id} 상세 페이지로 이동`);
-                        window.location.href = `./guide_detail.html`;
+                        window.location.href = `./qna_detail.html`;
                     });
 
                     // 카드에 헤더와 본문, 푸터 추가
@@ -406,17 +384,20 @@
                 });
             }
 
-            // 가이드 게시판 페이지 전용 메시지 설정
-            const guideMessages = {
+            // 1. 동적으로 상태(status) 탭 생성 - 공통 함수 사용
+            createDynamicTabs(qnaData, 'status', document.querySelector('.tabs'));
+
+            // 2. Q&A 페이지 전용 메시지 설정
+            const qnaMessages = {
                 emptyData: {
                     pc: `
                 <div class="search-no-result">
-                    <p>등록된 가이드가 없습니다.</p>
+                    <p>문의하신 내역이 없습니다.<br><button type="button" class="button" onclick="location.href='./qna_write'">문의하기</button></p>
                 </div>
             `,
                     mobile: `
                 <div class="search-no-result">
-                    <p>등록된 가이드가 없습니다.</p>
+                    <p>문의하신 내역이 없습니다.<br><button type="button" class="button" onclick="location.href='./qna_write'">문의하기</button></p>
                 </div>
             `
                 },
@@ -434,49 +415,40 @@
                 }
             };
 
-            // 데이터 전처리 수행
-            const processedData = preprocessGuideData(guideData);
-
-            // 1. 동적으로 카테고리 탭 생성
-            createDynamicTabs(processedData, 'category', document.querySelector('.tabs'));
-
-            // 2. 테이블 초기화
-            const guideTable = initializeTable({
+            // 3. 테이블 초기화 - 공통 테이블 모듈 사용
+            const qnaTable = initializeTable({
                 // 기본 데이터 설정
-                data: processedData,
+                data: qnaData,
 
                 // 렌더링 콜백 함수
-                renderCallback: renderGuideData,         // PC 테이블용 렌더링 함수
-                renderMobileCallback: renderGuideMobileCards, // 모바일 카드 렌더링 함수
+                renderCallback: renderQnaData,          // PC 테이블용 렌더링 함수
+                renderMobileCallback: renderQnaMobileCards, // 모바일 카드 렌더링 함수
 
                 // DOM 요소 ID
-                tableBodyId: 'tableBody',                // PC 테이블 바디 ID
-                moTableBodyId: 'moTableBody',            // 모바일 테이블 바디 ID
-                totalCountId: 'totalCount',              // 총 항목 수 표시 요소 ID
-                pageNumbersId: 'pageNumbers',            // 페이지 번호 컨테이너 ID
+                tableBodyId: 'tableBody',               // PC 테이블 바디 ID
+                moTableBodyId: 'moTableBody',           // 모바일 테이블 바디 ID
+                totalCountId: 'totalCount',             // 총 항목 수 표시 요소 ID
+                pageNumbersId: 'pageNumbers',           // 페이지 번호 컨테이너 ID
 
                 // 페이지네이션 설정
-                itemsPerPage: 10,                        // 페이지당 표시할 항목 수
-                pageRange: 5,                            // 페이지 네비게이션에 표시할 페이지 번호 수
+                itemsPerPage: 10,                       // 페이지당 표시할 항목 수
+                pageRange: 5,                           // 페이지 네비게이션에 표시할 페이지 번호 수
 
                 // 정렬 설정
                 sortConfig: {
-                    defaultColumn: 'date',               // 기본 정렬 컬럼
-                    defaultDirection: 'desc'             // 기본 정렬 방향 (최신순)
+                    defaultColumn: 'date',              // 기본 정렬 컬럼
+                    defaultDirection: 'desc'            // 기본 정렬 방향 (최신순)
                 },
 
-                // 고정 게시글 우선 표시 설정
-                fixedItemsFirst: true,                   // 고정 게시글을 항상 먼저 표시
-
                 // 필터링 설정
-                filterProperty: 'category',              // 필터링 속성 (카테고리)
+                filterProperty: 'status',               // 필터링 속성 (상태)
 
                 // 메시지 설정
-                messages: guideMessages                  // 페이지별 커스텀 메시지
+                messages: qnaMessages                   // 페이지별 커스텀 메시지
             });
 
-            // 3. 테이블 초기화 실행
-            guideTable.init();
+            // 4. 테이블 초기화 실행
+            qnaTable.init();
         });
     </script>
 </body>
