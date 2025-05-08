@@ -102,7 +102,7 @@ article {
     width: 65px;
     height: 21px;
     line-height: 21px;
-    font-size: 14px;
+    font-size: 16px;
     padding: 0;
     border: none;
     background: none;
@@ -110,11 +110,12 @@ article {
 .search-container input {
     width: 190px;
     height: 21px;
+    font-size: 16px;
     border-radius: 4px;
 }
 
 .search-container input::placeholder {
-    font-size: 14px;
+    font-size: 16px;
     color: rgba(55, 56, 60, 0.28);
 }
 .search-container button {
@@ -144,7 +145,7 @@ article {
 .custom-select {
     position: relative;
     min-width: 65px;
-    font-size: 14px;
+    font-size: 16px;
 }
 .sort-select {
     min-width: 100px;
@@ -227,7 +228,7 @@ article {
     padding: 6px 0;
 }
 .total-count {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
 }
 .total-count span {

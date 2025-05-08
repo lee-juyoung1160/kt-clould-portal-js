@@ -550,7 +550,7 @@ button:disabled, button:disabled:hover {
 .input-item .input-title {
     display: block;
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--Neutral-Text-neutral);
 }
 .input-item .input {
@@ -575,7 +575,7 @@ button:disabled, button:disabled:hover {
     height: 100%;
     padding: 10px 42px 10px 16px;
     color: var(--Neutral-Text-default);
-    font-size: 14px;
+    font-size: 16px;
     background-color: #fff;
     border: 1px solid var(--Neutral-Border-alternative);
     border-radius: 4px;
