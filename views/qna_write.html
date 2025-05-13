@@ -336,111 +336,135 @@
 
   });
 
-  // 파일첨부
+  //파일 첨부
   document.addEventListener('DOMContentLoaded', function () {
-    // 요소 참조
-    const fileUploadArea = document.querySelector('.file-upload-area');
-    const fileInput = document.getElementById('fileInput');
-    const fileList = document.querySelector('.file-list');
-    const uploadBtn = document.querySelector('.upload-btn');
+  // 요소 참조
+  const fileUploadArea = document.querySelector('.file-upload-area');
+  const fileInput = document.getElementById('fileInput');
+  const fileList = document.querySelector('.file-list');
+  const uploadBtn = document.querySelector('.upload-btn');
 
-    // 최대 파일 크기 (15MB를 바이트로 변환)
-    const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB
-    let totalFileSize = 0;
+  // 최대 파일 크기 (15MB를 바이트로 변환)
+  const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB
+  let totalFileSize = 0;
 
-    // 파일 업로드 버튼 클릭
-    uploadBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      fileInput.click();
-    });
+  // 허용된 파일 확장자 목록
+  const ALLOWED_EXTENSIONS = ['xlsx', 'xls', 'docx', 'doc', 'pptx', 'ppt', 'txt', 'pdf', 'zip', 'jpg', 'jpeg', 'png', 'gif'];
 
-    // 파일 선택 시 처리
-    fileInput.addEventListener('change', function () {
-      handleFiles(this.files);
-    });
+  // 파일 확장자 확인 함수
+  function isValidFileExtension(filename) {
+    const extension = filename.split('.').pop().toLowerCase();
+    return ALLOWED_EXTENSIONS.includes(extension);
+  }
 
-    // 드래그 앤 드롭 이벤트 처리
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-      fileUploadArea.addEventListener(eventName, preventDefaults, false);
-    });
+  // 파일 업로드 버튼 클릭
+  uploadBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    fileInput.click();
+  });
 
-    function preventDefaults(e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+  // 파일 선택 시 처리
+  fileInput.addEventListener('change', function () {
+    handleFiles(this.files);
+  });
 
-    // 드래그 효과 처리
-    ['dragenter', 'dragover'].forEach(eventName => {
-      fileUploadArea.addEventListener(eventName, function () {
-        fileUploadArea.classList.add('drag-over');
-      }, false);
-    });
+  // 드래그 앤 드롭 이벤트 처리
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    fileUploadArea.addEventListener(eventName, preventDefaults, false);
+  });
 
-    ['dragleave', 'drop'].forEach(eventName => {
-      fileUploadArea.addEventListener(eventName, function () {
-        fileUploadArea.classList.remove('drag-over');
-      }, false);
-    });
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
 
-    // 파일 드롭 처리
-    fileUploadArea.addEventListener('drop', function (e) {
-      const files = e.dataTransfer.files;
-      handleFiles(files);
+  // 드래그 효과 처리
+  ['dragenter', 'dragover'].forEach(eventName => {
+    fileUploadArea.addEventListener(eventName, function () {
+      fileUploadArea.classList.add('drag-over');
     }, false);
+  });
 
-    // 파일 처리 함수
-    function handleFiles(files) {
-      if (files.length > 0) {
-        // 추가될 파일들의 크기 계산
-        let newFilesSize = 0;
-        for (let i = 0; i < files.length; i++) {
-          newFilesSize += files[i].size;
-        }
+  ['dragleave', 'drop'].forEach(eventName => {
+    fileUploadArea.addEventListener(eventName, function () {
+      fileUploadArea.classList.remove('drag-over');
+    }, false);
+  });
 
-        // 총 파일 크기 확인
-        if (totalFileSize + newFilesSize > MAX_FILE_SIZE) {
-          // 15MB 초과 시 알림 표시
-          openAlert('alertFileUploadFail')
-          return;
-        }
+  // 파일 드롭 처리
+  fileUploadArea.addEventListener('drop', function (e) {
+    const files = e.dataTransfer.files;
+    handleFiles(files);
+  }, false);
 
-        // 파일 크기 제한을 넘지 않으면 파일 추가
-        totalFileSize += newFilesSize;
-
-        // 파일마다 처리
-        for (let i = 0; i < files.length; i++) {
-          addFileToList(files[i]);
+  // 파일 처리 함수
+  function handleFiles(files) {
+    if (files.length > 0) {
+      // 유효하지 않은 확장자 확인
+      let hasInvalidFile = false;
+      for (let i = 0; i < files.length; i++) {
+        if (!isValidFileExtension(files[i].name)) {
+          hasInvalidFile = true;
+          break;
         }
       }
+      
+      if (hasInvalidFile) {
+        // 지원하지 않는 파일 형식이 있을 경우 알림 표시
+        openAlert('alertInvalidFileType');
+        return;
+      }
+      
+      // 추가될 파일들의 크기 계산
+      let newFilesSize = 0;
+      for (let i = 0; i < files.length; i++) {
+        newFilesSize += files[i].size;
+      }
+
+      // 총 파일 크기 확인
+      if (totalFileSize + newFilesSize > MAX_FILE_SIZE) {
+        // 15MB 초과 시 알림 표시
+        openAlert('alertFileUploadFail');
+        return;
+      }
+
+      // 파일 크기 제한을 넘지 않으면 파일 추가
+      totalFileSize += newFilesSize;
+
+      // 파일마다 처리
+      for (let i = 0; i < files.length; i++) {
+        addFileToList(files[i]);
+      }
     }
+  }
 
-    // 파일 목록에 파일 추가
-    function addFileToList(file) {
-      const fileItem = document.createElement('li');
+  // 파일 목록에 파일 추가
+  function addFileToList(file) {
+    const fileItem = document.createElement('li');
 
-      // 파일 이름 요소
-      const fileName = document.createElement('div');
-      fileName.className = 'file-name';
-      fileName.textContent = file.name;
+    // 파일 이름 요소
+    const fileName = document.createElement('div');
+    fileName.className = 'file-name';
+    fileName.textContent = file.name;
 
-      // 삭제 버튼
-      const deleteBtn = document.createElement('button');
-      deleteBtn.className = 'delete-btn';
-      deleteBtn.innerHTML = '×';
-      deleteBtn.addEventListener('click', function () {
-        // 파일 삭제 시 전체 용량에서 제외
-        totalFileSize -= file.size;
-        fileItem.remove();
-      });
+    // 삭제 버튼
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.innerHTML = '×';
+    deleteBtn.addEventListener('click', function () {
+      // 파일 삭제 시 전체 용량에서 제외
+      totalFileSize -= file.size;
+      fileItem.remove();
+    });
 
-      // 요소 조합
-      fileItem.appendChild(fileName);
-      fileItem.appendChild(deleteBtn);
-      fileList.appendChild(fileItem);
+    // 요소 조합
+    fileItem.appendChild(fileName);
+    fileItem.appendChild(deleteBtn);
+    fileList.appendChild(fileItem);
 
-      // 여기에서 파일 업로드 로직 추가 가능
-      // 예: FormData를 사용하여 AJAX로 서버에 업로드
-    }
-  });
+    // 여기에서 파일 업로드 로직 추가 가능
+    // 예: FormData를 사용하여 AJAX로 서버에 업로드
+  }
+});
 </script>
 </html>

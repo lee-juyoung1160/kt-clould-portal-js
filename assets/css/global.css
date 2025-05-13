@@ -197,7 +197,7 @@ button:disabled, button:disabled:hover {
     visibility:hidden;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 99999999;
     opacity: 0;
     transition: opacity 0.3s ease;
 }

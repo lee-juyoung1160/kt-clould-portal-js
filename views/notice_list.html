@@ -185,9 +185,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     // 공지사항 데이터 예시
     const noticeData = [
-        { id: 1, category: '안내', title: '[공지] 시스템 점검 안내', date: '2025.03.02', views: 523, isFixed: true, isNew: true },
-        { id: 2, category: '공지', title: '[공지] Cloud PC 업그레이드 안내', date: '2025.03.01', views: 456, isFixed: true, isNew: false  },
-        { id: 3, category: '안내', title: 'Cloud PC 서비스 이용 안내', date: '2025.02.28', views: 387, isFixed: false, isNew: false },
+        { id: 1, category: '안내', title: '[공지] 시스템 점검 안내', date: '2025.03.02', views: 523, isFixed: true, isNew: true, content:'<p>서비스<p>를 이용해 주시는 고객 여러분께 감사드립니다.' },
+        { id: 2, category: '공지', title: '[공지] Cloud PC 업그레이드 안내', date: '2025.03.01', views: 456, isFixed: true, isNew: false, content:'서비스를 이용해 주시는 고객 여러분께 감사드립니다.'  },
+        { id: 3, category: '안내', title: 'Cloud PC 서비스 이용 안내', date: '2025.02.28', views: 387, isFixed: false, isNew: false, content:'<p>클라우드<p>피시 이용해주셔서<br> 감사합니다.' },
         { id: 4, category: '공지', title: '계정 사용자 권한 변경 안내', date: '2025.02.27', views: 302 },
         { id: 5, category: '안내', title: '[공지] 시스템 점검 안내', date: '2025.03.02', views: 523, isFixed: false, isNew: true },
         { id: 6, category: '공지', title: '[공지] Cloud PC 업그레이드 안내', date: '2025.03.01', views: 456, isFixed: true, isNew: false },
@@ -297,6 +297,14 @@ document.addEventListener('DOMContentLoaded', function () {
             viewsCell.classList.add('text-right')
 
             tableBody.appendChild(row);
+
+
+             // 내용 테스트
+             const contentCell = document.createElement('td');
+             contentCell.textContent = item.content;
+            row.appendChild(dateCell);
+            
+
         });
     }
     
