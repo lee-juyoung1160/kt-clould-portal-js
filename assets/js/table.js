@@ -933,8 +933,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const paginationHeight = pagination.offsetHeight;
                 
                 scroll.style.height = `${containerHeight - headerHeight2 - paginationHeight}px`;
-            } else if (scroll) {
-ㄱ                
+            } else if (scroll) {          
                 // 테이블 컨테이너가 있으면 그 높이를 기준으로 설정
                 if (tableContainer) {
                     scroll.style.height = `${tableContainer.offsetHeight - 100}px`; // 예상되는 기본 값 적용
