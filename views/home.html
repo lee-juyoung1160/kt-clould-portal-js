@@ -334,13 +334,13 @@
                         </div>
                         <div class="show_content">
                             <ul>
-                                <li>접속 Agent <a href="#" class="btn-down">다운로드 <img
+                                <li><span>접속 Agent</span><a href="#" class="btn-down">다운로드 <img
                                             src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>포탈 Agent <a href="#" class="btn-down">다운로드 <img
+                                <li><span>포탈 Agent</span><a href="#" class="btn-down">다운로드 <img
                                             src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>망연계 Agent <a href="#" class="btn-down">다운로드 <img
+                                <li><span>망연계 Agent - window (개인 PC)</span><a href="#" class="btn-down">다운로드 <img
                                             src="../assets/images/ic_down_16.svg" alt="다운로드"></a></li>
-                                <li>설치 가이드 <a href="#" class="btn-down">다운로드 <img src="../assets/images/ic_down_16.svg"
+                                <li><span>설치 가이드</span><a href="#" class="btn-down">다운로드 <img src="../assets/images/ic_down_16.svg"
                                             alt="다운로드"></a></li>
                             </ul>
                         </div>
@@ -629,10 +629,32 @@
         // 브라우저 및 기기 감지
         const userAgent = navigator.userAgent;
         const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
-        const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
         
-        // Safari 브라우저 또는 iOS 기기인 경우
+        // 기존 iOS 감지
+        const isOldiOS = /iPhone|iPad|iPod/i.test(userAgent);
+        
+        // 터치 기능 감지 (최신 iPadOS 감지 위한 추가 체크)
+        const hasTouchScreen = ('ontouchstart' in window) || 
+                            (navigator.maxTouchPoints > 0) || 
+                            (navigator.msMaxTouchPoints > 0);
+        
+        // 최신 iPadOS 감지 (Safari + Mac + 터치스크린)
+        const isNewIPad = isSafari && 
+                        /Mac/.test(userAgent) && 
+                        hasTouchScreen;
+        
+        // iOS 기기인 경우 (기존 iOS 기기 또는 최신 iPadOS)
+        const isIOS = isOldiOS || isNewIPad;
+        
+        // Safari 브라우저 또는 iOS 기기인 경우 MP4 사용
         const needsMP4 = isSafari || isIOS;
+        
+        console.log('브라우저 정보:', {
+            userAgent,
+            isSafari,
+            isIOS,
+            needsMP4
+        });
         
         // 각 비디오 요소에 대해 처리
         videoElements.forEach(videoElement => {
@@ -871,76 +893,116 @@
     window.addEventListener('resize', setupNoticeTooltips);
 
         // 초기 설치 프로그램 다운로드
-        const actionButtons = document.querySelectorAll('.action_button');
-        // 화면 너비 감지
-        const windowWidth = window.innerWidth;
-        //pc 진입 os 체크
-        function detectOS() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            const platform = navigator.platform.toLowerCase();
+const actionButtons = document.querySelectorAll('.action_button');
+// 화면 너비 감지
+const windowWidth = window.innerWidth;
 
-            if (userAgent.indexOf('win') !== -1 || platform.indexOf('win') !== -1) {
-                return 'Windows';
-            } else if (userAgent.indexOf('mac') !== -1 || platform.indexOf('mac') !== -1) {
-                return 'MacOS';
-            } else {
-                return 'Other OS';
-            }
+// 디바이스 타입 감지 함수 (PC vs 모바일/태블릿)
+function detectDeviceType() {
+    const userAgent = navigator.userAgent.toLowerCase();
+    // 터치 기능 감지
+    const hasTouchScreen = ('ontouchstart' in window) || 
+                          (navigator.maxTouchPoints > 0) || 
+                          (navigator.msMaxTouchPoints > 0);
+    
+    // 아이패드 감지를 위한 추가 체크
+    const isIPad = /ipad/.test(userAgent) || 
+                   (userAgent.includes('mac') && hasTouchScreen) ||
+                   (userAgent.includes('macintosh') && hasTouchScreen);
+    
+    if (isIPad || /android|webos|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
+        return 'Mobile';
+    } else {
+        return 'Desktop';
+    }
+}
+
+// PC OS 감지 함수
+function detectOS() {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const platform = navigator.platform.toLowerCase();
+    const deviceType = detectDeviceType();
+    
+    // 모바일/태블릿으로 감지되면 모바일 OS 반환
+    if (deviceType === 'Mobile') {
+        return detectMobileOS();
+    }
+    
+    // PC OS 감지
+    if (userAgent.indexOf('win') !== -1 || platform.indexOf('win') !== -1) {
+        return 'Windows';
+    } else if (userAgent.indexOf('mac') !== -1 || platform.indexOf('mac') !== -1) {
+        return 'MacOS';
+    } else {
+        return 'Other OS';
+    }
+}
+
+// 모바일 OS 감지 함수
+function detectMobileOS() {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const hasTouchScreen = ('ontouchstart' in window) || 
+                          (navigator.maxTouchPoints > 0) || 
+                          (navigator.msMaxTouchPoints > 0);
+    
+    // 아이패드 감지를 위한 추가 체크
+    const isIPad = /ipad/.test(userAgent) || 
+                   (userAgent.includes('mac') && hasTouchScreen) ||
+                   (userAgent.includes('macintosh') && hasTouchScreen);
+    
+    if (userAgent.indexOf('android') !== -1) {
+        return 'Android';
+    } else if (
+        userAgent.indexOf('iphone') !== -1 ||
+        isIPad ||
+        userAgent.indexOf('ipod') !== -1
+    ) {
+        return 'iOS';
+    } else {
+        return 'Other';
+    }
+}
+
+// 디바이스 타입과 OS 감지
+const deviceType = detectDeviceType();
+const currentOS = detectOS();
+
+// 적절한 버튼 활성화
+function activateButton(buttonClass) {
+    const button = document.querySelector(`.action_button.${buttonClass}`);
+    if (button && button.nextElementSibling) {
+        button.nextElementSibling.classList.add('show');
+        const icon = button.querySelector('.btn-control-icon');
+        if (icon) {
+            icon.classList.add('active');
         }
-        // mo 진입 os 체크
-        function detectMobileOS() {
-            const userAgent = navigator.userAgent.toLowerCase();
+    }
+}
 
-            if (userAgent.indexOf('android') !== -1) {
-                return 'Android';
-            } else if (
-                userAgent.indexOf('iphone') !== -1 ||
-                userAgent.indexOf('ipad') !== -1 ||
-                userAgent.indexOf('ipod') !== -1 ||
-                (userAgent.indexOf('mac') !== -1 && 'ontouchend' in document) // iPadOS 감지
-            ) {
-                return 'iOS';
-            } else {
-                return 'Other';
-            }
-        }
-        const currentOS = detectOS();
-        // 윈도우 
-        if (currentOS === 'Windows' && windowWidth > 1079) {
-            document.querySelector('.action_button.windows').nextElementSibling.classList.add('show');
-            document.querySelector('.action_button.windows .btn-control-icon').classList.add('active');
-
-            //console.log('윈도우용 값 설정');
-            // 맥
-        } else if (currentOS === 'MacOS' && windowWidth > 1079) {
-            document.querySelector('.action_button.mac').nextElementSibling.classList.add('show');
-            document.querySelector('.action_button.mac .btn-control-icon').classList.add('active');
-            console.log('맥OS용 값 설정');
-            // 태블릿
-        } else if (windowWidth <= 1079) {
-            document.querySelector('.action_button.tablet').nextElementSibling.classList.add('show');
-            document.querySelector('.action_button.tablet .btn-control-icon').classList.add('active');
-            //console.log('태블릿 값 설정');
-
-            // 테블릿 일 경우, 모바일 os 설정
-            // const mobileOS = detectMobileOS();
-            // if (mobileOS === 'Android') {
-            // console.log('안드로이드용 값 설정');
-            // // 안드로이드 전용 코드
-            // } else if (mobileOS === 'iOS') {
-            // console.log('iOS용 값 설정');
-            // // iOS 전용 코드
-            // } else {
-            // console.log('기타 OS용 값 설정');
-            // // 기타 OS 전용 코드
-            // }
-
-            //그 외 윈도우로 처리
-        } else {
-            document.querySelector('.action_button.windows').nextElementSibling.classList.add('show');
-            document.querySelector('.action_button.windows .btn-control-icon').classList.add('active');
-            //console.log('기타 OS용 값 설정');
-        }
+// 디바이스와 OS에 따른 버튼 활성화 로직
+if (deviceType === 'Mobile' || windowWidth <= 1079) {
+    // 모바일/태블릿 디바이스 또는 작은 화면
+    activateButton('tablet');
+    console.log('태블릿/모바일 버튼 활성화');
+    
+    // 필요한 경우 iOS/Android 구분하여 추가 처리
+    // const mobileOS = detectMobileOS();
+    // if (mobileOS === 'Android') { ... }
+    // else if (mobileOS === 'iOS') { ... }
+} else {
+    // PC 디바이스
+    if (currentOS === 'Windows') {
+        activateButton('windows');
+        console.log('윈도우 버튼 활성화');
+    } else if (currentOS === 'MacOS') {
+        activateButton('mac');
+        console.log('맥OS 버튼 활성화');
+    } else {
+        // 기본값은 윈도우
+        activateButton('windows');
+        console.log('기타 OS - 윈도우 버튼 활성화');
+    }
+}
 
         // Add click event listener to each action button
         actionButtons.forEach(button => {
@@ -979,6 +1041,24 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const videos = document.querySelectorAll('.cloud_vod video');
+        videos.forEach(video => {
+            // 비디오가 로드되기 전에 숨김
+            video.style.opacity = '0';
+            
+            // 비디오 메타데이터 로드 완료 후 표시
+            video.addEventListener('loadedmetadata', function() {
+                video.style.opacity = '1';
+            });
+            
+            // 이미 메타데이터가 로드된 경우에 대한 처리
+            if (video.readyState >= 1) {
+                video.style.opacity = '1';
+            }
+        });
+    });
 
     </script>
 </body>

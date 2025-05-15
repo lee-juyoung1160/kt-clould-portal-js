@@ -497,6 +497,9 @@ button:disabled, button:disabled:hover {
     opacity: 0;
 
 }
+.modal-content.login-modal .modal-body .show_content li span {
+    width: calc(100% - 100px);
+}
 .modal-content.login-modal .modal-body .show_content.show {
     overflow-y: scroll;
     max-height: 179px; /* Adjust based on your content's maximum height */
@@ -514,7 +517,7 @@ button:disabled, button:disabled:hover {
     content: '';
     position: absolute;
     top: 16px;
-    left: 68px;
+    left: 52px;
     width: 3px;
     height: 3px;
     background-image: url(../images/dot.svg);
@@ -523,6 +526,8 @@ button:disabled, button:disabled:hover {
     display: flex;
     align-items: center;
     margin-left: auto;
+    width: 80px;
+    height: 30px;
     padding: 4px 8px;
     font-size: 12px;
     font-weight: 400;

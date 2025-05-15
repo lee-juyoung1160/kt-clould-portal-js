@@ -1,3 +1,15 @@
+/*
+* 리스트 페이지 sort select 설정 방법
+* 리스트 페이지 HTML th의 data-sort 값을 sort select 의 data-value 값과 같게 설정
+* table.js 의  if (elements.sortOrderSelect) 안에 case 추가
+* case 'remainingNum':  //data-value 값
+* state.sortColumn = 'remainingNum'; //data-value 값
+* state.sortDirection = 'desc'; //desc: 최신순 , asc: 오래된 순
+* break;
+*/
+
+
+
 /**
  * 테이블 초기화 및 관리를 위한 공통 JavaScript 모듈
  * 페이지네이션, 정렬, 필터링, 검색 기능 지원
@@ -33,6 +45,25 @@ function initializeTable(options) {
             }
         }
     };
+    // 뒤로 가기 이벤트 처리
+    window.addEventListener('pageshow', function(event) {
+        // bfcache에서 페이지가 복원된 경우(뒤로 가기) 실행
+        if (event.persisted) {
+            console.log('페이지가 bfcache에서 복원됨 (뒤로 가기)');
+            
+            // 검색 입력란 초기화
+            if (elements.searchInput) {
+                elements.searchInput.value = '';
+            }
+            
+            // 검색 상태 초기화
+            state.searchTerm = '';
+            state.searchType = 'all';
+            
+            // 테이블 데이터 갱신
+            processAndRenderData();
+        }
+    });
 
     // 사용자 옵션과 기본 옵션 병합
     const settings = { ...defaultOptions, ...options };
@@ -311,6 +342,7 @@ function renderTable() {
             settings.renderCallback(currentPageData, elements.tableBody);
         }
     }
+    
 
     // 모바일 테이블 렌더링
     if (elements.moTableBody && settings.renderMobileCallback) {
@@ -524,6 +556,10 @@ function renderTable() {
                             break;
                         case 'views':
                             state.sortColumn = 'views';
+                            state.sortDirection = 'desc';
+                            break;
+                        case 'remainingNum':
+                            state.sortColumn = 'remainingNum';
                             state.sortDirection = 'desc';
                             break;
                     }
@@ -749,6 +785,7 @@ function renderTable() {
             state.searchTerm = term;
             processAndRenderData();
         },
+        /**
 
         /**
          * 정렬 설정
@@ -959,4 +996,14 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // 페이지 완전 로드 후 한번 더 실행
     window.addEventListener('load', updateElementHeights);
+});
+
+//뒤로가기 클릭 시 검색 인풋 초기화
+window.addEventListener('pagehide', () => {
+    window.history.pushState(null, '', location.href);
+    location.reload();
+        // 검색 입력란 초기화
+        if (document.getElementById('searchInput')) {
+        document.getElementById('searchInput').value = '';
+    }
 });

@@ -61,7 +61,7 @@
     opacity: 1;
     visibility: visible;
     pointer-events: all;
-    max-height: 400px;
+    max-height: 1000px;
     padding: 24px 0;
 }
 .id-selector-option li {
@@ -74,9 +74,6 @@
     color: var(--Neutral-Text-neutral);
     transition: all .3s;
     cursor: pointer;
-}
-.id-selector-option li:nth-child(n+4) {
-    display: none;
 }
 .id-selector-option li:hover,
 .custom-option.selected {
