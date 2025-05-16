@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 header.classList.add('fixed');
                 // article의 margin-top을 header의 높이로 설정
                 article.style.marginTop = headerHeight + 'px';
-            } else {
+            } else if ( scrollTop <= 1 || window.innerWidth > 1079) {
                 // 스크롤이 0이면 .fixed 클래스 제거
                 header.classList.remove('fixed');
                 // article의 margin-top을 0으로 설정
