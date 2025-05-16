@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // 햄버거 메뉴 토글 핸들러
     function menuToggleHandler() {
-        console.log('메뉴 토글 클릭됨'); // 디버깅용
         nav.classList.add('active');
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
