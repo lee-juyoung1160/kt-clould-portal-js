@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // DOM이 로드된 후 요소 선택
+    // 요소 선택
     const menuToggle = document.querySelector('.menu-toggle');
     const closeBtn = document.querySelector('.close-btn');
     const overlay = document.querySelector('.overlay');
     const nav = document.querySelector('nav');
     const mainMenuItems = document.querySelectorAll('.main-menu > li > a');
     
-    // 모바일 닫기 버튼 함수
+    // 모바일 메뉴 닫기 함수
     function moNavClose() {
         nav.classList.remove('active');
         overlay.classList.remove('active');
@@ -21,41 +21,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-    // 모바일 메뉴 이벤트 핸들러 설정 함수
-    function setupMobileMenu() {
-        if (window.innerWidth <= 1079) {
-            // 햄버거 메뉴 토글
-            if (menuToggle) {
-                // 이벤트 리스너가 중복 등록되지 않도록 먼저 제거
-                menuToggle.removeEventListener('click', menuToggleHandler);
-                // 새로 등록
-                menuToggle.addEventListener('click', menuToggleHandler);
-            }
-            
-            // 닫기 버튼
-            if (closeBtn) {
-                closeBtn.removeEventListener('click', moNavClose);
-                closeBtn.addEventListener('click', moNavClose);
-            }
-            
-            // 오버레이 클릭 시 메뉴 닫기
-            if (overlay) {
-                overlay.removeEventListener('click', moNavClose);
-                overlay.addEventListener('click', moNavClose);
-            }
-        } else {
-            // 데스크톱 모드에서는 이벤트 리스너 제거
-            if (menuToggle) menuToggle.removeEventListener('click', menuToggleHandler);
-            if (closeBtn) closeBtn.removeEventListener('click', moNavClose);
-            if (overlay) overlay.removeEventListener('click', moNavClose);
-        }
+    // 햄버거 메뉴 클릭 이벤트
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function () {
+            console.log('메뉴 토글 클릭됨'); // 디버깅용
+            nav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
     }
     
-    // 햄버거 메뉴 토글 핸들러
-    function menuToggleHandler() {
-        nav.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    // 닫기 버튼 클릭 이벤트
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+            moNavClose();
+        });
+    }
+    
+    // 오버레이 클릭 시 메뉴 닫기
+    if (overlay) {
+        overlay.addEventListener('click', function () {
+            moNavClose();
+        });
     }
     
     // 모바일에서 메인 메뉴 클릭 시 서브메뉴 토글
@@ -94,6 +81,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     
+    // 화면 크기 변경 시 모바일 메뉴 상태 초기화
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 1079) {
+            moNavClose();
+        }
+    });
+    
     // 스크롤 핸들러 함수
     function handleScroll() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -118,16 +112,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     
-    // 화면 크기 변경 시 모바일 메뉴 상태 초기화 및 margin 조정
-    window.addEventListener('resize', function() {
-        setupMobileMenu();
-        handleScroll();
-    });
-    
     // 스크롤 이벤트 리스너
     window.addEventListener('scroll', handleScroll);
     
-    // 초기 설정 실행
-    setupMobileMenu();
+    // 화면 크기 변경 시에도 margin 조정
+    window.addEventListener('resize', handleScroll);
+    
+    // 초기 실행
     handleScroll();
 });
