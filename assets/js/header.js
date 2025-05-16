@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('메뉴 토글 클릭됨'); // 디버깅용
         nav.classList.add('active');
         overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
     }
     
     // 모바일에서 메인 메뉴 클릭 시 서브메뉴 토글
