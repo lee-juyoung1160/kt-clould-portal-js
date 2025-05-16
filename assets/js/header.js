@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('메뉴 토글 클릭됨'); // 디버깅용
             nav.classList.add('active');
             overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            //document.body.style.overflow = 'hidden';
         });
     }
     
@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 태블릿/모바일에서는 스크롤 위치와 상관없이 항상 fixed 클래스 유지
                 header.classList.add('fixed');
                 article.style.marginTop = headerHeight + 'px';
+               // nav.style.position = 'fixed';
             } else {
                 // PC 모드에서만 스크롤 위치에 따라 fixed 클래스 추가/제거
                 if (scrollTop > 0) {
