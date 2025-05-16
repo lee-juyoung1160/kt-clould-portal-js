@@ -585,6 +585,9 @@
     .cloud_vod video {
         margin-top: 0;
     }
+    .cloud_vod video {
+        margin: 0 0 0 20px;
+    }
     
 
     .svg-container, .overlaySvg {
@@ -901,5 +904,8 @@
     }
     .app-name br {
         display: block;
+    }
+    .cloud_vod video {
+        margin: 0 0 0 0;
     }
 }
