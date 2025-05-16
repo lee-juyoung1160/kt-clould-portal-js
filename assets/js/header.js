@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     
-    // 스크롤 핸들러 함수
+   // 스크롤 핸들러 함수
     function handleScroll() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const header = document.querySelector('header');
@@ -98,16 +98,20 @@ document.addEventListener('DOMContentLoaded', function () {
             // 헤더 높이 가져오기
             const headerHeight = header.offsetHeight;
             
-            // 스크롤이 1이라도 있으면 .fixed 클래스 추가
-            if (scrollTop > 0) {
+            // 테블릿 모드에서는 항상 fixed 클래스 유지
+            if (window.innerWidth <= 1079) {
+                // 태블릿/모바일에서는 스크롤 위치와 상관없이 항상 fixed 클래스 유지
                 header.classList.add('fixed');
-                // article의 margin-top을 header의 높이로 설정
                 article.style.marginTop = headerHeight + 'px';
-            } else if ( scrollTop <= 1 || window.innerWidth > 1079) {
-                // 스크롤이 0이면 .fixed 클래스 제거
-                header.classList.remove('fixed');
-                // article의 margin-top을 0으로 설정
-                article.style.marginTop = '0px';
+            } else {
+                // PC 모드에서만 스크롤 위치에 따라 fixed 클래스 추가/제거
+                if (scrollTop > 0) {
+                    header.classList.add('fixed');
+                    article.style.marginTop = headerHeight + 'px';
+                } else {
+                    header.classList.remove('fixed');
+                    article.style.marginTop = '0px';
+                }
             }
         }
     }
@@ -121,3 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 초기 실행
     handleScroll();
 });
+
+
+
+
